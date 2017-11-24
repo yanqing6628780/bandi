@@ -13,14 +13,13 @@ block content
             th 层数
             th 操作
         tbody
-            - console.log(list)
             each item,index in list
                 tr
                     td= index+1
-                    td= item.name
+                    td= item.display_name
                     td
                         if item.parent_id
-                            | #{item.parent_id.name}
+                            | #{item.parent_id.display_name}
                         else
                             | 无
                     td= item.level
