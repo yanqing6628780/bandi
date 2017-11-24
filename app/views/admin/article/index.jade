@@ -1,0 +1,32 @@
+extends ../layouts/default
+
+block content
+    - var url = '/admin/article'
+    div.row
+        div.col-md-12
+            a.btn.btn-success(href='#{url}/add') 新增
+    table.table
+        thead
+            th #
+            th 名称
+            th 所属分类
+            th 跳转链接
+            th 产品编码
+            th 操作
+        tbody
+            each item,index in list
+                tr
+                    td= index+1
+                    td= item.name
+                    td
+                        - ref = []
+                        each cate, key in item.cids
+                            - ref.push(cate.display_name)
+                        - ref.join("，")
+                        | #{ref}
+                    td= item.url
+                    td= item.code
+                    td
+                        .btn-group
+                            a.btn.btn-info(href='#{url}/edit/#{item._id}') 改
+                            a.btn.btn-danger(href='#{url}/delete/#{item._id}') 删

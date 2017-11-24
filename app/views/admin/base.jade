@@ -1,0 +1,8 @@
+mixin formInput(labelName, fieldsName, model, isRequired)
+    div.form-group
+            label.col-sm-2.control-label #{labelName}
+            div.col-sm-10
+                if model
+                    input.form-control(type="text" name="#{fieldsName}" placeholder="#{labelName}" value='#{model[fieldsName]}' required=isRequired)
+                else
+                    input.form-control(type="text" name="#{fieldsName}" placeholder="#{labelName}" value='' required=isRequired)

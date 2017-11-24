@@ -1,0 +1,31 @@
+extends ../layouts/default
+
+include ../base
+block content
+    - var url = '/admin/category'
+    .alert.alert-danger
+        | 请保证系统内的分类，有别名为【GUNPLA】和【Character】这两个分类
+    form.form-horizontal(role='form' method='post' action='#{url}/save')
+        +formInput("名称", "display_name", model)
+        +formInput("别名", "name", model)
+        div.form-group
+            label.col-sm-2.control-label 上级分类
+            div.col-sm-10
+                select.form-control(name="parent_id")
+                    option(value="") ---
+                    each item,index in categorys
+                        - selected = false
+                        if model && model.parent_id
+                            option(
+                                value=item._id
+                                selected=item._id.toString() == model.parent_id.toString()
+                            ) #{item.display_name}
+                        else
+                            option(
+                                value=item._id
+                            ) #{item.display_name}
+        div.form-group
+            div.col-sm-offset-2.col-sm-10
+                button.btn.btn-success 保存
+                if model
+                    input(type="hidden" name="id" value='#{model._id}')

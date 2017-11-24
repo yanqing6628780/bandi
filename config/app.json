@@ -1,0 +1,19 @@
+{
+    "domain": "http://localhost",
+    "port": 8080,
+    "views": "app/views",
+    "models": "app/models",
+    "logs": "logs",
+    "public": "public",
+    "resource": "resource",
+    "db": {
+        "name": "bandi",
+        "host": "localhost"
+    },
+    "production": {
+        "db": {
+            "name": "bandi",
+            "host": "localhost"
+        }
+    }
+}

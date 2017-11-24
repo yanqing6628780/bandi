@@ -1,0 +1,176 @@
+extends ../layouts/default
+
+include ../base
+block content
+    - var url = '/admin/article'
+    .alert.alert-danger
+        ol
+            li 按住ctrl键+鼠标左键，能多选分类
+            li 普通文章不需要填写产品方面信息
+            li 添加图片能进行多张上传。按住ctrl键+鼠标左键，能同时多选图片
+    form.form-horizontal(role='form' method='post' action='#{url}/save')
+        +formInput("标题", "name", model, true)
+        +formInput("跳转链接", "url", model, false)
+        +formInput("产品编码", "code", model, false)
+        +formInput("价格", "price", model, false)
+        +formInput("产品适用年龄", "target_age", model, false)
+        div.form-group
+            label.col-sm-2.control-label 发售日期
+            div.col-sm-10
+                input.datepicker(
+                    type="text"
+                    name="release_date"
+                    data-date-format="yyyy-mm-dd"
+                    value=model&&model.release_date
+                    readonly
+                )
+        div.form-group
+            label.col-sm-2.control-label 是否线上商品
+            div.col-sm-10
+                label.radio-inline
+                    if !model
+                        input(
+                            name="is_online_shop"
+                            type="radio"
+                            value="0"
+                            checked=true
+                        )
+                    else
+                        input(
+                            name="is_online_shop"
+                            type="radio"
+                            value="0"
+                            checked=model.is_online_shop===false
+                        )
+                    | 否
+                label.radio-inline
+                    input(
+                        name="is_online_shop"
+                        type="radio"
+                        value="1"
+                        checked=model&&model.is_online_shop===true
+                    )
+                    | 是
+        div.form-group
+            label.col-sm-2.control-label 产品图片
+            div.col-sm-10.admin_article
+                input#images(type="hidden" name="images_str" value=model&&model.images_str)
+                span.btn.btn-success.fileinput-button
+                    i.glyphicon.glyphicon-plus
+                    span 添加产品图
+                    input#fileuploader(type="file" name="files[]" multiple="")
+                #images_box.row
+                if model
+                    each item in model.images
+                        .col-sm-3
+                            .thumbnail
+                                img(src=item alt="图片已不存在。点击保存按钮后，会自动删除")
+                                .caption
+                                    p
+                                        button.btn.btn-danger(
+                                            type="button"
+                                            onclick="delete_img(this, '#{item}')"
+                                        ) 删
+
+        div.form-group
+            label.col-sm-2.control-label 所属分类
+            div.col-sm-10
+                select.form-control(name="cids" multiple required)
+                    each item,index in categorys
+                        - selected = false
+                        if model && model.cids
+                            each cate,key in model.cids
+                                if item._id.toString() == cate
+                                    - selected = true
+                            option(
+                                value=item._id
+                                selected=selected
+                            ) #{item.display_name}
+                        else
+                            option(
+                                value=item._id
+                            ) #{item.display_name}
+        div.form-group
+            label.col-sm-2.control-label 内容
+            div.col-sm-10
+                script(
+                    id="editor" name="content" type="text/plain"
+                    style="min-height: 400px"
+                )
+                    | !{model&&model.content}
+        div.form-group
+            div.col-sm-offset-2.col-sm-10
+                input.btn.btn-success(type="submit" value="保存")
+                input(type="hidden" name="id" value=model&&model._id)
+
+block scripts
+    script.
+        var uploadDir = '/products/'
+        var images = [], $images;
+        function createImgTemplate (name) {
+            var url = uploadDir + name
+            var col = $('<div/>').addClass('col-sm-3')
+            t = $('<div/>').addClass('thumbnail')
+            img = $('<img/>').attr('src', url)
+            c = $('<div/>').addClass('caption')
+            btn = $('<button/>').addClass('btn btn-danger')
+                .attr('type', "button")
+                .text('删').attr('onclick', "delete_img(this, '"+ url +"')")
+            p = $('<p/>').append(btn)
+            c.append(p)
+            t.append(img).append(c)
+            col.append(t)
+            return col
+        }
+        function delete_img(obj, url) {
+            var rs = url.split(uploadDir)
+            $.ajax({
+                type: 'DELETE',
+                url: '/admin/upload/',
+                dataType: "json",
+                data: {
+                    _method:'delete',
+                    dir: uploadDir,
+                    filename: rs[1]
+                },
+                success: function(data) {
+                    if(data.success) {
+                        $(obj).parents('.col-sm-4').remove()
+                        images.splice($.inArray(url, images), 1)
+                        $images.trigger('update')
+                    }
+                }
+            })
+        }
+        $(document).ready(function() {
+            $images = $('#images')
+            images = $images.val() ? $images.val().split(',') : []
+            var ue = UE.getEditor('editor');
+            $images.on('update', function() {
+                for(var key in images) {
+                    if(!images[key]) delete images[key]
+                }
+                $images.val(images.join(','))
+            })
+            $images.trigger('update')
+            $("#fileuploader").fileupload({
+                url:"/admin/upload",
+                fileName:"image",
+                maxFileCount: 12,
+                done: function(e,data) {
+                    //上传成功后的回调方法。本例中是将返回的文件名保到一个hidden类开的input中，以便后期数据处理
+                    try {
+                        var rs = data.result
+                        rs = JSON.parse(rs)
+                        rs = rs.files
+                        $.each(rs, function (index, file) {
+                            $('#images_box').append(createImgTemplate(file.name))
+                            images.push(uploadDir+file.name)
+                        })
+                        $images.trigger('update')
+                    } catch (e) {
+                        console.warn(e)
+                    }
+                }
+            });
+        })

@@ -1,0 +1,31 @@
+extends ../layouts/default
+
+block content
+    - var url = "/admin/user"
+    div.row
+        div.col-md-12
+            a.btn.btn-success(href='#{url}/add') 新增
+    table.table
+        thead
+            th #
+            th 用户名
+            th email
+            th 名称
+            th 状态
+            th 操作
+        tbody
+            each item,index in list
+                tr
+                    td= index+1
+                    td= item.username
+                    td= item.email
+                    td= item.nickname
+                    td
+                        if item.isban
+                            | 禁用
+                        else
+                            | 激活
+                    td
+                        .btn-group
+                            a.btn.btn-info(href='#{url}/edit/#{item._id}') 改
+                            a.btn.btn-danger(href='#{url}/delete/#{item._id}') 删
