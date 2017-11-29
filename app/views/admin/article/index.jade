@@ -11,6 +11,7 @@ block content
             th 名称
             th 所属分类
             th 跳转链接
+            th 发布/发售日期
             th 产品编码
             th 操作
         tbody
@@ -25,6 +26,7 @@ block content
                         - ref.join("，")
                         | #{ref}
                     td= item.url
+                    td= moment(item.release_date).format('YYYY-MM-DD')
                     td= item.code
                     td
                         .btn-group

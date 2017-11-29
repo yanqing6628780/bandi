@@ -1,0 +1,23 @@
+extends ./default
+
+block head
+    link(rel="stylesheet" href="/css/hbs_lower.css" )
+    style.
+        .bhs_page_bnr { margin: 15px 0 0 0; padding: 0; width: 100%;}
+        .bhs_page_bnr ul { font-size: 0; line-height: 0; margin: 0; padding: 0;}
+        .bhs_page_bnr ul li { display: inline-block; margin: 0 2% 1% 0; padding: 0; vertical-align: top; width: 49%;}
+        .bhs_page_bnr ul li:nth-child(2n) { display: inline-block; margin: 0 0 2% 0; padding: 0; vertical-align: top; width: 49%;}
+        .bhs_page_bnr ul li span { display: block; font-size: 13px; line-height: 18px; margin: 1% 0 0 0; padding: 0; width: 100%; word-break:break-all;}
+
+        .bhs_whatsgunpla{margin: 15px 0 0 0; padding: 0; width: 100%;}
+        .bhs_whatsgunpla ul{font-size: 0; line-height: 0; margin: 0; padding: 0;}
+        .bhs_whatsgunpla ul li{display: inline-block; margin: 0 0 0 0; padding: 0; vertical-align: top;}
+        .bhs_whatsgunpla ul li span { display: block; font-size: 13px; line-height: 19px; margin: 0 0 0 0; padding: 0; width: 100%; word-break:break-all;}
+
+block nav
+    include ./navbar
+
+block content
+    #bhs_main_1col
+        block col_1_content
+

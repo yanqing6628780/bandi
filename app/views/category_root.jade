@@ -1,0 +1,33 @@
+extends ./layouts/default_col_1
+
+block col_1_content
+    #bhs_page_gunpla
+        h2.bhs_main_title
+            p= item.display_name
+        #bhs_chapla_series
+            +brand_h3_title()
+            ul.bhs_logobnrList
+                if item.name == "GUNPLA" && gunplaBrandCate && gunplaBrandCate.son
+                    each item in gunplaBrandCate.son
+                        +cate_logo_li(item)
+                if item.name == "CHARACTER" && characterBrandCate && characterBrandCate.son
+                    each item in characterBrandCate.son
+                        +cate_logo_li(item)
+        #bhs_chapla_works
+            +works_h3_title()
+            ul.bhs_logobnrList
+                if item.name == "GUNPLA" && gunplaSeriesCate && gunplaSeriesCate.son
+                    each cate in gunplaSeriesCate.son
+                        +cate_logo_li(cate)
+                if item.name == "CHARACTER" && characterSeriesCate && characterSeriesCate.son
+                    each cate in characterSeriesCate.son
+                        +cate_logo_li(cate)
+
+        .bhs_main_btn_sbs
+            ul
+                li.bhs_main_btn_all
+                    a(href='/category/all/#{item.id}')
+                        span 查看 #{item.display_name} 所有商品
+                li.bhs_main_btn_allcat
+                    a(href='/items/')
+                        span 查看所有商品

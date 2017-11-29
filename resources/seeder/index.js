@@ -3,5 +3,7 @@ var configs = require('../../config'),
     db = require(configs.path.models);
 
 //将需要运行的seeder加在下面
-require('./user.js')(db).run();
-require('./category.js')(db).run();
+Promise.all([
+    require('./user.js')(db).run(),
+    require('./category.js')(db).run()
+]).then(process.exit, process.exit);

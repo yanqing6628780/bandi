@@ -1,0 +1,27 @@
+script(type="text/javascript", src="/css/renew/js/jquery.smoothscroll.js")
+script(type="text/javascript", src="/css/renew/js/jquery.placeholder.min.js")
+//if lte IE 9
+    script(type="text/javascript", src="/css/renew/js/jquery.placeholder.min.js")
+    script.
+        $(function () {
+            $('input, textarea').placeholder(); //inputとtextareaに「.placeholder」を付与
+        });
+script(type="text/javascript", src="/css/renew/js/jquery.tile.js")
+script(type="text/javascript", src="/css/renew/js/jquery.tile_lib.js?v=20170307")
+script(src="/css/renew/js/jquery.heightLine.js", type="text/javascript")
+script(type="text/javascript").
+    $(window).load(function() {
+        $("#bhs_sideL #bhs_sideLink ul li a").heightLine(); //[左カラム]：諸注意メニューの高さ
+        $("#bhs_footer #bhs_footer_boiler ul li").heightLine(); //[フッター]：ボイラープレートの高さ
+    });
+script.
+    $('#bhs_side_newitem_later form select').change(function() {
+        if ($(this).val() != '') {
+            window.location.href = $(this).val();
+        }
+    });
+script(type="text/javascript", src="/js/lib/jquery.ranking_extension.js")
+script(type="text/javascript").
+    $(function(){
+        $('#bhs_news ul li').addRankingExternalLink();
+    });

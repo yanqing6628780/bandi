@@ -24,24 +24,23 @@ module.exports = function(app, passport) {
     var adminCtrl = controllers.admin;
     var midAuth = middlewares.authorization;
 
-    var routerPage = express.Router();
+    var frontPage = express.Router();
 
     //routerPage下的views上使用下面的数据
-    // routerPage.use(function(req, res, next) {
-    //     res.locals.path = req.path;
-    //     res.locals.user = req.user ? req.user : null;
-    //     next(null, req, res);
-    // });
+    frontPage.use(middlewares.view.getCommonData);
 
-    routerPage.get('/', controllers.index.home);
-    routerPage.get('/news');
+    frontPage.get('/', controllers.index.home);
+    // routerPage.get('/', (req, res) => res.redirect('/admin'));
+    frontPage.get('/schedule/:date?', controllers.index.schedule);
+    frontPage.get('/item/:id', controllers.item.detail);
+    frontPage.get('/category/:id', controllers.category.index);
 
-    app.use('/', routerPage);
+    app.use('/', frontPage);
 
     // 后台
     var adminRouter = express.Router();
     //后台鉴权
-    adminRouter.use(['/', '/*'], midAuth.admin.hasAuthorization);
+    adminRouter.use(midAuth.admin.hasAuthorization);
     //后台管理路由
     adminRouter.get('/', adminCtrl.index.home);
     adminRouter.get('/login', adminCtrl.auth.login);
@@ -91,14 +90,14 @@ module.exports = function(app, passport) {
     });
 
     adminRouter.post('/upload', (req, res, next) => {
-        var uploadDir = app.configs.path.public;
         var uploadUrl = "/products";
-        if (req.body.dir) {
-            uploadDir = path.join(uploadDir, req.body.dir);
-            uploadUrl = req.body.dir;
+        var uploadDir = path.join(app.configs.path.public, uploadUrl);
+        if (req.query.dir) {
+            uploadDir = path.join(app.configs.path.public, req.query.dir);
+            uploadUrl = req.query.dir;
         }
         upload.fileHandler({
-            uploadDir: path.join(uploadDir, uploadUrl),
+            uploadDir: uploadDir,
             uploadUrl: uploadUrl
         })(req, res, next);
     });

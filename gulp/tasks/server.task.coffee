@@ -13,10 +13,10 @@ module.exports = (gulp, config, $, args) ->
 
         $.runSequence 'default',
             'server:start'
-            ['server:watch']
             'browserSync:init'
+            ['server:watch']
 
-    gulp.task 'server:start', () ->
+    gulp.task 'server:start', ['default'], () ->
         $.nodemon({
             script: "#{config.source}bin/www"
             watch: [

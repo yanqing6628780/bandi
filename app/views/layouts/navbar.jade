@@ -1,0 +1,10 @@
+#bhs_navbar
+    .overlay_sub
+    if bclist
+        .bclist
+            ul
+                li.home
+                    a(href="/") 主页
+                each item, index in bclist
+                    li= item
+    block bclist

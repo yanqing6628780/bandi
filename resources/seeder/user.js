@@ -16,16 +16,14 @@ module.exports = function(db) {
             email: "admin@admin.com"
         }
 
-        Model.create(adminData)
-            .then(function(mongooseDocuments) {
-                // console.log(modelName, mongooseDocuments);
+        return Model.create(adminData)
+            .then(function(docs) {
+                // console.log(modelName, docs);
                 console.log(modelName + ' insert success.');
-                process.exit();
             })
             .catch(function(err) {
                 console.log(modelName + ' insert failed.err:');
                 console.log(err);
-                process.exit();
             });
     }
 

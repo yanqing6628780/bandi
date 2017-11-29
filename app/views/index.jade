@@ -1,17 +1,211 @@
 extends ./layouts/default
 
+block head
+    link(rel="stylesheet", href="/css/hbs_top.css")
+    script(src="/css/renew/js/slick/slick.min.js")
+    script.
+        $(function () {
+            $('.center-item').slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                centerPadding: '0',
+                autoplay: true,
+                appendArrows: $('#arrows'),
+                centerMode: false,
+                swipe: true,
+                dots: true
+            });
+        });
+
+block custom_content
+    #bhs_top_slider.clearfix
+        ul.slider.center-item
+            li
+                a(href="http://bandai-hobby.net/site/gundamdocks/", target="_blank")
+                    img(src="//bandai-hobby.net/images/136_136_o_1bvbo4836r3cccm8pf1uji1nvu7.jpg", width="990", height="418", alt="")
+            li
+                a(href="http://bandai-hobby.net/item/2089/", target="")
+                    img(src="//bandai-hobby.net/images/136_106_o_1buqbtvq3u1f1jbs10ls6um172m7.jpg", width="990", height="418", alt="")
+        #arrows
+            .slick-next
+                img(src="/img/top/slider/common/bhs_top_slider_btn_next.png", alt="Next")
+            .slick-prev
+                img(src="/img/top/slider/common/bhs_top_slider_btn_prev.png", alt="Prev")
+
 block content
-    div.container
-        div.row
-            div.col-md-12
-                h1 #{title}
-                p Welcome to #{title},
-                    if user
-                        strong #{user.nickname},
-                        a(href='/logout') 登出
-                    else
-                        a(href='/login')
-                            strong 登录
-                        span  /
-                        a(href='/register')
-                            strong  注册
+    //- 主体左
+    #bhs_sideL
+        #bhs_side_gunpla
+            h3.bhs_title
+                p
+                    | #{gunplaCate.display_name}
+                    span GUNPLA
+            ul.logoList
+                if gunplaBrandCate && gunplaBrandCate.son
+                    each item, index in gunplaBrandCate.son
+                        if index < 3
+                            +cate_li(item)
+                if gunplaSeriesCate && gunplaSeriesCate.son
+                    each item, index in gunplaSeriesCate.son
+                        if index < 3
+                            +cate_li(item)
+            .bhs_side_btn_more
+                a(href="/category/#{gunplaCate._id}")
+                    span 所有
+        #bhs_side_chapla
+            h3.bhs_title
+                p
+                    | #{characterCate.display_name}
+                    span CHARACTER
+            ul.logoList
+                if characterBrandCate && characterBrandCate.son
+                    each item, index in characterBrandCate.son
+                        if index < 3
+                            +cate_li(item)
+                if characterSeriesCate && characterSeriesCate.son
+                    each item, index in characterSeriesCate.son
+                        if index < 3
+                            +cate_li(item)
+            .bhs_side_btn_more
+                a(href="/category/#{characterCate._id}")
+                    span 所有
+    //- 主体中
+    #bhs_main
+        #bhs_news
+            h2.bhs_main_title
+                p
+                    | 新闻
+                    span NEWS
+            ul
+                each item, index in news
+                    li.clearfix
+                        +item_link(item)
+                            p.bhs_info_img
+                                img(src=item.cover_pic, width="170", height="126", alt=item.desc, title=item.name)
+                            p.bhs_info_cd
+                                span.bhs_info_cat.cat_topics= item.name
+                                span.bhs_info_date= item.release_date
+                            p.bhs_info_txt #{item.desc}
+            .bhs_main_btn_all
+                a(href="/news/")
+                    span 所有
+        #bhs_event
+            h2.bhs_main_title
+                p
+                    | 展会
+                    span EVENT
+                p.bhs_main_btn_all_mini
+                    a(href="/event/")
+                        span 所有
+            ul
+                if eventArticles
+                    each item,index in eventArticles
+                        li
+                            a(href="http://bandai-hobby.net/site/popup/", target="_blank")
+                                img(src=item.cover_pic, width="260", height="80", alt=item.name)
+                                p
+                                    span.bhs_event_ttl= item.name
+                                    span.bhs_event_date= item.release_date
+        #bhs_campaign
+            h2.bhs_main_title
+                p
+                    | 活动
+                    span CAMPAIGN
+                p.bhs_main_btn_all_mini
+                    a(href="/campaign/")
+                        span 所有
+            ul
+                if campaignArticles
+                    each item,index in campaignArticles
+                        li
+                            a(href="http://bandai-hobby.net/site/popup/", target="_blank")
+                                img(src=item.cover_pic, width="260", height="80", alt=item.name)
+                                p
+                                    span.bhs_event_ttl= item.name
+                                    span.bhs_event_date= item.release_date
+            h2.bhs_main_title
+                p
+                    | つくろう！
+                    | 参加しよう！
+                    span FUN TO BUILD
+            ul
+                li
+                    a(href="/site/Fun-to-build/")
+                        img(src="/img/top/funtobuild.jpg", width="260")
+                    p
+                        span.bhs_future_ttl つくろう！Fun to build!
+                li
+                    a(href="/GBWC/")
+                        img(src="/img/top/funtobuild_gbwc.jpg", width="260")
+                    p
+                        span.bhs_future_ttl ガンプラビルダーズワールドカップ2017
+
+    //- 主体右
+    #bhs_sideR
+        include ./layouts/side_right_top
+        #bhs_side_newitem
+            h3.bhs_title
+                p
+                    | 本月新品
+                    span NEW ITEM
+                p.bhs_side_btn_all
+                    a(href="/site/schedule.html")
+                        span 发售表
+            ul.bhs_side_item
+                li
+                    a(href="/item/2088/")
+                        img(src="/images/ecms_154_2088_o_1bt3tb692f4n1q0ch624rthto28.jpg", width="113", alt="MG 1/100 ジム・スナイパー カスタム")
+                li
+                    a(href="/item/2137/")
+                        img(src="/images/ecms_154_2137_o_1btdv75d69ho1djn1etn1dr215kq28.jpg", width="113", alt="Figure-riseMechanics ドラミ")
+                li
+                    a(href="/item/2087/")
+                        img(src="/images/ecms_154_2087_o_1bt3svo0i1b9udii1p8b1sce12s128.jpg", width="113", alt="HG 1/144 ザク・ハーフキャノン")
+                li
+                    a(href="/item/2091/")
+                        img(src="/images/ecms_154_2091_o_1bt3ss9quokpl68p38e831apb28.jpg", width="113", alt="HGBF 1/144 ケルディムガンダムサーガ TYPE.GBF")
+            .bhs_side_btn_more
+                a(href="/schedule/")
+                    span 所有
+        #bhs_side_newitem_later
+            h3.bhs_title
+                p
+                    | 次月新品
+                    span NEW ITEMS in LATER MONTHS
+                form
+                    select#year_month.bhs_search_calender_ym(name="year_month")
+                        option(value="") 选月份
+                        each item in nextMonths
+                            option(value="/schedule/#{item.format('YYYYMM')}/") #{item.format('MM')}月
+            ul.bhs_side_item
+                li
+                    a(href="/item/2181/")
+                        img(src="/images/ecms_154_2181_o_1bu5n0rcuqbe1gedqulebj1pu028.jpg", width="113", alt="Bトレインショーティー　883系「ソニック」　旧塗装")
+                li
+                    a(href="/item/2169/")
+                        img(src="/images/ecms_154_2169_o_1btu796d814kmjv2gtmacg1n9e28.jpg", width="113", alt="BB戦士405 胡軫ギャン&部隊兵(董卓軍)")
+            .bhs_side_btn_more
+                a(href="/schedule/#{nextMonth}")
+                    span 所有
+        #bhs_side_hobbyshop
+            h3.bhs_title
+                p
+                    | ホビーオンラインショップ
+                    span ONLINE SHOP
+                br
+                p.bhs_side_btn_all
+                    a(href="/onlineshop_topics/")
+                        span TOPICS
+            ul.bhs_side_item
+                li
+                    a(href="http://p-bandai.jp/item/item-1000117494/", target="_blank")
+                        img(src="/images/ecms_154_2109_o_1bocpkkrm2ogsu9bcbr2t11tu28.jpg", width="113", alt="HGBF 1/144 ガンダムＸ十魔王")
+                li
+                    a(href="http://p-bandai.jp/item/item-1000117500/", target="_blank")
+                        img(src="/images/ecms_154_2111_o_1bocpv3bqsn71bqusfbv75s9e28.jpg", width="113", alt="HGBF 1/144 サイコジム")
+            .bhs_side_btn_hobby
+                a(href="http://p-bandai.jp/hobby/", target="_blank")
+                    p
+                        span ホビーオンラインショップへ
+

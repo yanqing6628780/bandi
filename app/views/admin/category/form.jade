@@ -3,29 +3,48 @@ extends ../layouts/default
 include ../base
 block content
     - var url = '/admin/category'
-    .alert.alert-danger
-        | 请保证系统内的分类，有别名为【GUNPLA】和【Character】这两个分类
+    include ./alert
     form.form-horizontal(role='form' method='post' action='#{url}/save')
         +formInput("名称", "display_name", model)
         +formInput("别名", "name", model)
         div.form-group
-            label.col-sm-2.control-label 上级分类
+            label.col-sm-2.control-label 描述
             div.col-sm-10
-                select.form-control(name="parent_id")
-                    option(value="") ---
-                    each item,index in categorys
-                        - selected = false
-                        if model && model.parent_id
-                            option(
-                                value=item._id
-                                selected=item._id.toString() == model.parent_id.toString()
-                            ) #{item.display_name}
-                        else
-                            option(
-                                value=item._id
-                            ) #{item.display_name}
+                textarea.form-control(name="desc", cols="30", rows="10")
+                    | #{item&&item.desc}
+        div.form-group
+            label.col-sm-2.control-label 分类封面图
+            div.col-sm-10.admin_article
+                input#images(type="hidden" name="image" value=model&&model.image)
+                span.btn.btn-success.fileinput-button
+                    i.glyphicon.glyphicon-plus
+                    span 添加产品图
+                    input#fileuploader(
+                        type="file"
+                        name="files[]"
+                    )
+                #images_box.row
+                    if model && model.image
+                        .col-sm-3
+                            .thumbnail
+                                img(src=model.image alt="图片已不存在。点击保存按钮后，会自动删除")
+                                .caption
+                                    p
+                                        button.btn.btn-danger(
+                                            type="button"
+                                            onclick="delete_imgs(this, '#{model.image}', '/category/')"
+                                        ) 删
         div.form-group
             div.col-sm-offset-2.col-sm-10
                 button.btn.btn-success 保存
                 if model
                     input(type="hidden" name="id" value='#{model._id}')
+                    - parent_id = model.parent_id
+                input(type="hidden" name="parent_id" value='#{parent_id}')
+
+block scripts
+    script.
+        $(document).ready(function() {
+            var uploadDir = "/category/"
+            fileuploadInit(uploadDir, 1)
+        })

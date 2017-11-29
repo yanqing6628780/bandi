@@ -1,0 +1,60 @@
+mixin cate_link(item)
+    a(href="/category/#{item.id}?parent_name=#{item.parent_id&&item.parent_id.name}")
+        block
+
+mixin cate_img(item)
+    img(src=item.image, alt=item.name)
+
+mixin cate_li(item)
+    li
+        +cate_link(item)
+            +cate_img(item)
+            block
+
+mixin item_link(item)
+    a(
+        href=(item.url ? item.url : "/item/"+item._id)
+        target=(item.url ? "_blank" : "")
+    )
+        block
+
+mixin products_li(item)
+    li(style='height: 148px;')
+        +item_link(item)
+            img(src=item.cover_pic, width='130', height='130', alt=item.name)
+            p
+                span.bhs_pd_ttl(style='height: 54px;')= item.name
+                span.bhs_pd_price #{item.price} 元
+                if item.is_online_shop
+                    span.bhs_pd_cat.cat_shop 线上商店
+                span.bhs_pd_deliver #{moment(item.release_date).format('YYYY年MM月DD日')} 发售
+
+mixin date_format(date)
+    mydate= moment(date).format('YYYY年MM月DD日')
+
+mixin product_bclist(list)
+    ul
+        li.home
+            a(href="/") 主页
+        each item, index in list
+            if(index != 1)
+                li
+                    +cate_link(item)
+                        | #{item.display_name}
+        block
+
+mixin brand_h3_title()
+    h3.bhs_main_title
+        p
+            | 系列 · 牌子
+            span SERIES / BRAND
+
+mixin works_h3_title()
+    h3.bhs_main_title
+        p
+            | 动漫作品 · 手办
+            span WORKS / CHARACTERS
+
+mixin cate_logo_li(item)
+    +cate_li(item)
+        span= item.display_name

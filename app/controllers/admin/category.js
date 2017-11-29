@@ -4,31 +4,21 @@ module.exports = function (app) {
         url = '/admin/category',
         title = '后台分类管理',
         exports = {};
-    var getAllCategory = (conditions, next) => {
-        return Model.find(conditions)
-            .exec()
-            .catch((err) => next(err));
-    };
     exports.list = function (req, res, next) {
-        Model.find()
-            .populate('parent_id')
-            .exec()
-            .then(function (result) {
-                res.render(view, {
-                    title: title,
-                    list: result
-                });
-            }).catch(function (err) {
-                return next(err);
+        Model.getTree().then(function (result) {
+            res.render(view, {
+                title: title,
+                list: result
             });
+        }).catch(function (err) {
+            return next(err);
+        });
     };
 
-    exports.add = function (req, res, next) {
-        getAllCategory({}, next).then((rs) => {
-            res.render(`${view}/form`, {
-                title: `${title}-添加`,
-                categorys: rs
-            });
+    exports.add = function (req, res) {
+        res.render(`${view}/form`, {
+            title: `${title}-添加`,
+            parent_id: req.query.parent_id ? req.query.parent_id : 'null'
         });
     };
 
@@ -40,18 +30,10 @@ module.exports = function (app) {
                 .populate('children')
                 .exec()
                 .then(function (doc) {
-                    getAllCategory({
-                            _id: {
-                                $ne: req.params.id
-                            }
-                        }, next)
-                        .then((rs) => {
-                            res.render(`${view}/form`, {
-                                title: `${title}-编辑`,
-                                model: doc,
-                                categorys: rs
-                            });
-                        });
+                    res.render(`${view}/form`, {
+                        title: `${title}-编辑`,
+                        model: doc
+                    });
                 })
                 .catch(function (err) {
                     return next(err);
@@ -68,12 +50,9 @@ module.exports = function (app) {
                 })
                 .exec()
                 .then(function (document) {
-                    if(!document) return next();
+                    if (!document) return next();
                     for (var key in req.body) {
                         document[key] = req.body[key];
-                    }
-                    if (!req.body.parent_id) {
-                        document.parent_id = null;
                     }
                     document.save()
                         .then(function () {
@@ -85,9 +64,6 @@ module.exports = function (app) {
                     return next(err);
                 });
         } else {
-            if (!req.body.parent_id) {
-                delete req.body.parent_id;
-            }
             var newModel = new Model(req.body);
             // save user to database
             newModel.save()

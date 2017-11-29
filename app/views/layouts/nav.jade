@@ -1,0 +1,83 @@
+#bhs_header
+    .bhs_headerWrap
+        h1
+            a(href="/")
+                img(src="http://bandai-hobby.net/img/common/bhs_header_logo.png", width="380", height="50", alt="Bandai Hobby Site")
+#bhs_sub_navBox
+    #bhs_sub_megamenuWrap
+        ul.bhs_sub_megamenu.clearfix
+            li.bhs_sub_megamenu_newpd
+                a(href="/schedule/")
+                    h2
+                        span
+                            span.bhs_mainttl 新品信息
+            li.bhs_sub_megamenu_gunpla
+                a(href="#searchGunpla")
+                    h2
+                        span
+                            span.bhs_mainttl GUNPLA
+            li.bhs_sub_megamenu_chapla
+                a(href='#searchCharacter')
+                    h2
+                        span
+                            span.bhs_mainttl Character Plastic Model
+            li.bhs_sub_megamenu_evc
+                a(href='#searchEvc')
+                    h2
+                        span
+                            span.bhs_mainttl 展会 · 活动
+            li.bhs_sub_megamenu_hos
+                a(href='http://p-bandai.jp/hobby/', target='_blank')
+                    h2
+                        span
+                            span.bhs_mainttl Hobby Online Shop
+    .lists
+        #searchGunpla.bhs_sub_megamenu_open
+            .bhs_sub_header
+                h3 Search by brand
+                ul.bhs_sub_header_gunpla
+                    if gunplaBrandCate && gunplaBrandCate.son
+                        each item, index in gunplaBrandCate.son
+                            +cate_li(item)
+
+                .header_line
+                    hr
+                h3 Search from works
+                ul.bhs_sub_header_gunpla
+                    if gunplaBrandCate && gunplaSeriesCate.son
+                        each item, index in gunplaSeriesCate.son
+                            +cate_li(item)
+                .header_line
+                    hr
+                .bhs_header_gunpla_morelink
+                    +cate_link(gunplaCate)
+                        span View brand / work list
+        #searchCharacter.bhs_sub_megamenu_open
+            .bhs_sub_header
+                h3 Search by brand
+                ul.bhs_sub_header_chapla
+                    if characterBrandCate && characterBrandCate.son
+                        each item, index in characterBrandCate.son
+                            +cate_li(item)
+                .header_line
+                    hr
+                h3 Search from works
+                ul.bhs_sub_header_chapla
+                    if characterSeriesCate && characterSeriesCate.son
+                        each item, index in characterSeriesCate.son
+                            +cate_li(item)
+                .header_line
+                    hr
+                .bhs_header_chapla_morelink
+                    +cate_link(characterCate)
+                        span View brand / work list
+        #searchEvc.bhs_sub_megamenu_open
+            .bhs_sub_header
+                .bhs_header_evc_btn
+                    a(href="/event/")
+                        span Event
+                .header_line_nomargin
+                    hr
+                .bhs_header_evc_btn
+                    a(href="/campaign/")
+                        span campaign

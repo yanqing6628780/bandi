@@ -1,0 +1,15 @@
+extends ./default
+
+block head
+    link(rel="stylesheet" href="/css/hbs_lower.css" )
+
+block nav
+    include ./navbar
+
+block content
+    #bhs_main_2col
+        .bhs_page_nextitem
+            block col_2_content
+    #bhs_sideR
+        include ./side_right_top
+        block content_sideR

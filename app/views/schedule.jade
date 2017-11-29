@@ -1,0 +1,87 @@
+extends ./layouts/default_detail
+
+block col_2_content
+    h2.bhs_main_title
+        p
+            | #{date.format('YYYY年MM月')} 商品
+            span= subtitle
+    .bhs_search_calender.clearfix
+        h4
+            p 查看其他月份
+        .bhs_search_calenderWrap
+            ul.danav.clearfix
+                each date in otherMonths
+                    li
+                        a(href="/schedule/#{date.format('YYYYMM')}")
+                            | #{date.format('MM')}月
+            form(lpformnum='1')
+                select#year.bhs_search_calender_y(name='year')
+                    each val in years
+                        option(
+                            value=val, selected=(val==date.format('YYYY'))
+                        ) #{val}
+                select#month.bhs_search_calender_m(name='month')
+                    - var n = 1;
+                    while n < 13
+                        option(
+                            value=(n<10 ? "0"+n:n)
+                            selected=(n==(date.month()+1))
+                        ) #{n++}月
+    #bhs_monthly
+        h3.bhs_main_title
+            p #{date.format('YYYY年MM月')} 发售商品
+        each items, index in products
+            .bhs_monthly_dateBlock
+                h4.bhs_main_title
+                    p #{index}
+                ol.bhs_pdlist_sbs
+                    each item in items
+                        +products_li(item)
+    #bhs_monthly_pbonly
+        h3.bhs_main_title
+            p 官方在线商品
+        .bhs_monthly_dateBlock
+            h4.bhs_main_title
+                p #{date.format('YYYY年MM月')}
+            each item, index in pb_products
+                ol.bhs_pdlist_sbs
+                    +products_li(item)
+    .bhs_search_calender.clearfix
+        h4
+            p 查看其他月份
+        .bhs_search_calenderWrap
+            ul.danav.clearfix
+                each date in otherMonths
+                    li
+                        a(href="/schedule/#{date.format('YYYYMM')}")
+                            | #{date.format('MM')}月
+            form(lpformnum='1')
+                select#year.bhs_search_calender_y(name='year')
+                    each val in years
+                        option(
+                            value=val, selected=(val==date.format('YYYY'))
+                        ) #{val}
+                select#month.bhs_search_calender_m(name='month')
+                    - var n = 1;
+                    while n < 13
+                        option(
+                            value=(n<10 ? "0"+n:n)
+                            selected=(n==(date.month()+1))
+                        ) #{n++}月
+
+block script
+    script.
+        $("select.bhs_search_calender_y,select.bhs_search_calender_m").change(function(){
+            var $form = $(this).closest('form');
+            var ym = $form.children('.bhs_search_calender_y').val() + $form.children('.bhs_search_calender_m').val();
+            console.log($form.children('.bhs_search_calender_y').val());
+            console.log($form.children('.bhs_search_calender_m').val());
+
+            var pathname = window.location.pathname;
+            if(/[0-9]{6}/.test(pathname)){
+                // パスにyyyymm が含まれている
+                window.location.href = pathname.replace(/[0-9]{6}/i, ym);
+            } else {
+                window.location.href = pathname + ym + "/";
+            }
+        });

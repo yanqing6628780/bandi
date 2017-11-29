@@ -18,10 +18,16 @@ var schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'categorys'
     }],
+    desc: {
+        type: String
+    },
     content: {
         type: String
     },
     url: {
+        type: String
+    },
+    cover_pic: {
         type: String
     },
     images: {
@@ -36,15 +42,27 @@ var schema = new Schema({
         type: Boolean,
         default: false
     },
+    is_product: {
+        type: Boolean,
+        default: false
+    },
     price: {
         type: Number,
         default: 0
     },
     release_date: {
+        type: Date,
+        default: new Date()
+    },
+    target_age: {
         type: String,
         default: ""
     },
-    target_age: {
+    start_date: {
+        type: String,
+        default: ""
+    },
+    end_date: {
         type: String,
         default: ""
     }
@@ -78,6 +96,15 @@ schema.virtual('images_str').get(function() {
         }
     } else {
         this.images = [];
+    }
+});
+schema.path('cover_pic').set(function (v) {
+    if (v) {
+        var filePath = path.join(configs.path.public, v);
+        if (!fs.existsSync(filePath)) {
+            v = "";
+        }
+        return v;
     }
 });
 

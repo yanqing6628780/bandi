@@ -1,0 +1,77 @@
+extends ./layouts/default_detail
+
+block bclist
+    each list in bclists
+        .bclist
+            +product_bclist(list)
+                li= item.name
+block col_2_content
+    #bhs_page_gunpla_detail
+        h2.bhs_main_title
+            p= item.name
+    .bhs_sale_sns
+
+    #bhs_gallery
+        #bhs_gallery_main
+            ul
+                each img in item.images
+                    li
+                        a.maingallery.cboxElement(href=img, title=item.name+""+index)
+                            span
+                                img(src=img, alt=item.name+""+index)
+
+            p.bhs_gallery_notes 点击图片放大
+        ul#bhs_gallery_thumbs.clearfix
+            each img in item.images
+                li
+                    a.maingallery.cboxElement(href=img, title=item.name+""+index)
+                        span
+                            img(src=img, alt=item.name+""+index)
+        #bhs_pd_ontline
+            table.bhs_sale_table
+                tbody
+                    tr
+                        th(scope='row') 价格
+                        td= item.price + '元'
+                    tr
+                        th(scope='row') 发售日期
+                        td
+                            +date_format(item.release_date)
+                    tr
+                        th(scope='row') 适用年龄
+                        td= item.target_age
+    .bhs_detail_explain
+        | !{item.content}
+    .bhs_sale_works
+        each cate in item.cids
+            ul.bhs_sale_works_title
+                li
+                    +cate_link(cate)
+                        img(src=cate.image, width='150', height='65', alt='')
+                        span= cate.display_name
+
+block script
+    <link rel="stylesheet" href="/css/renew/js/colorbox/colorbox.css" />
+    <script type="text/javascript" src="/css/renew/js/colorbox/jquery.colorbox-min.js"></script>
+    <link rel="stylesheet" href="/css/renew/js/jquery.bxslider/jquery.bxslider.css" />
+    <script type="text/javascript" src="/css/renew/js/jquery.bxslider/jquery.bxslider.min.js"></script>
+    script.
+        $(document).ready(function(){
+
+            $('a.maingallery').colorbox({rel:'gal01'});
+            $('a.thumbgallery').colorbox({rel:'gal02'});
+
+            var sliderImg = $("#bhs_gallery_main ul li").length;
+            if(sliderImg > 1){
+                $("#bhs_gallery_main ul").bxSlider({
+                    mode: 'fade',
+                    speed: 750,
+                    pause: 3500,
+                    prevText: '',
+                    nextText: '',
+                    auto:true,
+                    pagerCustom: '#bhs_gallery_thumbs',
+                    pager: false
+                });
+            };
+        })

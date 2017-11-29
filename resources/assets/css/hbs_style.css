@@ -1,0 +1,2533 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+
+/*=====================================================================
+【common】
+=======================================================================*/
+
+html {
+    width: 100%;
+}
+
+body {
+    background: #fff;
+    font-family: "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "Osaka", "sans-serif" !important;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-width: 990px;
+    width: 100%;
+}
+
+fieldset,
+img {
+    border: 0;
+}
+
+a img {
+    border-style: none;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 14px 0;
+    padding: 0;
+}
+
+
+/*=====================================================================
+【レイアウト】
+=======================================================================*/
+
+
+/*---------------------------------------------------------------------
+ヘッダー（width:100%）
+
+グロメニューまでの大枠
+※ここのheightを修正したら、jquery.megamenu.jsのline.59も修正が必要です
+-----------------------------------------------------------------------*/
+
+#bhs_header {
+    background: #fff;
+    height: 82px;
+    margin: 0 auto;
+    padding: 0;
+    min-width: 990px;
+    width: 100%;
+}
+
+
+/*---------------------------------------------------------------------
+コンテンツの大枠（width:100%）
+-----------------------------------------------------------------------*/
+
+
+/*グロメニューの下からフッター手前までの大枠*/
+
+#bhs_contents {
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    min-width: 990px;
+    width: 100%;
+}
+
+
+/*---------------------------------------------------------------------
+コンテンツのWrap（width：990px）
+
+中身の幅を決める大枠
+-----------------------------------------------------------------------*/
+
+#bhs_contentsWrap {
+    margin: 0 auto;
+    padding: 0 0 65px 0;
+    width: 990px;
+}
+
+
+/*---------------------------------------------------------------------
+中央カラム
+-----------------------------------------------------------------------*/
+
+
+/*中央カラム：3カラム*/
+
+#bhs_main {
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 550px;
+}
+
+
+/*中央カラム：1カラム*/
+
+#bhs_main_1col {
+    float: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 990px;
+}
+
+
+/*中央カラム：2カラム*/
+
+#bhs_main_2col {
+    float: left;
+    margin: 0 auto;
+    padding: 0;
+    width: 720px;
+}
+
+
+/*---------------------------------------------------------------------
+サイドカラム
+-----------------------------------------------------------------------*/
+
+
+/*左カラム*/
+
+#bhs_sideL {
+    float: left;
+    margin: 0 15px 0 0;
+    padding: 0;
+    width: 155px;
+}
+
+
+/*右カラム*/
+
+#bhs_sideR {
+    float: right;
+    margin: 0 0 0 0px;
+    padding: 0;
+    width: 255px;
+}
+
+
+/*---------------------------------------------------------------------
+#bhs_contentsに背景が入っても影響を受けないコンテンツ枠
+-----------------------------------------------------------------------*/
+
+
+/*TOPの関連リンクで使用中*/
+
+#bhs_contents_nobg {
+    margin: 0 auto;
+    padding: 0;
+    min-width: 990px;
+    width: 100%;
+}
+
+
+/*---------------------------------------------------------------------
+フッター
+-----------------------------------------------------------------------*/
+
+
+/*メインの背景の影響を受けません*/
+
+#bhs_footer {
+    margin: 0 auto;
+    padding: 0;
+    min-width: 990px;
+    width: 100%;
+    padding-top: 20px;
+}
+
+
+/*=====================================================================
+【ヘッダー】
+=======================================================================*/
+
+
+/*---------------------------------------------------------------------
+[ヘッダー]サイト紹介文
+-----------------------------------------------------------------------*/
+
+#bhs_header .bhs_header_description {
+    color: #686868;
+    font-size: 11px;
+    line-height: 1.1;
+    margin: 3px auto;
+    padding: 0;
+    text-align: right;
+    width: 990px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*---------------------------------------------------------------------
+[ヘッダー]ロゴとサブメニュー
+-----------------------------------------------------------------------*/
+
+
+/*Wrap：中身を幅990pxで整える*/
+
+#bhs_header .bhs_headerWrap {
+    margin: 0 auto;
+    padding: 10px 0 10px 0;
+    position: relative;
+    width: 990px;
+}
+
+
+/*メインロゴ（左）*/
+
+#bhs_header .bhs_headerWrap h1 {
+    display: inline-block;
+    margin: 0 37px 0 0;
+    padding: 0;
+    vertical-align: middle;
+    width: 380px;
+}
+
+
+/*サブメニュー（テキストメニューとSNS）（右）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside {
+    display: inline-block;
+    vertical-align: top;
+    width: 568px;
+}
+
+
+/*---------------------------------------------------------------------
+[ヘッダー]【サブメニュー】テキストメニュー
+-----------------------------------------------------------------------*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_common {
+    height: 34px;
+    margin: 0 0 8px 0;
+    padding: 0 6px 0 0;
+    text-align: right;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_common ul {
+    font-size: 0;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*リスト*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_common ul li {
+    display: inline-block;
+    margin: 0 0 3px 18px;
+    padding: 0;
+    vertical-align: top;
+}
+
+
+/*リンクの設定*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_common ul li a {
+    color: #222;
+    text-decoration: none;
+}
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_common ul li a:hover span,
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_common ul li a:active span {
+    color: #222;
+    text-decoration: underline !important;
+}
+
+
+/*テキスト*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_common ul li span {
+    font-size: 12px;
+    display: table-cell;
+    line-height: 1.1;
+    margin: 0;
+    padding: 0 0 0 8px;
+    position: relative;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*横向きの矢印をつける*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_common ul li span:before {
+    border-right: 2px solid #222;
+    border-top: 2px solid #222;
+    content: " ";
+    display: table-cell;
+    height: 6px;
+    line-height: 0;
+    position: absolute;
+    top: 16%;
+    left: -6px;
+    transform: rotate(45deg) !important;
+    -webkit-transform: rotate(45deg) !important;
+    vertical-align: middle;
+    width: 6px;
+}
+
+
+/*---------------------------------------------------------------------
+[ヘッダー]【サブメニュー】検索フォーム
+※翻訳に合わせてSNSリストの中へ格納する方式へ変更
+旧）<div class="bhs_header_aside_cserach">
+新）<li class="bhs_header_aside_cserach">
+
+-----------------------------------------------------------------------*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach {
+    display: inline-block;
+    margin: 0 12px 0 0 !important;
+    padding: 0;
+    vertical-align: middle;
+    width: 277px;
+}
+
+
+/*アイコン用にFontAwesomeを指定*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach form,
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach input[type="text"] {
+    font-family: FontAwesome;
+}
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach ul {
+    font-size: 0;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach ul li.bhs_header_aside_cserach_txt {
+    display: inline-block;
+    vertical-align: middle;
+    width: 200px;
+}
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach ul li.bhs_header_aside_cserach_btn {
+    border: 1px solid #666;
+    border-radius: 6px;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    height: 24px;
+    line-height: 1.2;
+    margin: 0 auto;
+    padding: 1px;
+    vertical-align: middle;
+    width: 40px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*検索ボタン
+--------------------------------------------*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach input[type="submit"] {
+    background: #6f6f6f;
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    height: 100%;
+    line-height: 0;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    filter: alpha(opacity=100);
+    -ms-filter: "alpha(opacity=100)";
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    -ms-opacity: 1;
+    -o-opacity: 1;
+    transition: all ease-in-out .25s;
+    -webkit-transition: all ease-in-out .25s;
+    -moz-transition: all ease-in-out .25s;
+    -ms-transition: all ease-in-out .25s;
+    -o-transition: all ease-in-out .25s;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*hover時の挙動*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach input[type="submit"]:hover {
+    background: #6f6f6f;
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    height: 100%;
+    line-height: 0;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    filter: alpha(opacity=85);
+    -ms-filter: "alpha(opacity=85)";
+    opacity: 0.85;
+    -webkit-opacity: 0.85;
+    -moz-opacity: 0.85;
+    -ms-opacity: 0.85;
+    -o-opacity: 0.85;
+    transition: all 0.25s ease 0s;
+    -webkit-transition: all 0.25s ease 0s;
+    -moz-transition: all 0.25s ease 0s;
+    -ms-transition: all 0.25s ease 0s;
+    -o-transition: all 0.25s ease 0s;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*入力部分*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach input[type="text"] {
+    border: 1px solid #c2c2c2;
+    border-radius: 2px;
+    font-size: 12px;
+    height: 24px;
+    line-height: 1.2;
+    margin: 0 5px 0 0;
+    outline: none;
+    overflow: visible;
+    padding: 0 0 0 5px;
+    width: 200px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*focus時は枠線がやや濃く＆若干のシャドウ*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach input[type="text"]:focus {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 2px #ccc;
+    border-radius: 2px;
+    font-size: 12px;
+    height: 24px;
+    line-height: 1.2;
+    margin: 0 5px 0 0;
+    outline: none;
+    overflow: visible;
+    padding: 0 0 0 5px;
+    width: 200px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*プレースホルダーの色
+--------------------------------------------*/
+
+
+/*CSS的に最新の書き方*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach :placeholder-shown {
+    color: #ccc;
+    opacity: 1;
+}
+
+
+/*Chrome＆Safari（疑似要素のコロンは必ず2つ）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach ::-webkit-input-placeholder {
+    color: #ccc;
+    opacity: 1;
+}
+
+
+/*FF18以下*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach :-moz-placeholder {
+    color: #ccc;
+    opacity: 1;
+}
+
+
+/*FF19以上（疑似要素のコロンは必ず2つ）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach ::-moz-placeholder {
+    color: #ccc;
+    opacity: 1;
+}
+
+
+/*IE10以上*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach :-ms-input-placeholder {
+    color: #ccc;
+    opacity: 1;
+}
+
+
+/*IE9以下（※JSでIE9以下の時だけinputに付与されるclass）*/
+
+.placeholder {
+    color: #ccc;
+    opacity: 1;
+}
+
+
+/*focus時にプレースホルダーの文字が消える（※IE9以下はCSSを使わずJSで処理しています）
+--------------------------------------------*/
+
+
+/*Chrome＆Safari（疑似要素のコロンは必ず2つ）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach :focus::-webkit-input-placeholder {
+    color: transparent !important;
+}
+
+
+/*FF18以下*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach :focus:-moz-placeholder {
+    color: transparent !important;
+}
+
+
+/*FF19以上（疑似要素のコロンは必ず2つ）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach :focus::-moz-placeholder {
+    color: transparent !important;
+}
+
+
+/*IE10以上*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_cserach :focus:-ms-input-placeholder {
+    color: transparent !important;
+}
+
+
+/*---------------------------------------------------------------------
+[ヘッダー]【サブメニュー】SNS一式
+-----------------------------------------------------------------------*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns {
+    float: right;
+    margin: 0;
+    padding: 0;
+    width: 580px;
+}
+
+
+/*日本語のみは160px*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul {
+    font-size: 0;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li {
+    display: inline-block;
+    margin: 0 6px 0 0;
+    padding: 0;
+    vertical-align: top;
+}
+
+
+/*日本語
+--------------------------------------------*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_jpn {
+    border: 1px solid #356fe6;
+    border-radius: 2px;
+    margin: 0 6px 0 5px;
+    padding: 5px 8px;
+    position: relative;
+    text-align: center;
+    filter: alpha(opacity=100);
+    -ms-filter: "alpha(opacity=100)";
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    -ms-opacity: 1;
+    -o-opacity: 1;
+    transition: all ease-in-out .25s;
+    -webkit-transition: all ease-in-out .25s;
+    -moz-transition: all ease-in-out .25s;
+    -ms-transition: all ease-in-out .25s;
+    -o-transition: all ease-in-out .25s;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*日本語：右下の矢印（青）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_jpn:after {
+    content: url(../img/common/bhs_header_aside_lang_jpn.png);
+    display: block;
+    height: 6px;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 5px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    visibility: inherit !important;
+}
+
+
+/*日本語：リンク色（青）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_jpn a {
+    color: #356fe6;
+    text-decoration: none;
+}
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_jpn p {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*日本語：テキスト（青）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_jpn span {
+    color: #356fe6;
+    font-size: 12px;
+    display: block;
+    line-height: 1.1;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*英語
+--------------------------------------------*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_en {
+    border: 1px solid #3eac33;
+    border-radius: 2px;
+    padding: 5px 8px;
+    position: relative;
+    text-align: center;
+    filter: alpha(opacity=100);
+    -ms-filter: "alpha(opacity=100)";
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    -ms-opacity: 1;
+    -o-opacity: 1;
+    transition: all ease-in-out .25s;
+    -webkit-transition: all ease-in-out .25s;
+    -moz-transition: all ease-in-out .25s;
+    -ms-transition: all ease-in-out .25s;
+    -o-transition: all ease-in-out .25s;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*日本語：右下の矢印（緑）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_en:after {
+    content: url(../img/common/bhs_header_aside_lang_en.png);
+    display: block;
+    height: 6px;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 5px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    visibility: inherit !important;
+}
+
+
+/*日本語：リンク色（緑）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_en a {
+    color: #3eac33;
+    text-decoration: none;
+}
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_en p {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*日本語：テキスト（緑）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_en span {
+    color: #3eac33;
+    font-size: 12px;
+    display: block;
+    line-height: 1.1;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*hover時の挙動
+--------------------------------------------*/
+
+
+/*hover：日本語*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_jpn:hover {
+    background: #356fe6;
+    filter: alpha(opacity=100);
+    -ms-filter: "alpha(opacity=100)";
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    -ms-opacity: 1;
+    -o-opacity: 1;
+    transition: all 0.25s ease 0s;
+    -webkit-transition: all 0.25s ease 0s;
+    -moz-transition: all 0.25s ease 0s;
+    -ms-transition: all 0.25s ease 0s;
+    -o-transition: all 0.25s ease 0s;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*hover：英語*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_en:hover {
+    background: #3eac33;
+    filter: alpha(opacity=100);
+    -ms-filter: "alpha(opacity=100)";
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    -ms-opacity: 1;
+    -o-opacity: 1;
+    transition: all 0.25s ease 0s;
+    -webkit-transition: all 0.25s ease 0s;
+    -moz-transition: all 0.25s ease 0s;
+    -ms-transition: all 0.25s ease 0s;
+    -o-transition: all 0.25s ease 0s;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*hover：右下の矢印（白）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_jpn:hover:after,
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_en:hover:after {
+    content: url(../img/common/bhs_header_aside_lang_w.png);
+}
+
+
+/*リンク色（白）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_jpn:hover a,
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_en:hover a {
+    color: #fff;
+}
+
+
+/*テキスト（白）*/
+
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_jpn:hover span,
+#bhs_header .bhs_headerWrap #bhs_header_aside .bhs_header_aside_sns ul li.bhs_header_aside_lang_en:hover span {
+    color: #fff;
+}
+
+
+/*=====================================================================
+
+【サブメニュー】ヘッダー下に並んでいるほうのメニュー
+
+=======================================================================*/
+
+#bhs_sub_navBox {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    z-index: 10001 !important;
+}
+
+#bhs_sub_navBox.cur {
+    z-index: 10001;
+}
+
+
+/*------------------------------------------
+【メインのグロナビ】：メニューオープン時にページ全体にかかるオーバーレイ
+--------------------------------------------*/
+
+.overlay_sub {
+    display: none;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    filter: alpha(opacity=70);
+    -ms-filter: "alpha(opacity=70)";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.displayblock {
+    display: block !important;
+}
+
+.displaynone {
+    display: none !important;
+}
+
+
+/*---------------------------------------------------------------------
+【サブメニュー】基本のメニュー
+-----------------------------------------------------------------------*/
+
+
+/*赤線のための枠*/
+
+#bhs_sub_megamenuWrap {
+    background: #282828;
+    border-bottom: 3px solid #e3162f;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+
+ul.bhs_sub_megamenu {
+    border-top: 1px solid rgba(100, 100, 100, 0.80);
+    border-right: 2px solid rgba(100, 100, 100, 0.80);
+    border-left: 2px solid rgba(100, 100, 100, 0.80);
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 988px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ul.bhs_sub_megamenu li {
+    background: #262626;
+    border-right: 2px solid rgba(100, 100, 100, 0.80);
+    display: table-cell;
+    height: 53px;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+    width: 197px;
+    filter: alpha(opacity=100);
+    -ms-filter: "alpha(opacity=100)";
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    -ms-opacity: 1;
+    -o-opacity: 1;
+    transition: all ease-in-out .25s;
+    -webkit-transition: all ease-in-out .25s;
+    -moz-transition: all ease-in-out .25s;
+    -ms-transition: all ease-in-out .25s;
+    -o-transition: all ease-in-out .25s;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*hover時の背景処理（ふわっと赤になる）*/
+
+ul.bhs_sub_megamenu li:hover,
+ul.bhs_sub_megamenu li.cur {
+    background: #e3162f;
+    border-right: 1px solid rgba(100, 100, 100, 0.80);
+    display: table-cell;
+    height: 53px;
+    width: 197px;
+    margin: 0;
+    filter: alpha(opacity=100);
+    -ms-filter: "alpha(opacity=100)";
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    -ms-opacity: 1;
+    -o-opacity: 1;
+    transition: all 0.25s ease 0s;
+    -webkit-transition: all 0.25s ease 0s;
+    -moz-transition: all 0.25s ease 0s;
+    -ms-transition: all 0.25s ease 0s;
+    -o-transition: all 0.25s ease 0s;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*ホビーオンラインショップ用（border-rightが無し・他と幅が違う）*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_hos {
+    background: #262626;
+    border-right: none;
+    display: table-cell;
+    height: 47px;
+    margin: 3px 0;
+    width: 199px;
+    filter: alpha(opacity=100);
+    -ms-filter: "alpha(opacity=100)";
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    -ms-opacity: 1;
+    -o-opacity: 1;
+    transition: all ease-in-out .25s;
+    -webkit-transition: all ease-in-out .25s;
+    -moz-transition: all ease-in-out .25s;
+    -ms-transition: all ease-in-out .25s;
+    -o-transition: all ease-in-out .25s;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*ホビーオンラインショップの、hover時の背景処理*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_hos:hover {
+    background: #282828;
+    border-right: none;
+    display: table-cell;
+    height: 47px;
+    margin: 3px 0;
+    width: 199px;
+    filter: alpha(opacity=100);
+    -ms-filter: "alpha(opacity=100)";
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    -ms-opacity: 1;
+    -o-opacity: 1;
+    transition: all 0.25s ease 0s;
+    -webkit-transition: all 0.25s ease 0s;
+    -moz-transition: all 0.25s ease 0s;
+    -ms-transition: all 0.25s ease 0s;
+    -o-transition: all 0.25s ease 0s;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*---------------------------------------------------------------------
+【サブメニュー】基本のメニューのテキスト部分
+-----------------------------------------------------------------------*/
+
+ul.bhs_sub_megamenu li h2 {
+    color: #fff;
+    display: table-cell;
+    height: 53px;
+    font-size: 0px;
+    line-height: 0;
+    margin: 0 auto;
+    padding: 0 0 0 8px;
+    vertical-align: middle !important;
+    width: auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*[サブメニュー]：アイコンと言語の中段を整えるための枠*/
+
+ul.bhs_sub_megamenu li h2 span {
+    display: inline-block;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle !important;
+    width: 140px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*[サブメニュー]：日本語*/
+
+ul.bhs_sub_megamenu li h2 span.bhs_mainttl {
+    color: #fff;
+    display: block;
+    font-size: 13px !important;
+    font-weight: bold;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    margin: 0 3px 0 0;
+    padding: 0;
+    text-align: left;
+    vertical-align: bottom !important;
+    width: auto !important;
+}
+
+
+/*[サブメニュー]：英字*/
+
+ul.bhs_sub_megamenu li h2 span.bhs_subttl {
+    color: #fff;
+    display: block;
+    font-size: 8px !important;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    vertical-align: bottom !important;
+    width: auto !important;
+}
+
+
+/*【サブメニュー】「新商品を探す」個別指定
+--------------------------------------------*/
+
+
+/*アイコンの指定*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_newpd h2:before {
+    background: url(../img/gmenu/common/bhs_gmenu_icon_newpd.png) no-repeat bottom left;
+    background-size: contain;
+    content: " ";
+    display: inline-block;
+    height: 22px;
+    line-height: 0;
+    margin: 0 9px 0 0;
+    padding: 0;
+    vertical-align: middle;
+    width: 22px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*【サブメニュー】「ガンプラを探す」個別指定
+--------------------------------------------*/
+
+
+/*アイコンの指定*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_gunpla h2:before {
+    background: url(../img/gmenu/common/bhs_gmenu_icon_chapla.png) no-repeat bottom left;
+    background-size: contain;
+    content: " ";
+    display: inline-block;
+    height: 22px;
+    line-height: 0;
+    margin: 0 7px 0 0;
+    padding: 0;
+    vertical-align: middle;
+    width: 22px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*該当カテゴリ時の背景（bodyに#pageid_gunplaが付いてる時だけ赤）*/
+
+body.pageid_gunpla ul.bhs_sub_megamenu li.bhs_megamenu_gunpla {
+    background: #e3162f;
+}
+
+
+/*【サブメニュー】「キャラクタープラモデル」個別指定
+--------------------------------------------*/
+
+
+/*アイコンの指定*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_chapla h2:before {
+    background: url(../img/gmenu/common/bhs_gmenu_icon_chapla.png) no-repeat bottom left;
+    background-size: contain;
+    content: " ";
+    display: inline-block;
+    height: 22px;
+    line-height: 0;
+    margin: 0 7px 0 0;
+    padding: 0;
+    vertical-align: middle;
+    width: 22px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*該当カテゴリ時の背景（bodyに#pageid_chaplaが付いてる時だけ赤）*/
+
+body.pageid_chapla ul.bhs_sub_megamenu li.bhs_megamenu_chapla {
+    background: #e3162f;
+}
+
+
+/*【サブメニュー】「イベント・キャンペーン」個別指定
+--------------------------------------------*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_evc {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*アイコンの指定*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_evc h2:before {
+    background: url(../img/gmenu/common/bhs_gmenu_icon_evc.png) no-repeat bottom left;
+    background-size: contain;
+    content: " ";
+    display: inline-block;
+    height: 22px;
+    line-height: 0;
+    margin: 0 7px 0 0;
+    padding: 0;
+    vertical-align: middle;
+    width: 22px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*該当カテゴリ時の背景（bodyに#pageid_evcが付いてる時だけ赤）*/
+
+body.pageid_evc ul.bhs_sub_megamenu li.bhs_megamenu_evc {
+    background: #e3162f;
+}
+
+
+/*「ホビーオンラインショップ」個別指定
+--------------------------------------------*/
+
+
+/*アイコンの指定*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_hos h2:before {
+    background: url(../img/gmenu/common/bhs_gmenu_icon_hos.png) no-repeat bottom left;
+    background-size: contain;
+    content: " ";
+    display: inline-block;
+    height: 22px;
+    line-height: 0;
+    margin: 0 3px 0 0;
+    padding: 0;
+    vertical-align: middle;
+    width: 22px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*タイトルのpaddingを調整*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_hos h2 {
+    border: 3px solid #686868 !important;
+    color: #fff;
+    display: block;
+    font-size: 0px;
+    line-height: 0;
+    height: 47px;
+    margin: 0 auto !important;
+    padding: 7px 0 6px 5px !important;
+    vertical-align: middle !important;
+    width: 191px !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*日本語のフォントサイズ調整*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_hos h2 span.bhs_mainttl {
+    color: #fff;
+    display: block;
+    font-size: 12px !important;
+    font-weight: bold;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    margin: 0 3px 0 0;
+    padding: 0;
+    text-align: left;
+    vertical-align: bottom !important;
+    width: auto !important;
+}
+
+
+/*【サブメニュー】リンクアイコン
+--------------------------------------------*/
+
+
+/*メニューの末尾に下向きの矢印を付ける：【！】一時的にnoneにしてます*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_gunpla a:after,
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_chapla a:after,
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_evc a:after {
+    border-right: 2px solid #fff;
+    border-top: 2px solid #fff;
+    content: " ";
+    display: none;
+    height: 6px;
+    line-height: 0;
+    position: absolute;
+    top: 40%;
+    right: 8px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg) !important;
+    vertical-align: middle;
+    width: 6px;
+    visibility: inherit !important;
+}
+
+
+/*新商品は右向きの矢印：【！】一時的にnoneにしてます*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_newpd a:after {
+    border-right: 2px solid #fff;
+    border-top: 2px solid #fff;
+    content: " ";
+    display: none;
+    height: 6px;
+    line-height: 0;
+    position: absolute;
+    top: 40%;
+    right: 8px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg) !important;
+    vertical-align: middle;
+    width: 6px;
+    visibility: inherit !important;
+}
+
+
+/*ホビーオンラインショップのみ、外部リンクのアイコンをつける*/
+
+ul.bhs_sub_megamenu li.bhs_sub_megamenu_hos a:after {
+    background: url(../img/gmenu/common/bhs_gmenu_icon_target.png) no-repeat bottom left;
+    background-size: contain;
+    content: " ";
+    display: block;
+    height: 12px;
+    line-height: 0;
+    margin: 0 !important;
+    padding: 0;
+    position: absolute;
+    top: 55%;
+    right: 10px;
+    width: 12px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    visibility: inherit !important;
+}
+
+
+/*---------------------------------------------------------------------
+
+【サブメニュー】【展開先】基本設定
+
+-----------------------------------------------------------------------*/
+
+
+/*展開先の大枠*/
+
+.bhs_sub_megamenu_open {
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 1000;
+}
+
+
+/*最初は非表示*/
+
+#bhs_sub_navBox .lists {
+    background: #f00;
+    margin: 0 auto;
+    position: relative;
+    width: 990px;
+}
+
+#bhs_sub_navBox .lists .bhs_sub_megamenu_open {
+    display: none;
+}
+
+
+/*オープン時の装飾*/
+
+#bhs_sub_navBox .lists .bhs_sub_megamenu_open {
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    margin: 0;
+    padding: 3% 0 !important;
+    width: 100% !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*---------------------------------------------------------------------
+【共用】罫線用wrap
+-----------------------------------------------------------------------*/
+
+
+/*罫線をabsoluteで置かなくてもいいようにするwrap*/
+
+.bhs_sub_megamenu_open .bhs_sub_header {
+    margin: 0 auto;
+    padding: 10px 2px 0 12px;
+    width: 990px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*---------------------------------------------------------------------
+【サブメニュー】【展開先】【共通】区切り線
+-----------------------------------------------------------------------*/
+
+.bhs_sub_megamenu_open hr {
+    display: none !important;
+}
+
+.bhs_sub_megamenu_open div.header_line {
+    border-top: rgba(0, 0, 0, 0.4) solid 1px;
+    border-bottom: rgba(255, 255, 255, 0.4) solid 1px;
+    height: auto;
+    line-height: 0 !important;
+    margin: 3% 0;
+    padding: 0;
+    position: relative;
+    left: 0;
+    width: 100%;
+}
+
+
+/*margin-bottomを持たせない版*/
+
+.bhs_sub_megamenu_open div.header_line_nomargin {
+    border-top: rgba(0, 0, 0, 0.4) solid 1px;
+    border-bottom: rgba(255, 255, 255, 0.4) solid 1px;
+    height: auto;
+    line-height: 0 !important;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: 0;
+    width: 100%;
+}
+
+
+/*---------------------------------------------------------------------
+
+【サブメニュー】【展開先】「新商品を探す」の展開先
+※バックアップとして保存
+-----------------------------------------------------------------------*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header {}*/
+
+
+/*強制的にメニュー幅を変更*/
+
+
+/*#bhs_sub_navBox .lists  #searchNewitem.bhs_sub_megamenu_open {margin:0 auto; padding: 0 !important; position:fixed; left: 0; width:100% !important; -webkit-box-sizing:border-box; box-sizing:border-box;}*/
+
+
+/*[サブメニュー]「新商品を探す」タイトル（アイコン無し）
+--------------------------------------------*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header h3 { color:#fff; display:inline-block; font-size:17px; font-weight:bold; line-height:1.2; margin:0 25px 0 0; padding:0; vertical-align:middle;}*/
+
+
+/*「新商品をもっと見る」リンク
+--------------------------------------------*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_newpd_morelink { border:1px solid #686868; border-radius:4px; display:inline-block; margin:0; padding:0; vertical-align:middle; width:312px; -webkit-box-sizing:border-box; box-sizing:border-box; }*/
+
+
+/*小さな角丸に*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_newpd_morelink a { background:rgba(40,40,40,0.85); border-radius:2px; color:#fff !important; display:block; height:100%; margin:0 auto; text-align:center; text-decoration:none !important; width:100%; filter:alpha(opacity=100); -ms-filter:"alpha(opacity=100)"; opacity:1; -webkit-opacity:1; -moz-opacity:1; -ms-opacity:1; -o-opacity:1; transition:all ease-in-out .25s; -webkit-transition:all ease-in-out .25s; -moz-transition:all ease-in-out .25s; -ms-transition:all ease-in-out .25s; -o-transition:all ease-in-out .25s; -webkit-box-sizing:border-box; box-sizing:border-box; }*/
+
+
+/*ふわっと半透明に*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_newpd_morelink a:hover { background:rgba(40,40,40,0.85); border-radius:2px; color:#fff !important; display:block; height:100%; margin:0 auto; text-align:center; text-decoration:none !important; width:100%; filter:alpha(opacity=85); -ms-filter:"alpha(opacity=85)"; opacity:0.85; -webkit-opacity:0.85; -moz-opacity:0.85; -ms-opacity:0.85; -o-opacity:0.85; transition:all 0.25s ease 0s; -webkit-transition:all 0.25s ease 0s; -moz-transition:all 0.25s ease 0s; -ms-transition:all 0.25s ease 0s; -o-transition:all 0.25s ease 0s; -webkit-box-sizing:border-box; box-sizing:border-box; }*/
+
+
+/*テキストがcenterになるように、矢印の大きさ6pxとmarginの10px分をここで引く*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_newpd_morelink a span { font-size:13px; display:inline-block; line-height:1.3; margin:0 0 0 -16px; padding:6px 0; position:relative; vertical-align:middle; -webkit-box-sizing:border-box; box-sizing:border-box;}*/
+
+
+/*横向きの矢印をつける*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_newpd_morelink a span:after { border-right:2px solid #fff; border-top:2px solid #fff; content:" "; display:block; height:6px; line-height:0; position:absolute; top:35%; right:-10px; transform:rotate(45deg) !important; -webkit-transform:rotate(45deg) !important; vertical-align:middle; width:6px; visibility:inherit !important;}*/
+
+
+/*メニューの:afterに影響されない為に打ち消し*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_newpd_morelink a:after {display:none !important;}*/
+
+
+/*商品リスト
+--------------------------------------------*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header ul { font-size:0; line-height:0; margin:20px 0 5px 5px; padding:0;}
+
+#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header ul li,
+#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header ul li:hover { background:none; border:none; display:inline-block; height:auto; margin:0 10px 10px 0; padding:0; text-align:center; vertical-align:top; width:182px;}*/
+
+
+/*5の倍数の時は右marginを付けない*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header ul li:nth-child(5n),
+#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header ul li:nth-child(5n):hover { background:none; border:none; display:inline-block; margin:0 0 10px 0; padding:0; vertical-align:top; width:182px;}*/
+
+
+/*画像サイズを矯正*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header ul li img { border:1px solid rgba(255,255,255,0.4); display:block; height:auto !important; margin:0 auto; width:111px !important; max-width: 111px;}*/
+
+
+/*テキスト*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header ul li span { color:#e2e2e2; display:block; font-size:12px; line-height:1.2; margin:5px auto 0 auto; padding:0; width:140px;}*/
+
+
+/*リンクの挙動*/
+
+
+/*#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header ul li a { color:#e2e2e2 !important; text-decoration:none !important;}
+#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header ul li a:after,
+#searchNewitem.bhs_sub_megamenu_open .bhs_sub_header ul li a:before { background:none; border:none !important;}*/
+
+
+/*---------------------------------------------------------------------
+
+【サブメニュー】【展開先】「ガンプラを探す」の展開先
+
+-----------------------------------------------------------------------*/
+
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header {}
+
+
+/*強制的にメニュー幅を変更*/
+
+#bhs_sub_navBox .lists #searchGunpla.bhs_sub_megamenu_open {
+    margin: 0 auto;
+    padding: 0 !important;
+    position: fixed;
+    left: 0;
+    width: 100% !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*タイトル（虫眼鏡付きタイトル）
+--------------------------------------------*/
+
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header h3 {
+    background: url(../img/gmenu/common/bhs_gmenu_icon_glass.png) no-repeat 0 50%;
+    color: #fff;
+    display: inline-block;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 0 0 5px 0;
+    padding: 0 0 0 30px;
+}
+
+
+/*バナーリスト
+--------------------------------------------*/
+
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header ul {
+    font-size: 0;
+    line-height: 0;
+    margin: 0 0 5px 0;
+    padding: 0;
+}
+
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header ul li,
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header ul li:hover {
+    background: none;
+    border: none;
+    height: 54px;
+    display: inline-block;
+    margin: 0 10px 10px 0;
+    padding: 0;
+    vertical-align: top;
+    width: 128px;
+}
+
+
+/*画像サイズを強制*/
+
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header ul li img {
+    height: auto !important;
+    border: 1px solid #c8c8c8;
+    width: 128px !important;
+    max-width: 128px;
+}
+
+
+/*リンクの挙動*/
+
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header ul li a {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header ul li a:after {
+    background: none;
+    border: none !important;
+}
+
+
+/*[サブメニュー]「ガンプラを探す」その他の商品情報を見るボタン
+--------------------------------------------*/
+
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_gunpla_morelink {
+    background: #262626;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    margin: 0 auto 10px auto !important;
+    padding: 0;
+    text-align: center;
+    width: 370px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*Aタグの範囲をボタン全体に拡げて、白色を指定*/
+
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_gunpla_morelink a {
+    color: #fff !important;
+    display: block;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    text-decoration: none !important;
+    width: 100%;
+    z-index: 10;
+}
+
+
+/*メニューの:afterに影響されない為に打ち消し*/
+
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_gunpla_morelink a:after {
+    display: none !important;
+}
+
+
+/*リンクを全面に置く都合、文字から外側までの余白はここで指定*/
+
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_gunpla_morelink span {
+    font-size: 17px;
+    display: inline-block;
+    line-height: 1.5;
+    margin: 0 auto;
+    padding: 10px 0;
+    position: relative;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*末尾に横向きの矢印をつける*/
+
+#searchGunpla.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_gunpla_morelink span:after {
+    border-right: 2px solid #fff;
+    border-top: 2px solid #fff;
+    content: " ";
+    display: block;
+    height: 6px;
+    line-height: 0;
+    position: absolute;
+    top: 40%;
+    right: -15px;
+    transform: rotate(45deg) !important;
+    -webkit-transform: rotate(45deg) !important;
+    vertical-align: middle;
+    width: 6px;
+    visibility: inherit !important;
+}
+
+
+/*---------------------------------------------------------------------
+
+【サブメニュー】【展開先】「キャラクタープラモデル」の展開先
+
+-----------------------------------------------------------------------*/
+
+
+/*強制的にメニュー幅を変更*/
+
+#bhs_sub_navBox .lists #searchCharacter.bhs_sub_megamenu_open {
+    margin: 0 auto;
+    padding: 0 !important;
+    position: fixed;
+    left: 0;
+    width: 100% !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header {}
+
+
+/*タイトル（虫眼鏡付きタイトル）
+--------------------------------------------*/
+
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header h3 {
+    background: url(../img/gmenu/common/bhs_gmenu_icon_glass.png) no-repeat 0 50%;
+    color: #fff;
+    display: inline-block;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 0 0 5px 0;
+    padding: 0 0 0 30px;
+}
+
+
+/*バナーリスト
+--------------------------------------------*/
+
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header ul {
+    font-size: 0;
+    line-height: 0;
+    margin: 0 0 5px 0;
+    padding: 0;
+}
+
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header ul li,
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header ul li:hover {
+    background: none;
+    border: none;
+    height: 54px;
+    display: inline-block;
+    margin: 0 10px 10px 0;
+    padding: 0;
+    vertical-align: top;
+    width: 128px;
+}
+
+
+/*画像サイズを強制*/
+
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header ul li img {
+    height: auto !important;
+    border: 1px solid #c8c8c8;
+    width: 128px !important;
+    max-width: 128px;
+}
+
+
+/*リンクの挙動*/
+
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header ul li a {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header ul li a:after {
+    background: none;
+    border: none !important;
+}
+
+
+/*[サブメニュー]「ガンプラを探す」その他の商品情報を見るボタン
+--------------------------------------------*/
+
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_chapla_morelink {
+    background: #262626;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    margin: 0 auto 10px auto !important;
+    padding: 0;
+    text-align: center;
+    width: 370px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*Aタグの範囲をボタン全体に拡げて、白色を指定*/
+
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_chapla_morelink a {
+    color: #fff !important;
+    display: block;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    text-decoration: none !important;
+    width: 100%;
+    z-index: 10;
+}
+
+
+/*メニューの:afterに影響されない為に打ち消し*/
+
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_chapla_morelink a:after {
+    display: none !important;
+}
+
+
+/*リンクを全面に置く都合、文字から外側までの余白はここで指定*/
+
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_chapla_morelink span {
+    font-size: 17px;
+    display: inline-block;
+    line-height: 1.5;
+    margin: 0 auto;
+    padding: 10px 0;
+    position: relative;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*末尾に横向きの矢印をつける*/
+
+#searchCharacter.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_chapla_morelink span:after {
+    border-right: 2px solid #fff;
+    border-top: 2px solid #fff;
+    content: " ";
+    display: block;
+    height: 6px;
+    line-height: 0;
+    position: absolute;
+    top: 40%;
+    right: -15px;
+    transform: rotate(45deg) !important;
+    -webkit-transform: rotate(45deg) !important;
+    vertical-align: middle;
+    width: 6px;
+    visibility: inherit !important;
+}
+
+
+/*---------------------------------------------------------------------
+
+【サブメニュー】【展開先】「イベント・キャンペーン」の展開先
+
+-----------------------------------------------------------------------*/
+
+#searchEvc.bhs_sub_megamenu_open .bhs_sub_header {
+    margin: 0 auto;
+    padding: 0;
+    width: 198px !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*強制的にメニュー幅を変更*/
+
+#bhs_sub_navBox .lists #searchEvc.bhs_sub_megamenu_open {
+    margin: 0 auto;
+    padding: 0 !important;
+    position: absolute;
+    right: -395px;
+    width: 198px !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*ボタン（※テキストリンク）
+--------------------------------------------*/
+
+#searchEvc.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_evc_btn {
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: top;
+    width: 100%;
+}
+
+
+/*リンクの挙動
+--------------------------------------------*/
+
+#searchEvc.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_evc_btn a {
+    color: #fff !important;
+    display: block;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    text-decoration: none !important;
+    width: 100%;
+    z-index: 10;
+}
+
+#searchEvc.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_evc_btn a:after {
+    display: none !important;
+}
+
+
+/*テキスト
+--------------------------------------------*/
+
+#searchEvc.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_evc_btn span {
+    font-size: 14px;
+    display: inline-block;
+    line-height: 1.5;
+    margin: 0 auto;
+    padding: 10px 0;
+    position: relative;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*テキスト末尾に横向きの矢印を付ける*/
+
+#searchEvc.bhs_sub_megamenu_open .bhs_sub_header .bhs_header_evc_btn span:after {
+    border-right: 2px solid #fff;
+    border-top: 2px solid #fff;
+    content: " ";
+    display: block;
+    height: 6px;
+    line-height: 0;
+    position: absolute;
+    top: 40% !important;
+    right: -15px;
+    transform: rotate(45deg) !important;
+    -webkit-transform: rotate(45deg) !important;
+    vertical-align: middle;
+    width: 6px;
+    visibility: inherit !important;
+}
+
+
+/*========================================================サブメニューここまで*/
+
+
+/*=====================================================================
+【パンくず】
+=======================================================================*/
+
+
+/*lowerのh2に枠線が付いたら、ここのpadding-bottomを14pxに変更*/
+
+#bhs_navbar {
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#bhs_navbar .bclist {
+    margin: 0 auto 0;
+    padding: 20px 0 10px 0;
+    width: 990px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#bhs_navbar .bclist ul {
+    font-size: 0;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*下層ページ*/
+
+
+/*右側に「＞」が付く。ただしリスト自体の末尾だった場合は「＞」が非表示。*/
+
+#bhs_navbar .bclist ul li {
+    color: #4d4c4c;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0 16px 0 11px;
+    vertical-align: middle;
+    position: relative;
+    width: auto;
+}
+
+#bhs_navbar .bclist ul li:after {
+    font-family: 'FontAwesome';
+    content: "\f105";
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+#bhs_navbar .bclist ul li:last-child:after {
+    display: none;
+}
+
+
+/*Homeを示す*/
+
+
+/*冒頭に家アイコン、右側に「＞」が付く
+--------------------------------------------*/
+
+#bhs_navbar .bclist ul li.home {
+    color: #4d4c4c;
+    display: inline-block;
+    margin: 0;
+    padding: 0 16px 0 23px;
+    vertical-align: middle;
+    position: relative;
+    width: auto;
+}
+
+#bhs_navbar .bclist ul li.home:before {
+    border: 1px solid #4d4c4c;
+    font-family: 'FontAwesome';
+    content: "\f015";
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 1.2 !important;
+    margin: 0;
+    padding: 1px 2px;
+}
+
+#bhs_navbar .bclist ul li.home:after {
+    font-family: 'FontAwesome';
+    content: "\f105";
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*リンクの挙動*/
+
+#bhs_navbar .bclist ul li a,
+#bhs_navbar .bclist ul li a:visited {
+    text-decoration: none;
+}
+
+#bhs_navbar .bclist ul li a:hover,
+#bhs_navbar .bclist ul li a:active {
+    text-decoration: underline;
+}
+
+
+/*=====================================================================
+【背景のつかないコンテンツ】※TOPの「関連リンク」など
+=======================================================================*/
+
+
+/*---------------------------------------------------------------------
+[背景のつかないコンテンツ]
+
+#bhs_contents_nobgについてはhbs_style.cssを参照
+-----------------------------------------------------------------------*/
+
+
+/*#bhs_contents_nobg用の罫線*/
+
+#bhs_contents_nobg hr {
+    display: none;
+}
+
+#bhs_contents_nobg .bhs_footer_line_h {
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    height: 1px;
+    padding: 1px 0;
+    width: 100%;
+}
+
+#bhs_contents_nobg .bhs_footer_line_f {
+    background: #fff;
+    border-top: 1px solid #ccc;
+    height: 1px;
+    padding: 1px 0;
+    width: 100%;
+}
+
+
+/*---------------------------------------------------------------------
+[背景のつかないコンテンツ]【共用】縦帯のタイトル（※メインカラム用と違い、下線が付かない）
+-----------------------------------------------------------------------*/
+
+#bhs_contents_nobg h2.bhs_main_title {
+    background: #fff;
+    border-bottom: none;
+    margin: 0 0 10px 0;
+    padding: 6px 5px;
+}
+
+#bhs_contents_nobg h2.bhs_main_title p {
+    border-left: 5px solid #262626;
+    color: #191919;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1.1;
+    margin: 0;
+    padding: 2px 0 0 10px;
+    vertical-align: text-bottom;
+}
+
+#bhs_contents_nobg h2.bhs_main_title span {
+    color: #949494;
+    display: inline-block;
+    font-size: 9px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0 0 0 5px;
+}
+
+
+/*=====================================================================
+【フッター】
+=======================================================================*/
+
+
+/*---------------------------------------------------------------------
+[フッター]ボイラープレート
+-----------------------------------------------------------------------*/
+
+#bhs_footer #bhs_footer_boiler {
+    background: #f7f7f7;
+    margin: 0;
+    padding: 1px 0;
+    width: 100%;
+    z-index: 2;
+}
+
+#bhs_footer #bhs_footer_boiler ul {
+    border-right: 1px solid #fff;
+    border-left: 1px solid #c7c7c7;
+    font-size: 0;
+    line-height: 0;
+    margin: 26px auto 50px auto;
+    padding: 0;
+    width: 990px;
+}
+
+
+/*リスト*/
+
+#bhs_footer #bhs_footer_boiler ul li {
+    border-right: 1px solid #c7c7c7;
+    border-left: 1px solid #fff;
+    display: inline-block;
+    margin: 0;
+    padding: 0 5px 0 20px;
+    vertical-align: top;
+    width: -webkit-calc(100% / 5);
+    width: -moz-calc(100% / 5);
+    width: calc(100% / 5);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*リンク設定
+--------------------------------------------*/
+
+#bhs_footer #bhs_footer_boiler ul li dl a:link,
+#bhs_footer #bhs_footer_boiler ul li dl a:visited {
+    color: #252525 !important;
+    text-decoration: none;
+}
+
+#bhs_footer #bhs_footer_boiler ul li dl a:hover,
+#bhs_footer #bhs_footer_boiler ul li dl a:active {
+    color: #252525;
+    text-decoration: underline !important;
+}
+
+
+/*通常のメニュー
+--------------------------------------------*/
+
+#bhs_footer #bhs_footer_boiler ul li dl {
+    display: block;
+    margin: 0;
+    padding: 17px 0;
+}
+
+
+/*大カテゴリ*/
+
+#bhs_footer #bhs_footer_boiler ul li dl dt {
+    color: #252525;
+    display: block;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+
+
+/*メニュー*/
+
+
+/*beforeで付けた矢印分込みでmarginをつける*/
+
+#bhs_footer #bhs_footer_boiler ul li dl dd {
+    display: block;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0 0 18px 22px;
+    padding: 0;
+    position: relative;
+}
+
+
+/*冒頭に矢印をつける*/
+
+#bhs_footer #bhs_footer_boiler ul li dl dd:before {
+    border-right: 2px solid #252525;
+    border-top: 2px solid #252525;
+    content: " ";
+    display: block;
+    height: 6px;
+    line-height: 0;
+    margin: 0 9px 0 0;
+    padding: 0;
+    position: absolute;
+    top: 4px;
+    left: -15px;
+    transform: rotate(45deg) !important;
+    -webkit-transform: rotate(45deg) !important;
+    vertical-align: middle;
+    width: 6px;
+    visibility: inherit !important;
+}
+
+
+/*小さい文字のメニュー
+--------------------------------------------*/
+
+#bhs_footer #bhs_footer_boiler ul li dl.bhs_footer_boiler_mini {
+    display: block;
+    margin: 0;
+    padding: 17px 0;
+}
+
+
+/*大カテゴリ*/
+
+#bhs_footer #bhs_footer_boiler ul li dl.bhs_footer_boiler_mini dt {
+    color: #252525;
+    display: block;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*メニュー*/
+
+
+/*beforeで付けた矢印分込みでmarginをつける*/
+
+#bhs_footer #bhs_footer_boiler ul li dl.bhs_footer_boiler_mini dd {
+    display: block;
+    font-size: 11px;
+    line-height: 1.5;
+    margin: 0 0 18px 12px;
+    padding: 0;
+    position: relative;
+}
+
+
+/*冒頭に矢印をつける*/
+
+#bhs_footer #bhs_footer_boiler ul li dl.bhs_footer_boiler_mini dd:before {
+    border-right: 2px solid #252525;
+    border-top: 2px solid #252525;
+    content: " ";
+    display: block;
+    height: 6px;
+    line-height: 0;
+    margin: 0 9px 0 0;
+    padding: 0;
+    transform: rotate(45deg) !important;
+    -webkit-transform: rotate(45deg) !important;
+    vertical-align: middle;
+    width: 6px;
+    visibility: inherit !important;
+}
+
+
+/*---------------------------------------------------------------------
+[フッター]機械翻訳についての注釈
+-----------------------------------------------------------------------*/
+
+#bhs_footer_trans {
+    background: #f7f7f7;
+    margin: 0 auto;
+    padding: 0 0 30px 0;
+    text-align: center;
+    width: 100%;
+}
+
+#bhs_footer_trans p {
+    color: #202020;
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0 auto;
+    width: 990px;
+}
+
+
+/*---------------------------------------------------------------------
+[フッター]コピーライト（バンダイ）
+-----------------------------------------------------------------------*/
+
+#bhs_footer #bhs_footer_cr_bd {
+    background: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#bhs_footer #bhs_footer_cr_bd .bhs_footer_copy {
+    margin: 0 auto;
+    padding: 0 0 17px 0;
+    width: 990px;
+}
+
+#bhs_footer #bhs_footer_cr_bd .bhs_footer_copy a {
+    color: #202020;
+    text-decoration: none;
+}
+
+#bhs_footer #bhs_footer_cr_bd .bhs_footer_copy img {
+    display: inline-block;
+    margin: 0 16px 0 0;
+    padding: 0;
+    vertical-align: middle;
+    width: 40px;
+    max-width: 40px;
+}
+
+#bhs_footer #bhs_footer_cr_bd .bhs_footer_copy span {
+    color: #202020;
+    display: inline-block;
+    font-size: 10px;
+    line-height: 1.2;
+    vertical-align: middle;
+    width: 920px;
+}
+
+
+/*---------------------------------------------------------------------
+[フッター]コピーライト（取扱商品）
+-----------------------------------------------------------------------*/
+
+#bhs_footer #bhs_footer_cr {
+    background: #3b3b3b;
+    margin: 0;
+    padding: 20px 0;
+    width: 100%;
+}
+
+#bhs_footer #bhs_footer_cr .bhs_footer_copy {
+    margin: 0 auto;
+    padding: 0;
+    width: 990px;
+}
+
+#bhs_footer #bhs_footer_cr .bhs_footer_copy a {
+    color: #969696;
+    text-decoration: none;
+}
+
+#bhs_footer #bhs_footer_cr .bhs_footer_copy p {
+    color: #969696;
+    display: inline-block;
+    font-size: 10px;
+    line-height: 1.6;
+    vertical-align: middle;
+    width: 100%;
+}
+
+
+/*=====================================================================
+【ページトップに戻る】
+=======================================================================*/
+
+#btnPagetop {
+    display: none;
+    height: 77px;
+    margin: 0 0 0 510px;
+    position: fixed;
+    left: 50%;
+    width: 88px;
+    z-index: 70;
+}
+
+
+/*=====================================================================
+【メインカラム・サイドカラム】【共用】カテゴリータグの背景色
+
+=======================================================================*/
+
+
+/*商品情報（紺）*/
+
+span.cat_prdct {
+    background: #0033b6;
+}
+
+
+/*新商品（赤）*/
+
+span.cat_new {
+    background: #ed1f32;
+}
+
+
+/*イベント（紫）*/
+
+span.cat_event {
+    background: #935ecf;
+}
+
+
+/*キャンペーン（ピンク）*/
+
+span.cat_campaign {
+    background: #fa44a2;
+}
+
+
+/*ショップトピックス（オレンジ）*/
+
+span.cat_topics {
+    background: #f68105;
+}
+
+
+/*つくろう（青）*/
+
+span.cat_build {
+    background: #0a96ee;
+}
+
+
+/*お知らせ（緑）*/
+
+span.cat_info {
+    background: #16ae6c;
+}
+
+
+/*オンラインショップ（えんじ）*/
+
+span.cat_shop {
+    background: #ad1728;
+}
+
+
+/*Gベース（水色）*/
+
+span.cat_gbase {
+    background: #0a96ee;
+}
+
+
+/*受付スタート（濃青）*/
+
+span.cat_recept {
+    background: #4448fa;
+}
+
+
+/*まもなくスタート（くすんだ水色）*/
+
+span.cat_pre_recept {
+    background: #0bb3d7;
+}
+
+
+/*締切迫る（紫）*/
+
+span.cat_cls_recept {
+    background: #935ecf;
+}
+
+
+/*再販（濃緑）*/
+
+span.cat_resale {
+    background: #129d16;
+}
+
+
+/*INFORMATION（薄茶）*/
+
+span.cat_osinfo {
+    background: #d7660b;
+}
+
+
+/*重要なお知らせ（明るい赤）*/
+
+span.cat_es_notice {
+    background: #e90016;
+}
+
+
+/*お知らせ（明るいオレンジ）*/
+
+span.cat_notice {
+    background: #f38922;
+}
+
+
+/*=====================================================================
+【Wovn用一式】
+=======================================================================*/
+
+
+/*カスタマイズ用の制御*/
+
+
+/*幅と壁紙の指定*/
+
+#wovn-translate-widget[wovn] {
+    background: #fff url(/img/common/btn_translate.png) no-repeat !important;
+    height: 46px !important;
+    width: 200px !important;
+}
+
+
+/*セレクトボックスの位置*/
+
+#wovn-translate-widget[wovn] h6 {
+    margin: 0 0 0 47px !important;
+}
+

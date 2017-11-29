@@ -1,18 +1,19 @@
-doctype html
-html(lang="zh-cn")
+doctype strict
+html(xmlns="http://www.w3.org/1999/xhtml", xml:lang="ja")
     head
-        block title
-        title #{title}
-        link(rel='stylesheet', href='//at.alicdn.com/t/font_1476669536_3056495.css')
-        link(rel='stylesheet', href='/css/lib/bootstrap.min.css')
-        link(rel='stylesheet', href='/css/style.css')
-    body.bg
-        .container-fluid
-            .messages.row
-                include ../includes/messages.jade
-        .container.main
-            .row
+        title= title
+        include ./head
+
+        block head
+    include ../base
+    body
+        include ./nav
+        block nav
+        #bhs_contents
+            block custom_content
+            #bhs_contentsWrap.clearfix
                 block content
 
-        script(src="/js/lib/jquery.min.js")
-        block scripts
+        block bhs_contents_nobg
+        include ./foot
+        include ./footjs

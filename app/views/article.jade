@@ -1,0 +1,38 @@
+extends ./layouts/default_detail
+
+block bclist
+    each list in bclists
+        .bclist
+            +product_bclist(list)
+                li= item.name
+block col_2_content
+    #bhs_page_campaign_detail
+        h2.bhs_main_title
+            p= item.name
+        | !{item.content}
+
+block script
+    <link rel="stylesheet" href="/css/renew/js/colorbox/colorbox.css" />
+    <script type="text/javascript" src="/css/renew/js/colorbox/jquery.colorbox-min.js"></script>
+    <link rel="stylesheet" href="/css/renew/js/jquery.bxslider/jquery.bxslider.css" />
+    <script type="text/javascript" src="/css/renew/js/jquery.bxslider/jquery.bxslider.min.js"></script>
+    script.
+        $(document).ready(function(){
+
+            $('a.maingallery').colorbox({rel:'gal01'});
+            $('a.thumbgallery').colorbox({rel:'gal02'});
+
+            var sliderImg = $("#bhs_gallery_main ul li").length;
+            if(sliderImg > 1){
+                $("#bhs_gallery_main ul").bxSlider({
+                    mode: 'fade',
+                    speed: 750,
+                    pause: 3500,
+                    prevText: '',
+                    nextText: '',
+                    auto:true,
+                    pagerCustom: '#bhs_gallery_thumbs',
+                    pager: false
+                });
+            };
+        })

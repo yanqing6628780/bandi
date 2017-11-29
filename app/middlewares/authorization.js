@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function(app) {
     var exports = {};
     exports.requiresLogin = function(req, res, next) {

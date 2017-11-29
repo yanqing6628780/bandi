@@ -1,0 +1,253 @@
+body {
+    font-family: 'lucida grande', tahoma, verdana, arial, "hiragino kaku gothic pro", meiryo, "ms pgothic", sans-serif;
+    font-size: 75%;
+    background-color: #FFF;
+    min-width: 990px;
+    line-height: 1.4;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+a img {
+    -webkit-transition: opacity .2s ease;
+    transition: opacity .2s ease;
+}
+
+a:hover img {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+    opacity: 0.7;
+}
+
+#header .upper {
+    *zoom: 1;
+    margin: 0 auto;
+    width: 990px;
+}
+
+#header .upper:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#header .upper .logo {
+    float: left;
+    padding: 20px 0 14px;
+}
+
+#header .upper .banner {
+    *zoom: 1;
+    float: right;
+    padding: 8px 0 9px;
+}
+
+#header .upper .banner:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#header .upper .banner div {
+    float: left;
+    margin-left: 8px;
+}
+
+#header .upper .banner .shop {
+    padding-top: 4px;
+}
+
+#navigation {
+    background-color: #000;
+}
+
+#navigation .inner {
+    *zoom: 1;
+    margin: 0 auto;
+    width: 990px;
+}
+
+#navigation .inner:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#navigation .category {
+    display: table;
+    float: left;
+}
+
+#navigation .category a {
+    display: table-cell;
+    border-right: 3px solid #000;
+    position: relative;
+    padding: 12px 33px 12px 25px;
+    vertical-align: middle;
+    background-color: #333;
+    color: #FFF;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#navigation .category a:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    margin-top: -1px;
+    background-image: url(../img/common/icon_arrow_white_bottom.png);
+    width: 7px;
+    height: 4px;
+}
+
+#navigation .search {
+    float: left;
+    margin-left: 21px;
+    padding: 3px 0;
+}
+
+#navigation .search span {
+    margin-right: 6px;
+    color: #FFF;
+}
+
+#navigation .search input {
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+#navigation .search .textform {
+    border: none;
+    width: 312px;
+    height: 22px;
+}
+
+#footer {
+    margin-top: 55px;
+}
+
+#footer .upper {
+    border-bottom: 1px solid #333;
+}
+
+#footer .navi {
+    padding: 33px 0 40px;
+    background-image: url(../img/common/ft_bg1.gif);
+    color: #CCC;
+}
+
+#footer .navi a {
+    color: #CCC;
+    text-decoration: none;
+}
+
+#footer .navi a:hover {
+    text-decoration: underline;
+}
+
+#footer .navi ul {
+    display: table;
+    margin: 0 auto;
+    width: 735px;
+    background-image: url(../img/common/bd_vdotted_gray.png);
+    background-repeat: repeat-y;
+    background-position: right 0;
+}
+
+#footer .navi ul li {
+    display: table-cell;
+    padding: 3px 25px 0;
+    width: 25%;
+    background-image: url(../img/common/bd_vdotted_gray.png);
+    background-repeat: repeat-y;
+    background-position: 0 0;
+}
+
+#footer .navi dt {
+    margin-bottom: 18px;
+    padding: 4px 0 4px 13px;
+    font-size: 109%;
+    background-image: url(../img/common/bg_vchecker_gray.png);
+    background-repeat: repeat-y;
+    background-position: 0 0;
+}
+
+#footer .navi dd {
+    margin-bottom: 12px;
+    padding-left: 9px;
+    text-indent: -9px;
+}
+
+#footer .navi dd a {
+    padding-left: 9px;
+    background-image: url(../img/common/icon_arrow_gray_right.png);
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+}
+
+#footer .rights {
+    font-size: 84%;
+    background-image: url(../img/common/ft_bg2.gif);
+    color: #CCC;
+}
+
+#footer .rights .row {
+    *zoom: 1;
+    margin: 0 auto;
+    padding: 29px 0 25px;
+    width: 990px;
+}
+
+#footer .rights .row:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#footer .rights .row .col {
+    float: left;
+    width: 495px;
+}
+
+#footer .rights .row .col div {
+    display: table-cell;
+    vertical-align: top;
+    padding-right: 11px;
+}
+
+#footer .rights .row .col p {
+    display: table-cell;
+    vertical-align: top;
+}
+
+#footer .rights .row .col:first-child p {
+    padding-right: 25px;
+}
+
+#footer .copyright {
+    border-top: 1px solid #4F4F4F;
+    padding: 13px 0 20px;
+}
+
+#footer .copyright p {
+    width: 990px;
+    margin: 0 auto;
+}
+
+#btnPagetop {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    margin-left: 1006px;
+    outline: none;
+}
