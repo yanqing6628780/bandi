@@ -108,4 +108,25 @@ schema.path('cover_pic').set(function (v) {
     }
 });
 
-module.exports = mongoose.model(tableName, schema);
+const Model = mongoose.model(tableName, schema);
+
+// return Promise
+// Promise data data[0]总数据量 data[1]文章数据
+Model.pagination = (where, page, limit, sort) => {
+    let p = Model.find(where);
+    if (where.cids) {
+        for (const cid of where.cids) {
+            p.where('cids', cid);
+        }
+    }
+    p = p.limit(limit).skip(page);
+    if(sort) {
+        p.sort(sort);
+    }
+    return Promise.all([
+        Model.find(where).count(),
+        p
+    ]);
+};
+
+module.exports = Model;

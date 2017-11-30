@@ -1,0 +1,17 @@
+extends ./layouts/default_detail
+
+block col_2_content
+    #bhs_page_gunpla_detail
+        h2.bhs_main_title
+            p
+                | #{title}
+                span #{subtitle}
+        if pageNums
+            +page_nav(pageNums, page)
+        ul.bhs_infolist_for_ost
+            each item in list
+                +item_li(item)
+        if pageNums
+            +page_nav(pageNums, page)
+
+

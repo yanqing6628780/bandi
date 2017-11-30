@@ -8,13 +8,19 @@ module.exports = function (app) {
             categoryM.getTree()
         ]).then((data) => {
             let categorys = data[0];
-            res.locals.categorys =categorys;
+            res.locals.categoryTree = categorys;
             let gunplaCate, characterCate;
             res.locals.gunplaCate = gunplaCate = lodash.find(categorys, {
                 name: "GUNPLA"
             });
             res.locals.characterCate = characterCate = lodash.find(categorys, {
                 name: "CHARACTER"
+            });
+            res.locals.eventCate = lodash.find(categorys, {
+                name: "EVENT"
+            });
+            res.locals.campaignCate = lodash.find(categorys, {
+                name: "CAMPAIGN"
             });
             res.locals.gunplaBrandCate = {};
             res.locals.gunplaSeriesCate = {};
@@ -35,6 +41,16 @@ module.exports = function (app) {
                 });
             } catch (error) {
                 console.log(error);
+            }
+            res.locals.category = {
+                "GUNPLA": {
+                    "brand": res.locals.gunplaBrandCate,
+                    "series": res.locals.gunplaSeriesCate
+                },
+                "CHARACTER": {
+                    "brand": res.locals.characterBrandCate,
+                    "series": res.locals.characterSeriesCate
+                }
             }
             return next();
         })

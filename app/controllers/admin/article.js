@@ -38,7 +38,6 @@ module.exports = function(app) {
                 })
                 .exec()
                 .then(function(doc) {
-                    console.log(doc.toObject({ virtuals: true }))
                     getAllCategory()
                         .then((rs) => {
                             res.render(`${view}/form`, {

@@ -33,6 +33,8 @@ module.exports = function(app, passport) {
     // routerPage.get('/', (req, res) => res.redirect('/admin'));
     frontPage.get('/schedule/:date?', controllers.index.schedule);
     frontPage.get('/item/:id', controllers.item.detail);
+    frontPage.get('/items/', controllers.item.all);
+    frontPage.get('/online_item', controllers.item.online);
     frontPage.get('/category/:id', controllers.category.index);
 
     app.use('/', frontPage);
@@ -54,9 +56,9 @@ module.exports = function(app, passport) {
 
             // 这里你可以获得上传图片的信息
             var foo = req.ueditor;
-            console.log(foo.filename); // exp.png
-            console.log(foo.encoding); // 7bit
-            console.log(foo.mimetype); // image/png
+            // console.log(foo.filename); // exp.png
+            // console.log(foo.encoding); // 7bit
+            // console.log(foo.mimetype); // image/png
 
             // 下面填写你要把图片保存到的路径 （ 以 path.join(__dirname, 'public') 作为根路径）
             var img_url = '/uploads/';
@@ -160,6 +162,14 @@ module.exports = function(app, passport) {
         adminRouter.use(`/${it.url}`, router);
     }
     app.use('/admin', adminRouter);
+
+    // catch 404 and forward to error handler
+    app.notFound = (req, res, next) => {
+        var err = new Error('Not Found');
+        err.status = 404;
+        return next(err);
+    };
+
     // error handlers
     var errroHandlers = (err, req, res, next) => {
         // development error handler

@@ -1,15 +1,7 @@
 extends ./layouts/default_detail
 
-block bclist
-    .bclist
-        +product_bclist(bclists)
-
 block col_2_content
     #bhs_page_gunpla_detail
-        h2.bhs_main_title
-            p
-                | #{title}
-                span #{subtitle}
         #bhs_searchForm
             h4
                 p 商品列表
@@ -19,10 +11,19 @@ block col_2_content
                 ul
                     li.bhs_search_works(style='height: 38px;')
                         - var name = {'brand': '牌子','series': '作品'}
-                        span #{name[selectName]}类目:
-                        select(name='cid')
+                        - var cids = query.cids ? query.cids : []
+                        span #{name['brand']}类目:
+                        select(name='cids[]')
                             option(value='') 请选择
-                            +cate_options(selectOpts.son, [query.cid])
+                            +cate_options(gunplaBrandCate.son, cids)
+                            +cate_options(characterBrandCate.son, cids)
+
+                    li.bhs_search_works(style='height: 38px;')
+                        span #{name['series']}类目:
+                        select(name='cids[]')
+                            option(value='') 请选择
+                            +cate_options(gunplaSeriesCate.son, cids)
+                            +cate_options(characterSeriesCate.son, cids)
                     +search_form_part()
                 .bhs_submit
                     button.submit_btn(type='submit')

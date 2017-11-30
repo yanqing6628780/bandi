@@ -1,8 +1,4 @@
-#bhs_header
-    .bhs_headerWrap
-        h1
-            a(href="/")
-                img(src="http://bandai-hobby.net/img/common/bhs_header_logo.png", width="380", height="50", alt="Bandai Hobby Site")
+include ./header
 #bhs_sub_navBox
     #bhs_sub_megamenuWrap
         ul.bhs_sub_megamenu.clearfix
@@ -74,10 +70,10 @@
         #searchEvc.bhs_sub_megamenu_open
             .bhs_sub_header
                 .bhs_header_evc_btn
-                    a(href="/event/")
+                    +cate_link(eventCate)
                         span Event
                 .header_line_nomargin
                     hr
                 .bhs_header_evc_btn
-                    a(href="/campaign/")
+                    +cate_link(campaignCate)
                         span campaign

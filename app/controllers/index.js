@@ -8,25 +8,36 @@ module.exports = function (app) {
         for (let i = 1; i < 4; i++) {
             nextMonths.push(moment().add(i, 'months'));
         }
-        let eventCate = lodash.find(res.locals.categorys, {
-            name: 'EVENT'
-        });
-        let campaignCate = lodash.find(res.locals.categorys, {
-            name: 'CAMPAIGN'
-        });
+        let now = moment();
+        let now_product_where = {
+            is_product: true,
+            release_date: {
+                $lt: now.endOf('months').toDate(),
+                $gt: now.startOf('months').toDate()
+            }
+        };
+        let next_month_product_where = lodash.cloneDeep(now_product_where);
+        next_month_product_where.release_date.$lt = moment().add(1, 'months').endOf('months').toDate();
+        next_month_product_where.release_date.$gt = moment().add(1, 'months').startOf('months').toDate();
         Promise.all([
             articleM.find().limit(9).exec(),
-            articleM.find().where('cids').in([eventCate.id]).limit(6).exec(),
-            articleM.find().where('cids').in([campaignCate.id]).limit(6).exec()
+            articleM.find().where('cids').in([res.locals.eventCate.id]).limit(6).exec(),
+            articleM.find().where('cids').in([res.locals.campaignCate.id]).limit(6).exec(),
+            articleM.find(now_product_where).sort({release_date: 'desc'}).limit(4).exec(),
+            articleM.find(next_month_product_where).sort({ release_date: 'desc' }).limit(4).exec(),
+            articleM.find({is_product: true, is_online_shop: true}).sort({ release_date: 'desc' }).limit(4).exec()
         ]).then((data) => {
             let articles = data[0];
             res.render('index', {
                 title: '首页',
                 news: articles,
-                nextMonth: moment().add(1, 'months').format('YYYYMM'),
+                nextMonth: moment().add(1,'months').format('YYYYMM'),
                 nextMonths: nextMonths,
                 eventArticles: data[1],
-                campaignArticles: data[2]
+                campaignArticles: data[2],
+                nowProducts: data[3],
+                nextMonthProducts: data[4],
+                onlineProducts: data[5]
             });
         });
     };

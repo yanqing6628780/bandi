@@ -1,5 +1,27 @@
 extends ./layouts/default_detail
 
+mixin date_nav()
+    ul.danav.clearfix
+        each date_it in otherMonths
+            li
+                if (date.format('YYYYMM') == date_it.format('YYYYMM'))
+                    span #{date_it.format('MM')}月
+                else
+                    a(href="/schedule/#{date_it.format('YYYYMM')}")
+                        | #{date_it.format('MM')}月
+    form(lpformnum='1')
+        select#year.bhs_search_calender_y(name='year')
+            each val in years
+                option(
+                    value=val, selected=(val==date.format('YYYY'))
+                ) #{val}
+        select#month.bhs_search_calender_m(name='month')
+            - var n = 1;
+            while n < 13
+                option(
+                    value=(n<10 ? "0"+n:n)
+                    selected=(n==(date.month()+1))
+                ) #{n++}月
 block col_2_content
     h2.bhs_main_title
         p
@@ -9,24 +31,8 @@ block col_2_content
         h4
             p 查看其他月份
         .bhs_search_calenderWrap
-            ul.danav.clearfix
-                each date in otherMonths
-                    li
-                        a(href="/schedule/#{date.format('YYYYMM')}")
-                            | #{date.format('MM')}月
-            form(lpformnum='1')
-                select#year.bhs_search_calender_y(name='year')
-                    each val in years
-                        option(
-                            value=val, selected=(val==date.format('YYYY'))
-                        ) #{val}
-                select#month.bhs_search_calender_m(name='month')
-                    - var n = 1;
-                    while n < 13
-                        option(
-                            value=(n<10 ? "0"+n:n)
-                            selected=(n==(date.month()+1))
-                        ) #{n++}月
+            +date_nav()
+
     #bhs_monthly
         h3.bhs_main_title
             p #{date.format('YYYY年MM月')} 发售商品
@@ -50,24 +56,8 @@ block col_2_content
         h4
             p 查看其他月份
         .bhs_search_calenderWrap
-            ul.danav.clearfix
-                each date in otherMonths
-                    li
-                        a(href="/schedule/#{date.format('YYYYMM')}")
-                            | #{date.format('MM')}月
-            form(lpformnum='1')
-                select#year.bhs_search_calender_y(name='year')
-                    each val in years
-                        option(
-                            value=val, selected=(val==date.format('YYYY'))
-                        ) #{val}
-                select#month.bhs_search_calender_m(name='month')
-                    - var n = 1;
-                    while n < 13
-                        option(
-                            value=(n<10 ? "0"+n:n)
-                            selected=(n==(date.month()+1))
-                        ) #{n++}月
+            +date_nav()
+
 
 block script
     script.

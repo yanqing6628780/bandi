@@ -1,5 +1,5 @@
 mixin cate_link(item)
-    a(href="/category/#{item.id}?parent_name=#{item.parent_id&&item.parent_id.name}")
+    a(href="/category/#{item.id}")
         block
 
 mixin cate_img(item)
@@ -58,3 +58,72 @@ mixin works_h3_title()
 mixin cate_logo_li(item)
     +cate_li(item)
         span= item.display_name
+
+mixin cover_pic(item)
+    img(src=item.cover_pic alt=item.name)
+
+mixin product_img_link(item)
+    li
+        +item_link(item)
+            +cover_pic(item)
+
+mixin page_nav(nums, curNum)
+    ul.pnav.clearfix
+        if(nums > 1 && curNum != 1)
+            li.prev
+                a(href="?page=#{curNum-1}") < 上一页
+        - var n = 1
+        while n <= nums
+            li
+                if(n==curNum)
+                    span= n++
+                else
+                    a(href="?page=#{n}")= n++
+
+        if(nums > 1 && curNum != nums)
+            li.next
+                a(href="?page=#{curNum-1}") 下一页 ›
+
+
+mixin item_li(item)
+    li.clearfix
+        +item_link(item)
+            p.bhs_info_img
+                +cover_pic(item)
+            p.bhs_info_cd
+                //- span.bhs_info_cat.cat_recept 预售
+                //- span.bhs_info_cat.cat_new 新品
+                //- span.bhs_info_cat.cat_resale 再版
+                span.bhs_info_date
+                    +date_format(item.release_date)
+                span.bhs_info_ttl= item.name
+        p.bhs_info_txt !{item.desc}
+
+
+mixin search_form_part()
+    li.bhs_search_seq(style='height: 38px;')
+        span Display order:
+        select(name='sort')
+            each it in [['new', '按发售日期从新到旧'], ['old', '按发售日期从旧到新'], ['low', '按价格低到高'], ['high', '按价格高到低']]
+                option(value=it[0] selected=query.sort&&query.sort==it[0]) #{it[1]}
+    li.bhs_search_cat(style='height: 38px;')
+        span 商品类型:
+        p
+            label
+                input#chk_online(name='online', value='1', type='checkbox' checked=query.online)
+                span.cat_shop 线上商品
+    li.bhs_search_jan(style='height: 38px;')
+        span 商品编码:
+        input(type='text', name='code', value='#{query.code? query.code:""}', style='ime-mode:disabled;', maxlength='16')
+    li.bhs_search_pdname(style='height: 38px;')
+        span 商品名称:
+        input(type='text', name='name', value='#{query.name?query.name:""}')
+
+
+mixin cate_options(data, select_ids)
+    each it in data ? data : []
+        option(
+            value=it.id
+            selected=!!~select_ids.indexOf(it.id)
+        )
+            | #{it.display_name}
