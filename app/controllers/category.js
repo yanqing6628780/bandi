@@ -29,6 +29,7 @@ module.exports = function (app) {
     };
     let _product_cateogry = (rs, req, res, next) => {
         let where = {
+            is_product: true,
             cids: rs.id
         };
         let page = req.query.page ? (req.query.page - 1) : 0;

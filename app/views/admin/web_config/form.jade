@@ -1,0 +1,38 @@
+extends ../layouts/default
+
+block content
+    include ./base
+    form.form-horizontal(role='form' method='post' action='#{url}/save')
+        +formInput("标识", "key", model, false)
+        +formInput("标题", "name", model, false)
+        div.form-group
+            label.col-sm-2.control-label 类型
+            .col-sm-3
+                - var typeList = [{'value': 'input', 'name': '输入框'},{'value': 'editor', 'name': '富文本编辑'},{'value': 'textarea', 'name': '普通文本'}]
+                +select('type', typeList, model&&model.type)
+        if model
+            div.form-group
+                label.col-sm-2.control-label 内容
+                div.col-sm-10
+                    if model.type == 'editor'
+                            script(
+                                id="editor" name="value" type="text/plain"
+                                style="min-height: 400px"
+                            )
+                                | !{model&&model.value}
+                    else if model.type == 'textarea'
+                        textarea.form-control(name="value", cols="30", rows="10") !{model&&model.value}
+                    else
+                        +input('内容', 'value', model, false)
+        div.form-group
+            div.col-sm-offset-2.col-sm-10
+                input.btn.btn-success(type="submit" value="保存")
+                input(type="hidden" name="id" value=model&&model._id)
+
+block scripts
+    script.
+        $(document).ready(function() {
+            if($('#editor').length) {
+                var ue = UE.getEditor('editor')
+            }
+        })

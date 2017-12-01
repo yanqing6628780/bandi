@@ -1,7 +1,7 @@
 doctype strict
 html(xmlns="http://www.w3.org/1999/xhtml", xml:lang="ja")
     head
-        title= title
+        title #{title} | #{web_cfg.web_name.value}
         include ./head
 
         block head

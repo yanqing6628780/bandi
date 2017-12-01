@@ -1,21 +1,19 @@
 #bhs_footer
     #bhs_footer_cr_bd(style="padding-top:15px")
         .bhs_footer_copy
-            a(href="http://www.bandai.co.jp/")
-                img(src="http://bandai-hobby.net/img/common/ft_logo.png", width="40", height="38", alt="BANDAI")
+            a(href="/")
+                img(src="/img/common/ft_logo.png", width="40", height="38", alt="BANDAI")
                 span
-                    | © BANDAI CO., LTD. 2014 ALL Rights Reserved.
-                    br
-                    | We will refuse all images, sentences, data etc. posted on this homepage without permission and reprint. Unauthorized use or reproduction of materials contained in this page is strictly prohibited.
+                    | !{web_cfg.web_copyright.value}
     #bhs_footer_cr
-        div(onclick="obj=document.getElementById('open').style; obj.display=(obj.display=='none')?'block':'none';")
-            a(style="cursor:pointer;")
-                div(style="text-align:center")
-                    font(color="#ffffff") ▼ Display copyright light list
-            br
-        #open(style="display:none;clear:both;")
-            .bhs_footer_copy
-                p 版权
+        //- div(onclick="obj=document.getElementById('open').style; obj.display=(obj.display=='none')?'block':'none';")
+        //-     a(style="cursor:pointer;")
+        //-         div(style="text-align:center")
+        //-             font(color="#ffffff") ▼ Display copyright light list
+        //-     br
+        //- #open(style="display:none;clear:both;")
+        //-     .bhs_footer_copy
+        //-         p 版权
 #btnPagetop
     a(href="#")
-        img(src="http://bandai-hobby.net/img/common/bhs_pagetop.png", width="88", height="77", alt="PAGETOP")
+        img(src="/img/common/bhs_pagetop.png", width="88", height="77", alt="PAGETOP")

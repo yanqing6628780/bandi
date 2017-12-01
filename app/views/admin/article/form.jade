@@ -1,6 +1,5 @@
 extends ../layouts/default
 
-include ../base
 block content
     - var url = '/admin/article'
     .alert.alert-danger
@@ -129,22 +128,9 @@ block content
 
         div.form-group
             label.col-sm-2.control-label 所属分类
-            div.col-sm-10
-                select.form-control(name="cids" multiple required)
-                    each item,index in categorys
-                        - selected = false
-                        if model && model.cids
-                            each cate,key in model.cids
-                                if item._id.toString() == cate
-                                    - selected = true
-                            option(
-                                value=item._id
-                                selected=selected
-                            ) #{item.display_name}
-                        else
-                            option(
-                                value=item._id
-                            ) #{item.display_name}
+            div.col-sm-10.row
+                +cate_checkbox_list(categorys, model, 0)
+
         div.form-group
             label.col-sm-2.control-label 摘要
             div.col-sm-10

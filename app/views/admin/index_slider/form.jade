@@ -1,30 +1,24 @@
 extends ../layouts/default
 
 block content
-    - var url = '/admin/category'
-    include ./alert
+    include ./base
     form.form-horizontal(role='form' method='post' action='#{url}/save')
-        +formInput("名称", "display_name", model)
-        +formInput("别名", "name", model)
+        +formInput("标题", "name", model, false)
+        +formInput("链接", "url", model, false)
         div.form-group
-            label.col-sm-2.control-label 描述
-            div.col-sm-10
-                textarea.form-control(name="desc", cols="30", rows="10")
-                    | #{item&&item.desc}
-        div.form-group
-            label.col-sm-2.control-label 分类封面图
+            label.col-sm-2.control-label 图片
             div.col-sm-10.admin_article
                 input#images(type="hidden" name="image" value=model&&model.image)
                 span.btn.btn-success.fileinput-button
                     i.glyphicon.glyphicon-plus
-                    span 添加产品图
+                    span 添加图片
                     input#fileuploader(
                         type="file"
                         name="files[]"
                     )
                 #images_box.row
                     if model && model.image
-                        .col-sm-3
+                        .col-sm-6
                             .thumbnail
                                 img(src=model.image alt="图片已不存在。点击保存按钮后，会自动删除")
                                 .caption
@@ -35,15 +29,12 @@ block content
                                         ) 删
         div.form-group
             div.col-sm-offset-2.col-sm-10
-                button.btn.btn-success 保存
-                if model
-                    input(type="hidden" name="id" value='#{model._id}')
-                    - parent_id = model.parent_id
-                input(type="hidden" name="parent_id" value='#{parent_id}')
+                input.btn.btn-success(type="submit" value="保存")
+                input(type="hidden" name="id" value=model&&model._id)
 
 block scripts
     script.
         $(document).ready(function() {
-            var uploadDir = "/category/"
+            var uploadDir = "/uploads/"
             fileuploadInit(uploadDir, 1)
         })

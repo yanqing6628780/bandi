@@ -2,7 +2,67 @@ mixin formInput(labelName, fieldsName, model, isRequired)
     div.form-group
             label.col-sm-2.control-label #{labelName}
             div.col-sm-10
-                if model
-                    input.form-control(type="text" name="#{fieldsName}" placeholder="#{labelName}" value='#{model[fieldsName]}' required=isRequired)
-                else
-                    input.form-control(type="text" name="#{fieldsName}" placeholder="#{labelName}" value='' required=isRequired)
+                +input(labelName, fieldsName, model, isRequired)
+
+mixin input(labelName, fieldsName, model, isRequired)
+    input.form-control(type="text" name="#{fieldsName}" placeholder="#{labelName}" value='#{model?model[fieldsName]:""}' required=isRequired)
+
+mixin select(name, list, selected_val)
+    select.form-control(name=name)
+        each it in list
+            option(
+                value=it.value
+                selected=it.value==selected_val
+            ) #{it.name}
+
+mixin cate_options(list, model, level)
+    - var cids = model ? model.cids : []
+    - var space = level ? "" : "&nbsp;"
+    - for(i=0;i<level;i++)
+        - space += '&nbsp;&nbsp;&nbsp;&nbsp;'
+        - n++
+    each it in list
+        - selected = false
+        - each cid in cids
+            if (cid.toString()==it.id.toString())
+                - selected = true
+        option(
+            value=it._id
+            selected=selected
+        )
+            if level
+                | !{space} |--
+            | #{it.display_name}
+        if it.son
+            +cate_options(it.son, model, level+1)
+
+mixin cate_checkbox_list(list, model, level)
+    - var cids = model ? model.cids : []
+    each it in list
+        - selected = false
+        - each cid in cids
+            if (cid.toString()==it.id.toString())
+                - selected = true
+        if !it.parent_id
+            .col-md-4
+                +cate_checkbox(it, selected, level)
+                if it.son
+                    +cate_checkbox_list(it.son, model, level+1)
+        else
+            +cate_checkbox(it, selected, level)
+            if it.son
+                +cate_checkbox_list(it.son, model, level+1)
+
+mixin cate_checkbox(item, checked, level)
+    - var space = level ? "" : "&nbsp;"
+    - for(i=0;i<level;i++)
+        - space += '&nbsp;&nbsp;&nbsp;&nbsp;'
+    .checkbox
+        label
+            input(name="cids" type="checkbox" value=item._id checked=checked)
+            if level
+                | !{space} |--
+            if item.parent_id
+                | #{item.display_name}
+            else
+                b #{item.display_name}

@@ -1,14 +1,12 @@
-var mongoose = require('mongoose');
-var fs = require('fs');
-var configs = require('../../config');
-var path = require('path');
-
-// var categoryModel = require('./category_schema');
-var tableName = 'articles';
-
+let mongoose = require('mongoose');
+let fs = require('fs');
+let configs = require('../../config');
+let path = require('path');
+let tableName = 'articles';
+let ObjectId = mongoose.Types.ObjectId;
 // Schema 结构
-var Schema = mongoose.Schema;
-var schema = new Schema({
+let Schema = mongoose.Schema;
+let schema = new Schema({
     name: {
         type: String,
         required: true,
@@ -84,11 +82,11 @@ schema.virtual('images_str').get(function() {
 }).set(function(v) {
     if (v) {
         this.images = [];
-        var images = v.split(',');
-        for (var key in images) {
-            var item = images[key];
+        let images = v.split(',');
+        for (let key in images) {
+            let item = images[key];
             if (item) {
-                var filePath = path.join(configs.path.public, item);
+                let filePath = path.join(configs.path.public, item);
                 if (fs.existsSync(filePath)) {
                     this.images.push(images[key]);
                 }
@@ -100,7 +98,7 @@ schema.virtual('images_str').get(function() {
 });
 schema.path('cover_pic').set(function (v) {
     if (v) {
-        var filePath = path.join(configs.path.public, v);
+        let filePath = path.join(configs.path.public, v);
         if (!fs.existsSync(filePath)) {
             v = "";
         }
@@ -113,18 +111,24 @@ const Model = mongoose.model(tableName, schema);
 // return Promise
 // Promise data data[0]总数据量 data[1]文章数据
 Model.pagination = (where, page, limit, sort) => {
+    let cids = where.cids ? where.cids : undefined;
+    delete where.cids;
     let p = Model.find(where);
-    if (where.cids) {
-        for (const cid of where.cids) {
-            p.where('cids', cid);
+    if (typeof cids === 'object') {
+        let and_where = [];
+        for (const cid of cids) {
+            and_where.push({ cids: ObjectId(cid)});
         }
+        p.and(and_where);
+    } else {
+        p.where('cids', ObjectId(cids));
     }
     p = p.limit(limit).skip(page);
     if(sort) {
         p.sort(sort);
     }
     return Promise.all([
-        Model.find(where).count(),
+        Model.find(p.getQuery()).count(),
         p
     ]);
 };

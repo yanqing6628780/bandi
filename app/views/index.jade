@@ -19,14 +19,13 @@ block head
         });
 
 block custom_content
-    #bhs_top_slider.clearfix
-        ul.slider.center-item
-            li
-                a(href="http://bandai-hobby.net/site/gundamdocks/", target="_blank")
-                    img(src="//bandai-hobby.net/images/136_136_o_1bvbo4836r3cccm8pf1uji1nvu7.jpg", width="990", height="418", alt="")
-            li
-                a(href="http://bandai-hobby.net/item/2089/", target="")
-                    img(src="//bandai-hobby.net/images/136_106_o_1buqbtvq3u1f1jbs10ls6um172m7.jpg", width="990", height="418", alt="")
+    if sliderImgs
+        #bhs_top_slider.clearfix
+            ul.slider.center-item
+                each img_item in sliderImgs
+                    li
+                        a(href=img_item.url, target="_blank")
+                            img(src=img_item.image, alt=img_item.name)
         #arrows
             .slick-next
                 img(src="/img/top/slider/common/bhs_top_slider_btn_next.png", alt="Next")
@@ -40,20 +39,15 @@ block content
             h3.bhs_title_notice
                 p
                     | 特别公告
-                    span IMPORTANT NOTICES
+                    span NOTICES
             ul
-                li
-                    a(href='/notices/detail/33/')
-                        span
-                            | 2017.11.30
-                            br
-                            | 「1/144 モビルグーン」、「1/144 モビルバクゥ」 取扱説明書 誤掲載に関するお詫び
+                li !{web_cfg.web_notice.value}
 
         #bhs_side_gunpla
             h3.bhs_title
                 p
                     | #{gunplaCate.display_name}
-                    span GUNPLA
+                    span #{gunplaCate.name}
             ul.logoList
                 if gunplaBrandCate && gunplaBrandCate.son
                     each item, index in gunplaBrandCate.son
@@ -70,7 +64,7 @@ block content
             h3.bhs_title
                 p
                     | #{characterCate.display_name}
-                    span CHARACTER
+                    span #{characterCate.name}
             ul.logoList
                 if characterBrandCate && characterBrandCate.son
                     each item, index in characterBrandCate.son
@@ -97,7 +91,7 @@ block content
                             p.bhs_info_img
                                 img(src=item.cover_pic, width="170", height="126", alt=item.desc, title=item.name)
                             p.bhs_info_cd
-                                span.bhs_info_cat.cat_topics= item.name
+                                +info_cate(item)
                                 span.bhs_info_date
                                     +date_format(item.release_date)
                             p.bhs_info_txt #{item.desc}
@@ -107,8 +101,8 @@ block content
         #bhs_event
             h2.bhs_main_title
                 p
-                    | 展会
-                    span EVENT
+                    | #{eventCate.display_name}
+                    span #{eventCate.name}
                 p.bhs_main_btn_all_mini
                     +cate_link(eventCate)
                         span 所有
@@ -116,7 +110,7 @@ block content
                 if eventArticles
                     each item,index in eventArticles
                         li
-                            a(href="http://bandai-hobby.net/site/popup/", target="_blank")
+                            +item_link(item)
                                 img(src=item.cover_pic, width="260", height="80", alt=item.name)
                                 p
                                     span.bhs_event_ttl= item.name
@@ -127,8 +121,8 @@ block content
         #bhs_campaign
             h2.bhs_main_title
                 p
-                    | 活动
-                    span CAMPAIGN
+                    | #{campaignCate.display_name}
+                    span #{campaignCate.name}
                 p.bhs_main_btn_all_mini
                     +cate_link(campaignCate)
                         span 所有
@@ -172,14 +166,11 @@ block content
             ul.bhs_side_item
                 each it in nowProducts.length ? nowProducts : []
                     +product_img_link(it)
-            .bhs_side_btn_more
-                a(href="/schedule/")
-                    span 所有
         #bhs_side_newitem_later
             h3.bhs_title
                 p
                     | 次月新品
-                    span NEW ITEMS in LATER MONTHS
+                    span NEW ITEMS IN NEXT MONTHS
                 form
                     select#year_month.bhs_search_calender_ym(name="year_month")
                         option(value="") 选月份

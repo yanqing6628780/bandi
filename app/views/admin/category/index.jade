@@ -3,12 +3,11 @@ extends ../layouts/default
 mixin toHtml(item, cnt)
     - space = cnt ? "" : "&nbsp;"
     - for(i=0;i<cnt;i++)
-        - space += '&nbsp;&nbsp;'
+        - space += '&nbsp;&nbsp;&nbsp;'
     tr
         td
             if cnt
-                | !{space} -
-                | &nbsp;
+                | !{space} |---
             | #{item.display_name}
         td= item.parent_id&&item.parent_id.display_name
         td= item.name

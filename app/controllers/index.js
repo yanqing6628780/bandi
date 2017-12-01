@@ -2,7 +2,8 @@ let moment = require('moment');
 let lodash = require('lodash');
 module.exports = function (app) {
     var exports = {},
-        articleM = app.models.articles;
+        articleM = app.models.articles,
+        sliderM = app.models.index_slider;
     exports.home = function (req, res) {
         let nextMonths = [];
         for (let i = 1; i < 4; i++) {
@@ -20,12 +21,13 @@ module.exports = function (app) {
         next_month_product_where.release_date.$lt = moment().add(1, 'months').endOf('months').toDate();
         next_month_product_where.release_date.$gt = moment().add(1, 'months').startOf('months').toDate();
         Promise.all([
-            articleM.find().limit(9).exec(),
-            articleM.find().where('cids').in([res.locals.eventCate.id]).limit(6).exec(),
-            articleM.find().where('cids').in([res.locals.campaignCate.id]).limit(6).exec(),
-            articleM.find(now_product_where).sort({release_date: 'desc'}).limit(4).exec(),
-            articleM.find(next_month_product_where).sort({ release_date: 'desc' }).limit(4).exec(),
-            articleM.find({is_product: true, is_online_shop: true}).sort({ release_date: 'desc' }).limit(4).exec()
+            articleM.find().limit(9),
+            articleM.find().where('cids').in([res.locals.eventCate.id]).limit(6),
+            articleM.find().where('cids').in([res.locals.campaignCate.id]).limit(6),
+            articleM.find(now_product_where).sort({release_date: 'desc'}).limit(4),
+            articleM.find(next_month_product_where).sort({ release_date: 'desc' }).limit(4),
+            articleM.find({is_product: true, is_online_shop: true}).sort({ release_date: 'desc' }).limit(4),
+            sliderM.find()
         ]).then((data) => {
             let articles = data[0];
             res.render('index', {
@@ -37,7 +39,8 @@ module.exports = function (app) {
                 campaignArticles: data[2],
                 nowProducts: data[3],
                 nextMonthProducts: data[4],
-                onlineProducts: data[5]
+                onlineProducts: data[5],
+                sliderImgs: data[6]
             });
         });
     };

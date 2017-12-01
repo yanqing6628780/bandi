@@ -1,16 +1,11 @@
 module.exports = function(app) {
-    var Model = app.models.articles,
-        cateModel = app.models.categorys,
-        view = 'admin/article',
-        url = '/admin/article',
-        title = '后台文章管理',
+    var Model = app.models.web_config,
+        view = 'admin/web_config',
+        url = '/admin/web_config',
+        title = '网站配置管理',
         exports = {};
-    var getAllCategory = () => {
-        return cateModel.getTree();
-    };
     exports.list = function(req, res, next) {
         Model.find()
-            .populate('cids')
             .exec()
             .then(function(result) {
                 res.render(view, {
@@ -23,12 +18,9 @@ module.exports = function(app) {
     };
 
     exports.add = function(req, res) {
-        getAllCategory().then((rs) => {
-            res.render(`${view}/form`, {
-                title: `${title}-添加`,
-                categorys: rs
-            });
-        })
+        res.render(`${view}/form`, {
+            title: `${title}-添加`
+        });
     };
 
     exports.edit = function(req, res, next) {
@@ -38,14 +30,10 @@ module.exports = function(app) {
                 })
                 .exec()
                 .then(function(doc) {
-                    getAllCategory()
-                        .then((rs) => {
-                            res.render(`${view}/form`, {
-                                title: `${title}-编辑`,
-                                model: doc.toObject(),
-                                categorys: rs
-                            });
-                        });
+                    res.render(`${view}/form`, {
+                        title: `${title}-编辑`,
+                        model: doc.toObject()
+                    });
                 })
                 .catch(function(err) {
                     return next(err);
@@ -65,12 +53,6 @@ module.exports = function(app) {
                     if (!document) return next();
                     for (var key in req.body) {
                         document[key] = req.body[key];
-                    }
-                    if (!req.body.parent_id) {
-                        document.parent_id = null;
-                    }
-                    if (!req.body.price) {
-                        document.price = 0;
                     }
                     document.save()
                         .then(function() {

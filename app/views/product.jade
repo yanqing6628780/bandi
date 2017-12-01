@@ -50,6 +50,26 @@ block col_2_content
                         img(src=cate.image, width='150', height='65', alt='')
                         span= cate.display_name
 
+block content_sideR
+    #bhs_side_renews
+        h3.bhs_title
+            p
+                | 相关新闻
+                span NEWS
+        ul
+            each it in related_news
+                +related_news(it)
+    #bhs_side_relateditem
+        h3.bhs_title
+            p
+                | 相关产品
+                span RECOMMEND
+        ul.bhs_side_item
+            each it in related_products
+                li
+                    +item_link(it, '_blank')
+                        +cover_pic(it)
+
 block script
     <link rel="stylesheet" href="/css/renew/js/colorbox/colorbox.css" />
     <script type="text/javascript" src="/css/renew/js/colorbox/jquery.colorbox-min.js"></script>

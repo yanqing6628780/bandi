@@ -36,6 +36,7 @@ module.exports = function(app, passport) {
     frontPage.get('/items/', controllers.item.all);
     frontPage.get('/online_item', controllers.item.online);
     frontPage.get('/category/:id', controllers.category.index);
+    frontPage.get('/news', controllers.item.news);
 
     app.use('/', frontPage);
 
@@ -55,7 +56,7 @@ module.exports = function(app, passport) {
         if (req.query.action === 'uploadimage') {
 
             // 这里你可以获得上传图片的信息
-            var foo = req.ueditor;
+            // var foo = req.ueditor;
             // console.log(foo.filename); // exp.png
             // console.log(foo.encoding); // 7bit
             // console.log(foo.mimetype); // image/png
@@ -145,6 +146,16 @@ module.exports = function(app, passport) {
             adminArticle: {
                 url: 'article',
                 namespace: 'article',
+                methods: methods
+            },
+            adminSlider: {
+                url: 'index_slider',
+                namespace: 'index_slider',
+                methods: methods
+            },
+            adminWebCfg: {
+                url: 'web_config',
+                namespace: 'web_config',
                 methods: methods
             }
         };

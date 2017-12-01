@@ -12,7 +12,8 @@ block content
             th 所属分类
             th 跳转链接
             th 发布/发售日期
-            th 产品编码
+            th 是否为商品
+            th 是否为线上商品
             th 操作
         tbody
             each item,index in list
@@ -27,7 +28,8 @@ block content
                         | #{ref}
                     td= item.url
                     td= moment(item.release_date).format('YYYY-MM-DD')
-                    td= item.code
+                    td= item.is_product ? '是' : '否'
+                    td= item.is_online_shop ? '是' : '否'
                     td
                         .btn-group
                             a.btn.btn-info(href='#{url}/edit/#{item._id}') 改

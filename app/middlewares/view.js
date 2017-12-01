@@ -1,11 +1,13 @@
 var lodash = require('lodash');
 module.exports = function (app) {
     let exports = {},
-        categoryM = app.models.categorys;
+        categoryM = app.models.categorys,
+        webCfgM = app.models.web_config;
     exports.getCommonData = function (req, res, next) {
         app.locals.moment = require('moment');
         Promise.all([
-            categoryM.getTree()
+            categoryM.getTree(),
+            webCfgM.find()
         ]).then((data) => {
             let categorys = data[0];
             res.locals.categoryTree = categorys;
@@ -51,10 +53,11 @@ module.exports = function (app) {
                     "brand": res.locals.characterBrandCate,
                     "series": res.locals.characterSeriesCate
                 }
-            }
+            };
+            res.locals.web_cfg = lodash.keyBy(data[1], 'key');
             return next();
-        })
+        });
     };
 
     return exports;
-}
+};

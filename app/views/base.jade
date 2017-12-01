@@ -11,10 +11,10 @@ mixin cate_li(item)
             +cate_img(item)
             block
 
-mixin item_link(item)
+mixin item_link(item, target)
     a(
         href=(item.url ? item.url : "/item/"+item._id)
-        target=(item.url ? "_blank" : "")
+        target=(item.url ? "_blank" : (target ? target : ""))
     )
         block
 
@@ -91,13 +91,19 @@ mixin item_li(item)
             p.bhs_info_img
                 +cover_pic(item)
             p.bhs_info_cd
-                //- span.bhs_info_cat.cat_recept 预售
-                //- span.bhs_info_cat.cat_new 新品
-                //- span.bhs_info_cat.cat_resale 再版
+                +info_cate(item)
                 span.bhs_info_date
                     +date_format(item.release_date)
                 span.bhs_info_ttl= item.name
         p.bhs_info_txt !{item.desc}
+
+mixin related_news(item)
+    li
+        +item_link(item, '_blank')
+            +cover_pic(item)
+            p.bhs_renews_cd
+                +info_cate(item)
+                span.bhs_renews_txt #{item.name}
 
 
 mixin search_form_part()
@@ -127,3 +133,15 @@ mixin cate_options(data, select_ids)
             selected=!!~select_ids.indexOf(it.id)
         )
             | #{it.display_name}
+
+mixin info_cate(item)
+    if item.cids.length
+        each it in item.cids
+            if it == eventCate.id
+                span.bhs_info_cat.cat_event 展会
+            if it == campaignCate.id
+                span.bhs_info_cat.cat_campaign 活动
+    if (item.is_online_shop)
+        span.bhs_info_cat.cat_shop 线上商店
+    else if (item.is_product)
+        span.bhs_info_cat.cat_new 新商品

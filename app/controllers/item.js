@@ -1,7 +1,8 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 let fn = require('../utils/fn.js');
+let ObjectId = mongoose.Types.ObjectId;
 module.exports = function (app) {
-    var exports = {},
+    let exports = {},
         articleM = app.models.articles,
         categoryM = app.models.categorys;
     exports.detail = (req, res, next) => {
@@ -27,11 +28,41 @@ module.exports = function (app) {
                 });
             })
             .then((data) => {
-                let view = data[0].is_product ? 'product' : 'article';
-                res.render(view, {
-                    title: data[0].name,
-                    item: data[0],
-                    bclists: data[1]
+                let item = data[0];
+                let p = articleM.find({
+                    is_product: false,
+                    is_online_shop: false
+                });
+                let cids = Array.from(item.cids);
+                let or = [];
+                for (let cate of cids) {
+                    or.push({
+                        cids: ObjectId(cate.id)
+                    });
+                }
+                let relatedProductPromise = articleM.find({
+                    _id: {
+                        $ne: ObjectId(item.id)
+                    },
+                    is_product: true,
+                    is_online_shop: item.is_online_shop
+                });
+                Promise.all([
+                    relatedProductPromise.or(or).sort({
+                        'release_date': 'desc'
+                    }),
+                    p.or(or).sort({
+                        'release_date': 'desc'
+                    })
+                ]).then((related_data) => {
+                    let view = item.is_product ? 'product' : 'article';
+                    res.render(view, {
+                        title: item.name,
+                        item: item,
+                        bclists: data[1],
+                        related_products: related_data[0],
+                        related_news: related_data[1]
+                    });
                 });
             });
     };
@@ -74,6 +105,25 @@ module.exports = function (app) {
                 total: data[0],
                 list: data[1],
                 bclist: ['所有商品']
+            });
+        });
+    };
+
+    exports.news = (req, res, next) => {
+        let page = req.query.page ? (req.query.page - 1) : 0;
+        let limit = 10;
+        articleM.pagination({}, page, limit, {
+            release_date: 'desc'
+        }).then((data) => {
+            if (!data[1]) return app.notFound(req, res, next);
+            res.render('item_list', {
+                title: '新闻',
+                subtitle: 'NEWS',
+                page: req.query.page,
+                pageNums: Math.ceil(data[0] / limit),
+                total: data[0],
+                list: data[1],
+                bclist: ['新闻']
             });
         });
     };

@@ -1,0 +1,25 @@
+extends ../layouts/default
+
+block content
+    include ./base
+    div.row
+        div.col-md-12
+            a.btn.btn-success(href='#{url}/add') 新增
+    table.table
+        thead
+            th #
+            th 标识
+            th 名称
+            th(width="30%") 值
+            th 操作
+        tbody
+            each item,index in list
+                tr
+                    td= index+1
+                    td= item.key
+                    td= item.name
+                    td= item.value
+                    td
+                        .btn-group
+                            a.btn.btn-info(href='#{url}/edit/#{item._id}') 改
+                            //- a.btn.btn-danger(href='#{url}/delete/#{item._id}') 删

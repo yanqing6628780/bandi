@@ -95,19 +95,6 @@ Model.updateTree = () => {
 };
 
 Model.findTree = (id) => {
-    // let _find = (data, id) => {
-    //     if(data.id == id) {
-    //         return data;
-    //     } else {
-    //         if (data.son) {
-    //             for(let x in data.son) {
-    //                 return _find(data.son[x], id);
-    //             }
-    //         } else {
-    //             return undefined;
-    //         }
-    //     }
-    // };
     let familytree = (data, id) => {
         let tree = [];
         for (const x in data) {
