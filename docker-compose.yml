@@ -1,0 +1,15 @@
+db:
+    image: mongo
+    volumes:
+        - ./db:/data
+    container_name: db
+    restart: always
+
+www:
+    build: .
+    ports:
+        - "80:8080"
+    links:
+        - db
+    container_name: www
+    restart: always

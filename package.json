@@ -13,7 +13,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev-srv": "./node_modules/.bin/gulp server -d",
-    "test": "./node_modules/.bin/gulp test"
+    "test": "./node_modules/.bin/gulp test",
+    "gulp": "./node_modules/.bin/gulp"
   },
   "license": "MIT",
   "dependencies": {
