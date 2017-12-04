@@ -7,7 +7,7 @@ module.exports = function () {
         env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
     if (env !== 'development') {
         if (def[env]) {
-            rs.db = def[env];
+            rs.db = def[env].db;
         }
     }
     rs['production'] && delete rs['production'];

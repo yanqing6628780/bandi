@@ -61,7 +61,6 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 require('./app/route')(app, passport);
 
-console.log('NODE_ENV:', app.get('env'));
 console.log('-------------------------------');
 console.log('访问: ' + configs.domainUrl);
 var port = configs.port != 80 ? ':' + configs.port : '';
