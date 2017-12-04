@@ -185,7 +185,7 @@ module.exports = function(app, passport) {
     var errroHandlers = (err, req, res, next) => {
         // development error handler
         // will print stacktrace
-        if (app.get('env') === 'development') {
+        if (app.get('env') === 'development' || app.get('env') === 'test') {
             console.error('链接:%s 应用错误', req.originalUrl);
             console.error(err);
             if (res.headersSent) {

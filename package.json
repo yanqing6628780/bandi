@@ -11,7 +11,8 @@
     "pages"
   ],
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node ./bin/www NODE_ENV=production",
+    "test-srv": "node ./bin/www NODE_ENV=test",
     "dev-srv": "./node_modules/.bin/gulp server -d",
     "test": "./node_modules/.bin/gulp test",
     "gulp": "./node_modules/.bin/gulp"

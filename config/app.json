@@ -8,9 +8,15 @@
     "resource": "resource",
     "db": {
         "name": "bandi",
-        "host": "db"
+        "host": "localhost"
     },
     "production": {
+        "db": {
+            "name": "bandi",
+            "host": "db"
+        }
+    },
+    "test": {
         "db": {
             "name": "bandi",
             "host": "db"
