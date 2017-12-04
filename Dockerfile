@@ -1,18 +1,13 @@
 FROM node:8
 
-#创建app目录,保存我们的代码
-RUN mkdir -p /www
 #设置工作目录
-WORKDIR /www
-COPY ./package.json /www
-COPY ./.npmrc /www
+COPY ./package.json /usr/src/app
+COPY ./.npmrc /usr/src/app
 
-RUN npm install pm2 -g
-RUN npm install gulp -g
-RUN npm install --production --registry=https://registry.npm.taobao.org
+RUN npm install pm2 gulp gulp-cli -g --registry=https://registry.npm.taobao.org && npm install --production --registry=https://registry.npm.taobao.org
 
 #复制所有文件到 工作目录。
-COPY . /www
+COPY . /usr/src/app
 
 RUN gulp
 #暴露container的端口
