@@ -14,4 +14,5 @@ RUN npm run gulp
 EXPOSE 8080
 
 #运行命令
-CMD ["NODE_ENV=production", "npm", "start"]
+ENV NODE_ENV=production
+CMD ["npm", "start"]
