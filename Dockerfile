@@ -15,4 +15,5 @@ RUN npm run gulp
 EXPOSE 8080
 
 #运行命令
+RUN export NODE_ENV=production
 CMD ["npm", "start"]

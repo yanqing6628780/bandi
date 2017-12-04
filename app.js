@@ -34,7 +34,7 @@ app.set('views', configs.path.views);
 app.set('port', configs.port);
 app.use(express.static(configs.path.public));
 
-if (app.get('env') === 'development') {
+if (app.get('env') === 'development' || app.get('env') === 'test') {
     console.log(app.settings);
     console.log(app.configs);
     app.use(morgan('dev'));

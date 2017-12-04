@@ -1,13 +1,17 @@
-var _ = require('lodash');
+let _ = require('lodash');
 
 module.exports = function () {
 
-    var def = require("./app.json"),
-        rs = def;
-    if (process.env.NODE_ENV === 'production') {
-        rs = _.defaultsDeep(def['production'], def);
+    let def = require("./app.json"),
+        rs = _.cloneDeep(def),
+        env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
+    if (env !== 'development') {
+        if (def[env]) {
+            rs.db = def[env];
+        }
     }
-    delete rs['production'];
+    rs['production'] && delete rs['production'];
+    rs['test'] && delete rs['test'];
     rs.path = {
         views: `${__dirname}/../${rs.views}/`,
         models: `${__dirname}/../${rs.models}/`,
