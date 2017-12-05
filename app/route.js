@@ -157,6 +157,11 @@ module.exports = function(app, passport) {
                 url: 'web_config',
                 namespace: 'web_config',
                 methods: methods
+            },
+            adminFriendLink: {
+                url: 'friend_link',
+                namespace: 'friend_link',
+                methods: methods
             }
         };
     var adminRouterObj = {};
