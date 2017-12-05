@@ -4,13 +4,13 @@ block content
     - var url = '/admin/category'
     include ./alert
     form.form-horizontal(role='form' method='post' action='#{url}/save')
-        +formInput("名称", "display_name", model)
-        +formInput("别名", "name", model)
+        +formInput("名称", "display_name", model, true)
+        +formInput("别名", "name", model, true)
         div.form-group
             label.col-sm-2.control-label 描述
             div.col-sm-10
                 textarea.form-control(name="desc", cols="30", rows="10")
-                    | #{item&&item.desc}
+                    | #{model&&model.desc}
         div.form-group
             label.col-sm-2.control-label 分类封面图
             div.col-sm-10.admin_article

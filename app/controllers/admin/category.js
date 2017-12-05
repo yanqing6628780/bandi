@@ -27,7 +27,6 @@ module.exports = function (app) {
             Model.findOne({
                     _id: req.params.id
                 })
-                .populate('children')
                 .exec()
                 .then(function (doc) {
                     res.render(`${view}/form`, {
