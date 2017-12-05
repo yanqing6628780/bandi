@@ -45,8 +45,8 @@ module.exports = function(db) {
                 parent_id: null
             }
         ];
-        return Model.remove.exec().then(() => {
-            Model.create(data)
+        return Model.remove().then(() => {
+            return Model.create(data)
                 .then(function (docs) {
                     // console.log(modelName, docs);
                     console.log(modelName + ' insert success.');

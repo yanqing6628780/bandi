@@ -1,15 +1,10 @@
-module.exports = function(db) {
+module.exports = function (db) {
     var Model = db.web_config; // 注意修改表名称
     var modelName = Model.modelName;
     var exports = {};
 
-    exports.run = function() {
-        Model.remove(function(err) {
-            if (err) console.log('remove error', err);
-        });
-
-        var data = [
-            {
+    exports.run = function () {
+        var data = [{
                 key: "web_name",
                 name: "网站名称",
                 value: "Bandi"
@@ -36,15 +31,21 @@ module.exports = function(db) {
                 value: "© BANDAI CO., LTD. 2014 ALL Rights Reserved.<br>We will refuse all images, sentences, data etc. posted on this homepage without permission and reprint. Unauthorized use or reproduction of materials contained in this page is strictly prohibited."
             }
         ];
-        return Model.create(data)
-            .then(function(docs) {
-                // console.log(modelName, docs);
-                console.log(modelName + ' insert success.');
-                return docs;
+        return Model.remove()
+            .then(() => {
+                return Model.create(data)
+                    .then(function (docs) {
+                        // console.log(modelName, docs);
+                        console.log(modelName + ' insert success.');
+                        return docs;
+                    })
+                    .catch(function (err) {
+                        console.log(modelName + ' insert failed.err:');
+                        console.log(err);
+                    });
             })
-            .catch(function(err) {
-                console.log(modelName + ' insert failed.err:');
-                console.log(err);
+            .catch((err) => {
+                if (err) console.log('remove error', err);
             });
     };
 
