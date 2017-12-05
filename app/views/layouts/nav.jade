@@ -23,10 +23,10 @@ include ./header
                         span
                             span.bhs_mainttl #{eventCate.display_name} · #{campaignCate.display_name}
             li.bhs_sub_megamenu_hos
-                a(href='http://p-bandai.jp/hobby/', target='_blank')
+                a(href='#online_shop_menu')
                     h2
                         span
-                            span.bhs_mainttl Hobby Online Shop
+                            span.bhs_mainttl 在线商店
     .lists
         #searchGunpla.bhs_sub_megamenu_open
             .bhs_sub_header
@@ -77,3 +77,15 @@ include ./header
                 .bhs_header_evc_btn
                     +cate_link(campaignCate)
                         span #{campaignCate.display_name}
+        #online_shop_menu.bhs_sub_megamenu_open
+            if web_cfg.tmall_url
+                .bhs_sub_header
+                    .bhs_header_evc_btn
+                            a(href=web_cfg.tmall_url.value target="_blank")
+                                span= web_cfg.tmall_url.name
+                .header_line_nomargin
+                    hr
+            if web_cfg.jd_url
+                .bhs_header_evc_btn
+                        a(href=web_cfg.jd_url.value target="_blank")
+                            span= web_cfg.jd_url.name

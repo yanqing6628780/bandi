@@ -4,7 +4,18 @@ module.exports = function (db) {
     var exports = {};
 
     exports.run = function () {
-        var data = [{
+        var data = [
+            {
+                key: "tmall_url",
+                name: "天猫链接",
+                value: "http://tmall.com"
+            },
+            {
+                key: "jd_url",
+                name: "京东链接",
+                value: "http://jd.com"
+            },
+            {
                 key: "web_name",
                 name: "网站名称",
                 value: "Bandi"
