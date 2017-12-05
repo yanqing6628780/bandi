@@ -1,16 +1,12 @@
-var lodash = require('lodash');
+let lodash = require('lodash');
 
 module.exports = function(db) {
-    var Model = db.categorys;
-    var modelName = Model.modelName;
-    var exports = {};
+    let Model = db.categorys;
+    let modelName = Model.modelName;
+    let exports = {};
 
     exports.run = function() {
-        Model.remove(function(err) {
-            if (err) console.log('remove error', err);
-        });
-
-        var data = [
+        let data = [
             {
                 display_name: "高达模型",
                 name: "GUNPLA",
@@ -49,28 +45,31 @@ module.exports = function(db) {
                 parent_id: null
             }
         ];
-        return Model.create(data)
-            .then(function(docs) {
-                // console.log(modelName, docs);
-                console.log(modelName + ' insert success.');
-                return docs;
-            }).then(function (docs) {
-                let childrenArr = [];
-                docs.forEach((item) => {
-                    if (item.name == data[0].name || item.name == data[1].name) {
-                        let child = lodash.cloneDeep(childrenData);
-                        child[0].parent_id = child[1].parent_id = item._id;
-                        childrenArr = childrenArr.concat([], child);
-                    }
+        return Model.remove.exec().then(() => {
+            Model.create(data)
+                .then(function (docs) {
+                    // console.log(modelName, docs);
+                    console.log(modelName + ' insert success.');
+                    return docs;
+                }).then(function (docs) {
+                    let childrenArr = [];
+                    docs.forEach((item) => {
+                        if (item.name == data[0].name || item.name == data[1].name) {
+                            let child = lodash.cloneDeep(childrenData);
+                            child[0].parent_id = child[1].parent_id = item._id;
+                            childrenArr = childrenArr.concat([], child);
+                        }
+                    });
+                    return Model.create(childrenArr);
+                })
+                .catch(function (err) {
+                    console.log(modelName + ' insert failed.err:');
+                    console.log(err);
                 });
-                return Model.create(childrenArr);
-            })
-            .catch(function(err) {
-                console.log(modelName + ' insert failed.err:');
-                console.log(err);
-            });
+        }).catch((err) => {
+            if (err) console.log('remove error', err);
+        });
     };
-
 
     return exports;
 };
