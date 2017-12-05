@@ -30,6 +30,11 @@ module.exports = function(db) {
                 display_name: "活动",
                 name: "CAMPAIGN",
                 parent_id: null
+            },
+            {
+                display_name: "GBWC比赛",
+                name: "GBWC",
+                parent_id: null
             }
         ];
         let childrenData = [
