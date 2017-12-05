@@ -1,7 +1,7 @@
 db:
     image: mongo
     volumes:
-        - /db:/data
+        - /root/www/db:/data
     container_name: db
     restart: always
 
@@ -10,7 +10,8 @@ www:
     ports:
         - "80:8080"
     volumes:
-        - /logs:/www/logs
+        - /root/www/logs:/www/logs
+        - /root/www/public:/www/public
     links:
         - db
     container_name: www
