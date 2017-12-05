@@ -137,24 +137,21 @@ block content
                                     span.bhs_event_date= item.release_date
             h2.bhs_main_title
                 p
-                    | つくろう！
-                    | 参加しよう！
+                    | #{GBWCCate.display_name}
                     span FUN TO BUILD
             ul
-                li
-                    a(href="/site/Fun-to-build/")
-                        img(src="/img/top/funtobuild.jpg", width="260")
-                    p
-                        span.bhs_future_ttl つくろう！Fun to build!
-                li
-                    a(href="/GBWC/")
-                        img(src="/img/top/funtobuild_gbwc.jpg", width="260")
-                    p
-                        span.bhs_future_ttl ガンプラビルダーズワールドカップ2017
+                if GBWCArticles
+                    each item,index in GBWCArticles
+                        li
+                            +item_link(item)
+                                +cover_pic(item)
+                            p
+                                span.bhs_future_ttl= item.name
 
     //- 主体右
     #bhs_sideR
         include ./layouts/side_right_top
+        <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2042697783&verifier=bce5fd03&dpc=1"></iframe>
         #bhs_side_newitem
             h3.bhs_title
                 p
@@ -198,4 +195,20 @@ block content
                 a(href="http://p-bandai.jp/hobby/", target="_blank")
                     p
                         span ホビーオンラインショップへ
-
+block bhs_contents_nobg
+    #bhs_contents_nobg
+        .bhs_footer_line_h
+            hr
+        #bhs_relatedLink
+            h2.bhs_main_title
+                p
+                    | 相关链接
+                    span LINKS
+            ul
+                if links
+                    each link in links
+                        li
+                            a(href=link.url, target='_blank')
+                                img(src=link.image, alt=link.name)
+        .bhs_footer_line_f
+            hr

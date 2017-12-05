@@ -2,8 +2,9 @@ let moment = require('moment');
 let lodash = require('lodash');
 module.exports = function (app) {
     var exports = {},
-        articleM = app.models.articles,
-        sliderM = app.models.index_slider;
+        ArticleM = app.models.articles,
+        SliderM = app.models.index_slider,
+        LinkM = app.models.friend_link;
     exports.home = function (req, res) {
         let nextMonths = [];
         for (let i = 1; i < 4; i++) {
@@ -21,13 +22,15 @@ module.exports = function (app) {
         next_month_product_where.release_date.$lt = moment().add(1, 'months').endOf('months').toDate();
         next_month_product_where.release_date.$gt = moment().add(1, 'months').startOf('months').toDate();
         Promise.all([
-            articleM.find().limit(9),
-            articleM.find().where('cids').in([res.locals.eventCate.id]).limit(6),
-            articleM.find().where('cids').in([res.locals.campaignCate.id]).limit(6),
-            articleM.find(now_product_where).sort({release_date: 'desc'}).limit(4),
-            articleM.find(next_month_product_where).sort({ release_date: 'desc' }).limit(4),
-            articleM.find({is_product: true, is_online_shop: true}).sort({ release_date: 'desc' }).limit(4),
-            sliderM.find()
+            ArticleM.find().limit(9),
+            ArticleM.find().where('cids').in([res.locals.eventCate.id]).limit(6),
+            ArticleM.find().where('cids').in([res.locals.campaignCate.id]).limit(6),
+            ArticleM.find(now_product_where).sort({release_date: 'desc'}).limit(4),
+            ArticleM.find(next_month_product_where).sort({ release_date: 'desc' }).limit(4),
+            ArticleM.find({is_product: true, is_online_shop: true}).sort({ release_date: 'desc' }).limit(4),
+            SliderM.find(),
+            ArticleM.find({ cids: res.locals.GBWCCate.id}),
+            LinkM.find()
         ]).then((data) => {
             let articles = data[0];
             res.render('index', {
@@ -40,7 +43,9 @@ module.exports = function (app) {
                 nowProducts: data[3],
                 nextMonthProducts: data[4],
                 onlineProducts: data[5],
-                sliderImgs: data[6]
+                sliderImgs: data[6],
+                GBWCArticles: data[7],
+                links: data[8]
             });
         });
     };
@@ -71,8 +76,8 @@ module.exports = function (app) {
         pb_where.is_online_shop = true;
 
         Promise.all([
-            articleM.find(where).exec(),
-            articleM.find(pb_where).exec()
+            ArticleM.find(where).exec(),
+            ArticleM.find(pb_where).exec()
         ]).then((data) => {
             let products = lodash.groupBy(data[0], function (o) {
                 return moment(o.release_date).format('YYYY年MM月DD日');

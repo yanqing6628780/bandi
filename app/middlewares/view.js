@@ -24,6 +24,9 @@ module.exports = function (app) {
             res.locals.campaignCate = lodash.find(categorys, {
                 name: "CAMPAIGN"
             });
+            res.locals.GBWCCate = lodash.find(categorys, {
+                name: "GBWC"
+            });
             res.locals.gunplaBrandCate = {};
             res.locals.gunplaSeriesCate = {};
             res.locals.characterBrandCate = {};
