@@ -9,7 +9,8 @@ block col_2_content
     #bhs_page_campaign_detail
         h2.bhs_main_title
             p= item.name
-        | !{item.content}
+        .article_content
+            | !{item.content}
 
 block script
     <link rel="stylesheet" href="/css/renew/js/colorbox/colorbox.css" />
