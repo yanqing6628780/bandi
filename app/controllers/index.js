@@ -14,13 +14,13 @@ module.exports = function (app) {
         let now_product_where = {
             is_product: true,
             release_date: {
-                $lt: now.endOf('months').toDate(),
-                $gt: now.startOf('months').toDate()
+                $lte: now.endOf('months').toDate(),
+                $gte: now.startOf('months').toDate()
             }
         };
         let next_month_product_where = lodash.cloneDeep(now_product_where);
-        next_month_product_where.release_date.$lt = moment().add(1, 'months').endOf('months').toDate();
-        next_month_product_where.release_date.$gt = moment().add(1, 'months').startOf('months').toDate();
+        next_month_product_where.release_date.$lte = moment().add(1, 'months').endOf('months').toDate();
+        next_month_product_where.release_date.$gte = moment().add(1, 'months').startOf('months').toDate();
         Promise.all([
             ArticleM.find().limit(9),
             ArticleM.find().where('cids').in([res.locals.eventCate.id]).limit(6),
