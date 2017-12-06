@@ -1,9 +1,16 @@
 extends ../layouts/default
 
 block content
+    .alert.alert-danger
+        ol
+            li 目前只支持在【GUNPLA】和【CHARACTER】这两个别名下的【series】和【brand】别名栏目下的子栏目才能显示广告
     form.form-horizontal(role='form' method='post' action='#{url}/save')
         +formInput("标题", "name", model, false)
         +formInput("链接", "url", model, false)
+        div.form-group
+            label.col-sm-2.control-label 所属栏目
+            div.col-sm-10.row
+                +cate_radio_list(categorys, model, 0)
         div.form-group
             label.col-sm-2.control-label 图片
             div.col-sm-10.admin_article

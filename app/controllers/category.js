@@ -2,8 +2,9 @@ let mongoose = require('mongoose');
 let fn = require('../utils/fn.js');
 module.exports = function (app) {
     let exports = {},
-        articleM = app.models.articles,
-        categoryM = app.models.categorys;
+        ArticleM = app.models.articles,
+        AdModel = app.models.ad,
+        CategoryM = app.models.categorys;
     let _category_root = (rs, req, res) => {
         return res.render('category_root', {
             item: rs
@@ -15,7 +16,7 @@ module.exports = function (app) {
         };
         let page = req.query.page ? (req.query.page - 1) : 0;
         let limit = 10;
-        articleM.pagination(where, page, limit).then((data) => {
+        ArticleM.pagination(where, page, limit).then((data) => {
             if (!data[1]) return next(new Error('404'));
             res.render('item_list', {
                 title: rs.display_name,
@@ -36,8 +37,9 @@ module.exports = function (app) {
         let limit = 10;
         let sort = fn.parseSort(req);
         Promise.all([
-            articleM.pagination(fn.parseWhere(req, where), page, limit, sort),
-            categoryM.findTree(rs.id)
+            ArticleM.pagination(fn.parseWhere(req, where), page, limit, sort),
+            CategoryM.findTree(rs.id),
+            AdModel.find({ cid: rs.id })
         ]).then((result) => {
             let data = result[0];
             if (!data[1]) return next(new Error('404'));
@@ -55,7 +57,8 @@ module.exports = function (app) {
                 list: data[1],
                 bclists: bclists,
                 selectOpts: selectOpts,
-                selectName: selectName
+                selectName: selectName,
+                ad_list: result[2]
             });
         });
     };
@@ -66,7 +69,7 @@ module.exports = function (app) {
         } catch (error) {
             return app.notFound(req, res, next);
         }
-        categoryM.findOne({
+        CategoryM.findOne({
             _id: id
         }).populate('parent_id').exec().then((rs) => {
             if (!rs) return next(new Error('404'));

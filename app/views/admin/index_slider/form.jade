@@ -1,7 +1,6 @@
 extends ../layouts/default
 
 block content
-    include ./base
     form.form-horizontal(role='form' method='post' action='#{url}/save')
         +formInput("标题", "name", model, false)
         +formInput("链接", "url", model, false)

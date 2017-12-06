@@ -66,3 +66,34 @@ mixin cate_checkbox(item, checked, level)
                 | #{item.display_name}
             else
                 b #{item.display_name}
+
+mixin cate_radio_list(list, model, level)
+    - var cid = model ? model.cid : ''
+    each it in list
+        - selected = false
+        if (cid.toString()==it.id.toString())
+            - selected = true
+        if !it.parent_id
+            .col-md-4
+                +cate_radio(it, selected, level)
+                if it.son
+                    +cate_radio_list(it.son, model, level+1)
+        else
+            +cate_radio(it, selected, level)
+            if it.son
+                +cate_radio_list(it.son, model, level+1)
+
+
+mixin cate_radio(item, checked, level)
+    - var space = level ? "" : "&nbsp;"
+    - for(i=0;i<level;i++)
+        - space += '&nbsp;&nbsp;&nbsp;&nbsp;'
+    .radio
+        label
+            input(name="cid" type="radio" value=item._id checked=checked)
+            if level
+                | !{space} |--
+            if item.parent_id
+                | #{item.display_name}
+            else
+                b #{item.display_name}

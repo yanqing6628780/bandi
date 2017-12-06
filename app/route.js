@@ -48,6 +48,12 @@ module.exports = function(app, passport) {
     adminRouter.get('/login', adminCtrl.auth.login);
     adminRouter.post('/login', adminCtrl.auth.doLogin);
     adminRouter.get('/logout', adminCtrl.auth.logout);
+    adminRouter.use('/model/:model', adminCtrl.scaffold.parseParmas);
+    adminRouter.get('/model/:model', adminCtrl.scaffold.list);
+    adminRouter.get('/model/:model/add', adminCtrl.scaffold.add);
+    adminRouter.get('/model/:model/edit/:id', adminCtrl.scaffold.edit);
+    adminRouter.get('/model/:model/delete/:id', adminCtrl.scaffold.del);
+    adminRouter.post('/model/:model/save', adminCtrl.scaffold.save);
     adminRouter.use("/ueditor/ue", ueditor(app.configs.path.public, (req, res) => {
 
         // ueditor 客户发起上传图片请求
@@ -145,21 +151,6 @@ module.exports = function(app, passport) {
             adminArticle: {
                 url: 'article',
                 namespace: 'article',
-                methods: methods
-            },
-            adminSlider: {
-                url: 'index_slider',
-                namespace: 'index_slider',
-                methods: methods
-            },
-            adminWebCfg: {
-                url: 'web_config',
-                namespace: 'web_config',
-                methods: methods
-            },
-            adminFriendLink: {
-                url: 'friend_link',
-                namespace: 'friend_link',
                 methods: methods
             }
         };

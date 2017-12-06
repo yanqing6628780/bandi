@@ -10,6 +10,17 @@ block col_2_content
             p
                 | #{title}
                 span #{subtitle}
+        if ad_list
+            each it in ad_list
+                p
+                    a(href=it.url)
+                        img(src=it.image alt=it.name, width='100%')
+                    br
+                    strong
+                        span(style='font-size: 10pt;')
+                            | ▲
+                            | #{it.name}
+
         #bhs_searchForm
             h4
                 p 商品列表
