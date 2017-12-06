@@ -2,7 +2,7 @@ module.exports = function (app) {
     var Model = app.models.categorys,
         view = 'admin/category',
         url = '/admin/category',
-        title = '后台分类管理',
+        title = '后台栏目管理',
         exports = {};
     exports.list = function (req, res, next) {
         Model.getTree().then(function (result) {

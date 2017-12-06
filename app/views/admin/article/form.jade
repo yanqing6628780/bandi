@@ -4,8 +4,7 @@ block content
     - var url = '/admin/article'
     .alert.alert-danger
         ol
-            li 按住ctrl键+鼠标左键，能多选分类
-            li 普通文章不需要填写产品方面信息
+            li 商品文章必须选择【是否商品】
             li 添加图片能进行多张上传。按住ctrl键+鼠标左键，能同时多选图片
     form.form-horizontal(role='form' method='post' action='#{url}/save')
         +formInput("标题", "name", model, true)
@@ -127,7 +126,7 @@ block content
                                             ) 删
 
         div.form-group
-            label.col-sm-2.control-label 所属分类
+            label.col-sm-2.control-label 所属栏目
             div.col-sm-10.row
                 +cate_checkbox_list(categorys, model, 0)
 
