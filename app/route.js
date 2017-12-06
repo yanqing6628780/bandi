@@ -30,7 +30,6 @@ module.exports = function(app, passport) {
     frontPage.use(middlewares.view.getCommonData);
 
     frontPage.get('/', controllers.index.home);
-    // routerPage.get('/', (req, res) => res.redirect('/admin'));
     frontPage.get('/schedule/:date?', controllers.index.schedule);
     frontPage.get('/item/:id', controllers.item.detail);
     frontPage.get('/items/', controllers.item.all);
