@@ -91,8 +91,8 @@ module.exports = function (app) {
             is_product: true,
             is_online_shop: false,
             release_date: {
-                $lt: date.endOf('months').toDate(),
-                $gt: date.startOf('months').toDate()
+                $lte: date.endOf('months').toDate(),
+                $gte: date.startOf('months').toDate()
             }
         };
         let pb_where = lodash.cloneDeep(where);
