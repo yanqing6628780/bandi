@@ -134,7 +134,10 @@ block content
                                 img(src=item.cover_pic, width="260", height="80", alt=item.name)
                                 p
                                     span.bhs_event_ttl= item.name
-                                    span.bhs_event_date= item.release_date
+                                    span.bhs_event_date
+                                        +date_format(item.start_date)
+                                        | 至
+                                        +date_format(item.end_date)
             h2.bhs_main_title
                 p
                     | #{GBWCCate.display_name}
