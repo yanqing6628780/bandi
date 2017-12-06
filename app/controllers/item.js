@@ -112,7 +112,10 @@ module.exports = function (app) {
     exports.news = (req, res, next) => {
         let page = req.query.page ? (req.query.page - 1) : 0;
         let limit = 10;
-        articleM.pagination({}, page, limit, {
+        let newsCid = res.locals.newsCate ? res.locals.newsCate.id : '000000000000';
+        articleM.pagination({
+            cids: newsCid
+        }, page, limit, {
             release_date: 'desc'
         }).then((data) => {
             if (!data[1]) return app.notFound(req, res, next);

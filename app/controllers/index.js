@@ -1,6 +1,7 @@
 let moment = require('moment');
 let lodash = require('lodash');
 module.exports = function (app) {
+    const NULLOBJECTID = '000000000000';
     var exports = {},
         ArticleM = app.models.articles,
         SliderM = app.models.index_slider,
@@ -21,22 +22,43 @@ module.exports = function (app) {
         let next_month_product_where = lodash.cloneDeep(now_product_where);
         next_month_product_where.release_date.$lte = moment().add(1, 'months').endOf('months').toDate();
         next_month_product_where.release_date.$gte = moment().add(1, 'months').startOf('months').toDate();
+        let newsCid = res.locals.newsCate ? res.locals.newsCate.id : NULLOBJECTID;
+        let eventCid = res.locals.newsCate ? res.locals.eventCate.id : NULLOBJECTID;
+        let campaignCid = res.locals.newsCate ? res.locals.campaignCate.id : NULLOBJECTID;
+        let GBWCCid = res.locals.newsCate ? res.locals.GBWCCate.id : NULLOBJECTID;
         Promise.all([
-            ArticleM.find().limit(9),
-            ArticleM.find().where('cids').in([res.locals.eventCate.id]).limit(6),
-            ArticleM.find().where('cids').in([res.locals.campaignCate.id]).limit(6),
-            ArticleM.find(now_product_where).sort({release_date: 'desc'}).limit(4),
-            ArticleM.find(next_month_product_where).sort({ release_date: 'desc' }).limit(4),
-            ArticleM.find({is_product: true, is_online_shop: true}).sort({ release_date: 'desc' }).limit(4),
+            ArticleM.find({
+                cids: newsCid
+            }).limit(9),
+            ArticleM.find({
+                cids: eventCid
+            }).limit(6),
+            ArticleM.find({
+                cids: campaignCid
+            }).limit(6),
+            ArticleM.find(now_product_where).sort({
+                release_date: 'desc'
+            }).limit(4),
+            ArticleM.find(next_month_product_where).sort({
+                release_date: 'desc'
+            }).limit(4),
+            ArticleM.find({
+                is_product: true,
+                is_online_shop: true
+            }).sort({
+                release_date: 'desc'
+            }).limit(4),
             SliderM.find(),
-            ArticleM.find({ cids: res.locals.GBWCCate.id}),
+            ArticleM.find({
+                cids: GBWCCid
+            }),
             LinkM.find()
         ]).then((data) => {
             let articles = data[0];
             res.render('index', {
                 title: '首页',
                 news: articles,
-                nextMonth: moment().add(1,'months').format('YYYYMM'),
+                nextMonth: moment().add(1, 'months').format('YYYYMM'),
                 nextMonths: nextMonths,
                 eventArticles: data[1],
                 campaignArticles: data[2],
@@ -52,16 +74,16 @@ module.exports = function (app) {
 
     exports.schedule = (req, res) => {
         let now = moment();
-        let date = req.params.date ? moment(req.params.date,"YYYYMM") : now;
-        let subtitles = ['Already released','NEW ITEMS', 'NEW ITEMS in LATER MONTHS'];
+        let date = req.params.date ? moment(req.params.date, "YYYYMM") : now;
+        let subtitles = ['Already released', 'NEW ITEMS', 'NEW ITEMS in LATER MONTHS'];
         let cnSubTitles = ['在售商品', '本月新品', '将售商品'];
         let subIndex = now.diff(date, 'months') == 0 ? (now.month() == date.month() ? 1 : 2) : (now.diff(date, 'months') > 0 ? 0 : 2);
         let otherMonths = [];
         for (let i = 2; i > 0; i--) {
-            otherMonths.push(moment().subtract(i,'M'));
+            otherMonths.push(moment().subtract(i, 'M'));
         }
         for (let i = 0; i <= 3; i++) {
-            otherMonths.push(moment().add(i,'M'));
+            otherMonths.push(moment().add(i, 'M'));
         }
 
         let where = {
@@ -85,7 +107,7 @@ module.exports = function (app) {
             res.render('schedule', {
                 title: '发售计划',
                 now: now,
-                years: [now.format('YYYY'), moment(now).add(1,'y').format('YYYY')],
+                years: [now.format('YYYY'), moment(now).add(1, 'y').format('YYYY')],
                 date: date,
                 bclist: [cnSubTitles[subIndex]],
                 subtitle: subtitles[subIndex],

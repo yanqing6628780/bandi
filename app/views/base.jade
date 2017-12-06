@@ -135,13 +135,20 @@ mixin cate_options(data, select_ids)
             | #{it.display_name}
 
 mixin info_cate(item)
-    if item.cids.length
-        each it in item.cids
-            if it == eventCate.id
-                span.bhs_info_cat.cat_event 展会
-            if it == campaignCate.id
-                span.bhs_info_cat.cat_campaign 活动
-    if (item.is_online_shop)
-        span.bhs_info_cat.cat_shop 线上商店
-    else if (item.is_product)
-        span.bhs_info_cat.cat_new 新商品
+    - tag = item.tag ? item.tag : 'info'
+    span.bhs_info_cat(
+        class="cat_#{tag}"
+    )
+        case tag
+            when 'topics'
+                | 话题
+            when 'event'
+                | 展会
+            when 'campaign'
+                | 活动
+            when 'online_shop'
+                | 线上商店
+            when 'new'
+                | 新商品
+            default
+                | 信息

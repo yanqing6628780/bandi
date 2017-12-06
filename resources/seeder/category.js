@@ -28,6 +28,11 @@ module.exports = function(db) {
                 parent_id: null
             },
             {
+                display_name: "新闻",
+                name: "NEWS",
+                parent_id: null
+            },
+            {
                 display_name: "GBWC比赛",
                 name: "GBWC",
                 parent_id: null

@@ -56,6 +56,10 @@ let schema = new Schema({
         type: String,
         default: ""
     },
+    tag: {
+        type: String,
+        default: "topics"
+    },
     start_date: {
         type: String,
         default: ""

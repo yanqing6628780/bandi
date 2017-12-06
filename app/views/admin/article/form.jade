@@ -5,9 +5,15 @@ block content
     .alert.alert-danger
         ol
             li 商品文章必须选择【是否商品】
+            li 发果商品还是在线商品必须选择【是否线上商品】
             li 添加图片能进行多张上传。按住ctrl键+鼠标左键，能同时多选图片
+            li 属于新闻栏目文章，记得选上【标签】选项
     form.form-horizontal(role='form' method='post' action='#{url}/save')
         +formInput("标题", "name", model, true)
+        div.form-group
+            label.col-sm-2.control-label 所属栏目
+            div.col-sm-10.row
+                +cate_checkbox_list(categorys, model, 0)
         div.form-group
             label.col-sm-2.control-label 封面图片
             div.col-sm-10.admin_article
@@ -105,6 +111,19 @@ block content
                     )
                     | 是
         div.form-group
+            label.col-sm-2.control-label 标签
+            div.col-sm-10
+                - var tags = [{name:'话题', val:'topics'},{name:'展会', val:'event'},{name:'活动', val:'campaign'},{name:'在线商店', val:'shop'},{name:'新品', val:'new'}]
+                each it, key in tags
+                    label.radio-inline
+                        input(
+                            name="tag"
+                            type="radio"
+                            value=it.val
+                            checked=(model ? model.tag===it.val : false)
+                        )
+                        | #{it.name}
+        div.form-group
             label.col-sm-2.control-label 产品图片
             div.col-sm-10.admin_article
                 input#images(type="hidden" name="images_str" value=model&&model.images_str)
@@ -124,12 +143,6 @@ block content
                                                 type="button"
                                                 onclick="delete_imgs(this, '#{item}', '/products')"
                                             ) 删
-
-        div.form-group
-            label.col-sm-2.control-label 所属栏目
-            div.col-sm-10.row
-                +cate_checkbox_list(categorys, model, 0)
-
         div.form-group
             label.col-sm-2.control-label 摘要
             div.col-sm-10
