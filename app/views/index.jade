@@ -162,7 +162,7 @@ block content
                     | 本月新品
                     span NEW ITEM
                 p.bhs_side_btn_all
-                    a(href="/site/schedule.html")
+                    a(href="/schedule/#{now.format('YYYYMM')}")
                         span 发售表
             ul.bhs_side_item
                 each it in nowProducts.length ? nowProducts : []

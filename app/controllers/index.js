@@ -58,6 +58,7 @@ module.exports = function (app) {
             res.render('index', {
                 title: '首页',
                 news: articles,
+                now: now,
                 nextMonth: moment().add(1, 'months').format('YYYYMM'),
                 nextMonths: nextMonths,
                 eventArticles: data[1],
