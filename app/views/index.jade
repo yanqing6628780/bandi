@@ -130,14 +130,15 @@ block content
                 if campaignArticles
                     each item,index in campaignArticles
                         li
-                            a(href="http://bandai-hobby.net/site/popup/", target="_blank")
+                            +item_link(item)
                                 img(src=item.cover_pic, width="260", height="80", alt=item.name)
                                 p
-                                    span.bhs_event_ttl= item.name
-                                    span.bhs_event_date
+                                    span.bhs_campaign_ttl= item.name
+                                    span.bhs_campaign_date
                                         +date_format(item.start_date)
                                         | 至
                                         +date_format(item.end_date)
+        #bhs_future
             h2.bhs_main_title
                 p
                     | #{GBWCCate.display_name}
