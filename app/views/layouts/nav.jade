@@ -86,6 +86,7 @@ include ./header
                 .header_line_nomargin
                     hr
             if web_cfg.jd_url
-                .bhs_header_evc_btn
-                        a(href=web_cfg.jd_url.value target="_blank")
-                            span= web_cfg.jd_url.name
+                .bhs_sub_header
+                    .bhs_header_evc_btn
+                            a(href=web_cfg.jd_url.value target="_blank")
+                                span= web_cfg.jd_url.name
