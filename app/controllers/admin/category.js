@@ -76,7 +76,7 @@ module.exports = function (app) {
 
     exports.del = function (req, res, next) {
         if (req.params.id) {
-            Model.remove({
+            Model.findOneAndRemove({
                 _id: req.params.id
             }, function (err) {
                 if (err) next(err);

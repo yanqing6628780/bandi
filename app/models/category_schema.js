@@ -60,6 +60,9 @@ schema.path('image').set(function (v) {
 schema.post('save', function () {
     Model.updateTree();
 });
+schema.post('findOneAndRemove', function () {
+    return Model.updateTree();
+});
 
 const Model = mongoose.model(tableName, schema);
 

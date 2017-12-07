@@ -1,0 +1,21 @@
+- var url = '/admin/category'
+
+mixin toHtml(item, cnt)
+    - space = cnt ? "" : "&nbsp;"
+    - for(i=0;i<cnt;i++)
+        - space += '&nbsp;&nbsp;&nbsp;'
+    tr
+        td
+            if cnt
+                | !{space} |---
+            | #{item.display_name}
+        td= item.parent_id&&item.parent_id.display_name
+        td= item.name
+        td
+            .btn-group
+                a.btn.btn-success(href='#{url}/add/?parent_id=#{item._id}') 添加子栏目
+                a.btn.btn-info(href='#{url}/edit/#{item._id}') 改
+                a.btn.btn-danger(href='#{url}/delete/#{item._id}') 删
+    if item.son && item.son.length
+        for it in item.son
+            +toHtml(it, cnt+1)
