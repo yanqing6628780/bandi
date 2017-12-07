@@ -109,6 +109,14 @@ schema.path('cover_pic').set(function (v) {
         return v;
     }
 });
+schema.path('price').set(function (v) {
+    if (v) {
+        if (typeof v !== 'number') {
+            v = 0;
+        }
+        return v;
+    }
+});
 
 const Model = mongoose.model(tableName, schema);
 
