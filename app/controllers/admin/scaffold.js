@@ -28,6 +28,7 @@ module.exports = function (app) {
     obj.list = function (req, res, next) {
         Model.find()
             .populate('cid')
+            .sort({ createdAt: 'desc' })
             .exec()
             .then(function (result) {
                 res.render(view, {
