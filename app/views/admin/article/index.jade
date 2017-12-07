@@ -1,7 +1,45 @@
 extends ../layouts/default
 
 block content
-    - var url = '/admin/article'
+    include base
+    form.form-inline(method="get")
+        .form-group
+            label.filter-col(for="") 名称
+            input.form-control(
+                type="text"
+                name="name"
+                value=query&&query.name ? query.name : ''
+            )
+        .form-group
+            label.filter-col(for="") 发布/发售日期
+            input.datepicker.form-control(
+                type="text"
+                name="release_date"
+                data-date-format="yyyy-mm-dd"
+                value=query&&query.release_date ? query.release_date : ''
+            )
+        .form-group
+            label.filter-col(for="") 所属栏目
+            select.form-control(name="signle_cid")
+                option(value='') 请选择
+                +cate_options(categorys, {cids: query&&query.signle_cid?[query.signle_cid]:[]}, 0)
+        br
+        br
+        .form-group
+            label.filter-col(for="") 是否商品
+            select.form-control(name="is_product")
+                option(value="") 请选择
+                option(value="false" selected=query ? query.is_product == 'false' : 'false') 否
+                option(value="true" selected=query ? query.is_product == 'true' : false) 是
+        .form-group
+            label.filter-col(for="") 是否线上商品
+            select.form-control(name="is_online_shop")
+                option(value="") 请选择
+                option(value="false" selected=query ? query.is_online_shop == 'false' : 'false') 否
+                option(value="true" selected=query ? query.is_online_shop == 'true' : 'false') 是
+        .form-group
+            label.filter-col
+            button.btn.btn-info(type="submit") 查询
     div.row
         div.col-md-12
             a.btn.btn-success(href='#{url}/add') 新增

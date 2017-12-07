@@ -59,20 +59,30 @@ module.exports = (() => {
         }
         if (req.query.cids) {
             let arr = _.compact(req.query.cids);
-            where.cids = arr.map(ObjectId)
+            where.cids = arr.map(ObjectId);
         }
-        if (req.query.code) {
-            where.code = req.query.code;
-        }
-        if (req.query.name) {
-            where.name = req.query.name;
-        }
+
         if (req.query.online) {
             where.is_online_shop = true;
         }
 
+        if (req.query.signle_cid) {
+            where.cids = req.query.signle_cid;
+        }
+        if (req.query.name) {
+            where.name = { $regex: new RegExp(req.query.name)};
+        }
+
         if (where.cids && _.isEmpty(where.cids)) {
             delete where.cids;
+        }
+        for(let k in req.query) {
+            if (~['name', 'cid', 'cids', 'online', 'signle_cid', 'sort'].indexOf(k)) {
+                continue;
+            }
+            if(req.query[k] !== '') {
+                where[k] = req.query[k];
+            }
         }
         return where;
     };

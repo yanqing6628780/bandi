@@ -1,3 +1,4 @@
+let fn = require('../../utils/fn');
 module.exports = function(app) {
     var Model = app.models.articles,
         cateModel = app.models.categorys,
@@ -9,13 +10,19 @@ module.exports = function(app) {
         return cateModel.getTree();
     };
     exports.list = function(req, res, next) {
-        Model.find()
+        let where = fn.parseWhere(req, {});
+        Model.find(where)
             .populate('cids')
+            .sort({ createdAt: 'desc'})
             .exec()
             .then(function(result) {
-                res.render(view, {
-                    title: title,
-                    list: result
+                getAllCategory().then((rs) => {
+                    res.render(view, {
+                        title: title,
+                        list: result,
+                        categorys: rs,
+                        query: req.query
+                    });
                 });
             }).catch(function(err) {
                 return next(err);
@@ -28,7 +35,7 @@ module.exports = function(app) {
                 title: `${title}-添加`,
                 categorys: rs
             });
-        })
+        });
     };
 
     exports.edit = function(req, res, next) {
