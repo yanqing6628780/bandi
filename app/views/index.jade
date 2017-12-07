@@ -19,18 +19,18 @@ block head
         });
 
 block custom_content
-    if sliderImgs
+    if sliderImgs && sliderImgs.length
         #bhs_top_slider.clearfix
             ul.slider.center-item
                 each img_item in sliderImgs
                     li
                         a(href=img_item.url, target="_blank")
                             img(src=img_item.image, alt=img_item.name)
-        #arrows
-            .slick-next
-                img(src="/img/top/slider/common/bhs_top_slider_btn_next.png", alt="Next")
-            .slick-prev
-                img(src="/img/top/slider/common/bhs_top_slider_btn_prev.png", alt="Prev")
+            #arrows
+                .slick-next
+                    img(src="/img/top/slider/common/bhs_top_slider_btn_next.png", alt="Next")
+                .slick-prev
+                    img(src="/img/top/slider/common/bhs_top_slider_btn_prev.png", alt="Prev")
 
 block content
     //- 主体左
