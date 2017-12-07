@@ -40,7 +40,7 @@ block content
         +formInput("价格", "price", model, false)
         +formInput("产品适用年龄", "target_age", model, false)
         div.form-group
-            label.col-sm-2.control-label 发售日期/发布日期
+            label.col-sm-2.control-label 发售/发布日期 (必填)
             div.col-sm-10
                 input.datepicker(
                     type="text"
@@ -48,7 +48,7 @@ block content
                     data-date-format="yyyy-mm-dd"
                     value=model&&moment(model.release_date).format("YYYY-MM-DD")
                     readonly
-                    required
+                    required="required"
                 )
         div.form-group
             label.col-sm-2.control-label 展会/活动 开始日期
@@ -59,7 +59,6 @@ block content
                     data-date-format="yyyy-mm-dd"
                     value=(model ? (model.start_date ? moment(model.start_date).format("YYYY-MM-DD") : '') : '')
                     readonly
-                    required
                 )
         div.form-group
             label.col-sm-2.control-label 展会/活动 结束日期
@@ -70,7 +69,6 @@ block content
                     data-date-format="yyyy-mm-dd"
                     value=(model ? (model.end_date ? moment(model.end_date).format("YYYY-MM-DD") : '') : '')
                     readonly
-                    required
                 )
         div.form-group
             label.col-sm-2.control-label 是否商品
