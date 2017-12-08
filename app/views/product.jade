@@ -47,7 +47,8 @@ block col_2_content
             ul.bhs_sale_works_title
                 li
                     +cate_link(cate)
-                        img(src=cate.image, width='150', height='65', alt='')
+                        if cate.image
+                            img(src=cate.image, width='150', height='65', alt='')
                         span= cate.display_name
 
 block content_sideR
