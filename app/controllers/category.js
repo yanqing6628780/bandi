@@ -78,7 +78,7 @@ module.exports = function (app) {
             if (rs.name == "GUNPLA" || rs.name == "CHARACTER") {
                 return _category_root(rs, req, res, next);
             }
-            if (rs.name == "EVENT" || rs.name == "CAMPAIGN") {
+            if (rs.name == "EVENT" || rs.name == "CAMPAIGN" || rs.name == "NEWS" || rs.name == "GBWC") {
                 return _category(rs, req, res, next);
             }
             return _product_cateogry(rs, req, res, next);
