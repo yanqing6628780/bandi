@@ -186,8 +186,8 @@ block content
         #bhs_side_hobbyshop
             h3.bhs_title
                 p
-                    | 线上商品
-                    span ONLINE SHOP
+                    | #{web_cfg.pb_url?web_cfg.pb_url.name:"网络限定商品"}
+                    span PB ITEMS
                 br
                 p.bhs_side_btn_all
                     a(href="/online_item/")
@@ -196,9 +196,9 @@ block content
                 each it in onlineProducts.length ? onlineProducts : []
                     +product_img_link(it)
             .bhs_side_btn_hobby
-                a(href="http://p-bandai.jp/hobby/", target="_blank")
+                a(href=web_cfg.pb_url?web_cfg.pb_url.value:"", target="_blank")
                     p
-                        span ホビーオンラインショップへ
+                        span 购入网络限定商品
 block bhs_contents_nobg
     #bhs_contents_nobg
         .bhs_footer_line_h
