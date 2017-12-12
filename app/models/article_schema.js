@@ -116,8 +116,8 @@ const Model = mongoose.model(tableName, schema);
 // Promise data data[0]总数据量 data[1]文章数据
 Model.pagination = (where, page, limit, sort) => {
     let cids = where.cids ? where.cids : undefined;
-    delete where.cids;
     let p = Model.find(where);
+    delete where.cids;
     if (typeof cids === 'object') {
         let and_where = [];
         for (const cid of cids) {
@@ -125,12 +125,15 @@ Model.pagination = (where, page, limit, sort) => {
         }
         p.and(and_where);
     } else {
-        p.where('cids', ObjectId(cids));
+        if(cids) {
+            p.where('cids', ObjectId(cids));
+        }
     }
     p = p.limit(limit).skip(page);
     if(sort) {
         p.sort(sort);
     }
+    console.log(p.getQuery())
     return Promise.all([
         Model.find(p.getQuery()).count(),
         p
