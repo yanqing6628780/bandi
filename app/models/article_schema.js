@@ -45,8 +45,8 @@ let schema = new Schema({
         default: false
     },
     price: {
-        type: Number,
-        default: 0
+        type: String,
+        default: ""
     },
     release_date: {
         type: Date,
@@ -105,14 +105,6 @@ schema.path('cover_pic').set(function (v) {
         let filePath = path.join(configs.path.public, v);
         if (!fs.existsSync(filePath)) {
             v = "";
-        }
-        return v;
-    }
-});
-schema.path('price').set(function (v) {
-    if (v) {
-        if (typeof v !== 'number') {
-            v = 0;
         }
         return v;
     }

@@ -24,7 +24,7 @@ mixin products_li(item)
             img(src=item.cover_pic, width='130', height='130', alt=item.name)
             p
                 span.bhs_pd_ttl(style='height: 54px;')= item.name
-                span.bhs_pd_price #{item.price} 元
+                span.bhs_pd_price #{item.price}
                 if item.is_online_shop
                     span.bhs_pd_cat.cat_shop 线上商店
                 span.bhs_pd_deliver #{moment(item.release_date).format('YYYY年MM月DD日')} 发售
