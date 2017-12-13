@@ -927,7 +927,7 @@ ul.bhs_sub_megamenu li {
 ul.bhs_sub_megamenu li:hover,
 ul.bhs_sub_megamenu li.cur {
     background: #e3162f;
-    border-right: 1px solid rgba(100, 100, 100, 0.80);
+    border-right: 2px solid rgba(100, 100, 100, 0.80);
     display: table-cell;
     height: 53px;
     width: 197px;
