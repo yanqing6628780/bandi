@@ -44,6 +44,10 @@ let schema = new Schema({
         type: Boolean,
         default: false
     },
+    is_undetermined: {
+        type: Boolean,
+        default: false
+    },
     price: {
         type: String,
         default: ""

@@ -27,7 +27,11 @@ mixin products_li(item)
                 span.bhs_pd_price #{item.price}
                 if item.is_online_shop
                     span.bhs_pd_cat.cat_shop 线上商店
-                span.bhs_pd_deliver #{moment(item.release_date).format('YYYY年MM月DD日')} 发售
+                span.bhs_pd_deliver
+                    if item.is_undetermined
+                        | #{moment(item.release_date).format('YYYY年MM月')} 发售
+                    else
+                        | #{moment(item.release_date).format('YYYY年MM月DD日')} 发售
 
 mixin date_format(date)
     mydate= moment(date).format('YYYY年MM月DD日')

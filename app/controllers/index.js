@@ -90,17 +90,21 @@ module.exports = function (app) {
         let where = {
             is_product: true,
             is_online_shop: false,
+            is_undetermined: false,
             release_date: {
                 $lte: date.endOf('months').toDate(),
                 $gte: date.startOf('months').toDate()
             }
         };
         let pb_where = lodash.cloneDeep(where);
+        let undetermined_where = lodash.cloneDeep(where);
         pb_where.is_online_shop = true;
+        undetermined_where.is_undetermined = true;
 
         Promise.all([
             ArticleM.find(where).exec(),
-            ArticleM.find(pb_where).exec()
+            ArticleM.find(pb_where).exec(),
+            ArticleM.find(undetermined_where).exec()
         ]).then((data) => {
             let products = lodash.groupBy(data[0], function (o) {
                 return moment(o.release_date).format('YYYY年MM月DD日');
@@ -114,7 +118,8 @@ module.exports = function (app) {
                 subtitle: subtitles[subIndex],
                 otherMonths: otherMonths,
                 products: products,
-                pb_products: data[1]
+                pb_products: data[1],
+                undetermined_productss: data[2]
             });
         });
     };

@@ -43,6 +43,12 @@ block col_2_content
                 ol.bhs_pdlist_sbs
                     each item in items
                         +products_li(item)
+        .bhs_monthly_dateBlock
+            h4.bhs_main_title
+                p #{date.format('YYYY年MM月')}
+            each item, index in undetermined_productss
+                ol.bhs_pdlist_sbs
+                    +products_li(item)
     #bhs_monthly_pbonly
         h3.bhs_main_title
             p 官方在线商品

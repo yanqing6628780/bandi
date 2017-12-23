@@ -109,6 +109,25 @@ block content
                     )
                     | 是
         div.form-group
+            label.col-sm-2.control-label 是否发售日期待定
+            div.col-sm-10
+                label.radio-inline
+                    input(
+                        name="is_undetermined"
+                        type="radio"
+                        value="0"
+                        checked=(model ? model.is_undetermined===false : true )
+                    )
+                    | 否
+                label.radio-inline
+                    input(
+                        name="is_undetermined"
+                        type="radio"
+                        value="1"
+                        checked=model&&model.is_undetermined===true
+                    )
+                    | 是
+        div.form-group
             label.col-sm-2.control-label 标签
             div.col-sm-10
                 - var tags = [{name:'话题', val:'topics'},{name:'展会', val:'event'},{name:'活动', val:'campaign'},{name:'在线商店', val:'shop'},{name:'新品', val:'new'}]

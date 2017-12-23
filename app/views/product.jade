@@ -36,7 +36,10 @@ block col_2_content
                     tr
                         th(scope='row') 发售日期
                         td
-                            +date_format(item.release_date)
+                            if item.is_undetermined
+                                | #{moment(date).format('YYYY年MM月')}
+                            else
+                                +date_format(item.release_date)
                     tr
                         th(scope='row') 适用年龄
                         td= item.target_age
