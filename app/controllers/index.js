@@ -74,7 +74,17 @@ module.exports = function (app) {
     };
 
     exports.schedule = (req, res) => {
+        let start_year = 2017;
         let now = moment();
+        let years = [];
+        let end_year = moment(now).add(1, 'y').format('YYYY');
+        console.log(now.year())
+        for (let i = 0; i <= (now.year() - start_year); i++) {
+            years.push(
+                moment().set('year', start_year).add(i, 'y').format('YYYY')
+            );
+        }
+        years.push(end_year);
         let date = req.params.date ? moment(req.params.date, "YYYYMM") : now;
         let subtitles = ['Already released', 'NEW ITEMS', 'NEW ITEMS in LATER MONTHS'];
         let cnSubTitles = ['在售商品', '本月新品', '将售商品'];
@@ -112,7 +122,7 @@ module.exports = function (app) {
             res.render('schedule', {
                 title: '发售计划',
                 now: now,
-                years: [now.format('YYYY'), moment(now).add(1, 'y').format('YYYY')],
+                years: years,
                 date: date,
                 bclist: [cnSubTitles[subIndex]],
                 subtitle: subtitles[subIndex],
