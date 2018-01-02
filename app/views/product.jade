@@ -37,7 +37,7 @@ block col_2_content
                         th(scope='row') 发售日期
                         td
                             if item.is_undetermined
-                                | #{moment(date).format('YYYY年MM月')}
+                                | #{moment(item.release_date).format('YYYY年MM月')}
                             else
                                 +date_format(item.release_date)
                     tr
