@@ -16,17 +16,17 @@ block col_2_content
             ul
                 each img in item.images
                     li
-                        a.maingallery.cboxElement(href=img, title=item.name+""+index)
+                        a.maingallery.cboxElement(href=img, title=item.name)
                             span
-                                img(src=img, alt=item.name+""+index)
+                                img(src=img, alt=item.name)
 
             p.bhs_gallery_notes 点击图片放大
         ul#bhs_gallery_thumbs.clearfix
             each img in item.images
                 li
-                    a.maingallery.cboxElement(href=img, title=item.name+""+index)
+                    a.maingallery.cboxElement(href=img, title=item.name)
                         span
-                            img(src=img, alt=item.name+""+index)
+                            img(src=img, alt=item.name)
         #bhs_pd_ontline
             table.bhs_sale_table
                 tbody
