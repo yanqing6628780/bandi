@@ -46,8 +46,8 @@ block col_2_content
         .bhs_monthly_dateBlock
             h4.bhs_main_title
                 p #{date.format('YYYY年MM月')}
-            each item, index in undetermined_productss
-                ol.bhs_pdlist_sbs
+            ol.bhs_pdlist_sbs
+                each item, index in undetermined_productss
                     +products_li(item)
     #bhs_monthly_pbonly
         h3.bhs_main_title
@@ -55,8 +55,8 @@ block col_2_content
         .bhs_monthly_dateBlock
             h4.bhs_main_title
                 p #{date.format('YYYY年MM月')}
-            each item, index in pb_products
-                ol.bhs_pdlist_sbs
+            ol.bhs_pdlist_sbs
+                each item, index in pb_products
                     +products_li(item)
     .bhs_search_calender.clearfix
         h4
