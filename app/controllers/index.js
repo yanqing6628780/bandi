@@ -29,12 +29,18 @@ module.exports = function (app) {
         Promise.all([
             ArticleM.find({
                 cids: newsCid
+            }).sort({
+                release_date: 'desc'
             }).limit(9),
             ArticleM.find({
                 cids: eventCid
+            }).sort({
+                release_date: 'desc'
             }).limit(6),
             ArticleM.find({
                 cids: campaignCid
+            }).sort({
+                release_date: 'desc'
             }).limit(6),
             ArticleM.find(now_product_where).sort({
                 release_date: 'desc'
@@ -51,6 +57,8 @@ module.exports = function (app) {
             SliderM.find(),
             ArticleM.find({
                 cids: GBWCCid
+            }).sort({
+                release_date: 'desc'
             }),
             LinkM.find()
         ]).then((data) => {
