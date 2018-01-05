@@ -74,6 +74,13 @@ module.exports = function(app, passport) {
         else if (req.query.action === 'listimage') {
             var dir_url = '/uploads/'; // 要展示给客户端的文件夹路径
             res.ue_list(dir_url); // 客户端会列出 dir_url 目录下的所有图片
+        } else if (req.query.action === 'deleteimage') {
+            var filepath = path.join(app.configs.path.public, req.body.path);
+            fs.unlink(filepath, function(ex) {
+                res.json({
+                    success: !ex
+                });
+            });
         } else { // 客户端发起其它请求
             res.setHeader('Content-Type', 'application/json');
             // 这里填写 ueditor.config.json 这个文件的路径
