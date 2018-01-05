@@ -54,13 +54,13 @@ module.exports = (gulp, config, $, args) ->
             "#{config.source}resources/assets/**/*.{js,coffee}"
         ], (event) ->
             console.log "File #{event.path} was #{event.type}"
-            runTaskAndBrowserSync 'js:build'
+            runTaskAndBrowserSync 'js'
 
         gulp.watch [
             "#{config.source}resources/assets/**/*.{css,styl}"
         ], (event) ->
             console.log "File #{event.path} was #{event.type}"
-            runTaskAndBrowserSync 'css:build'
+            runTaskAndBrowserSync 'css'
 
         gulp.watch [
             "#{config.source}resources/assets/**/*.{jpg,png,bmp,jpeg}"

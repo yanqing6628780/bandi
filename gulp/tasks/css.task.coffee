@@ -20,6 +20,11 @@ module.exports = (gulp, config, $, args) ->
         ]
             .pipe gulp.dest "#{config.target}public/css/lib/"
 
+        gulp.src [
+            "#{config.bowerPath}/bootstrap/dist/fonts/**"
+        ]
+            .pipe gulp.dest "#{config.target}public/css/fonts/"
+
     gulp.task 'css:copy', ['css:bower.copy'], () ->
        gulp.src [
            "#{config.resource}assets/css/*/**/*.*"
