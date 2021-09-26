@@ -4,7 +4,8 @@ WORKDIR /www
 COPY ./package.json /www
 COPY ./.npmrc /www
 
-RUN npm install --registry=https://registry.npm.taobao.org
+RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
+RUN cnpm install
 
 #复制所有文件到 工作目录。
 COPY . /www
