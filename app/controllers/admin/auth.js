@@ -22,7 +22,7 @@ module.exports = function (app) {
                 req.session.admin = user;
                 res.redirect('/admin');
             } else {
-                var reasons = adminUser.getFailReasons();
+                var reasons = adminUser.failedLoginReasons;
                 switch (reason) {
                     case reasons.FAIL:
                         req.flash('errors', '用户名或密码错误');

@@ -129,7 +129,7 @@ userSchema.pre('save', function (next) {
     });
 });
 
-var reasons = userSchema.statics.failedLogin = {
+var reasons = userSchema.statics.failedLoginReasons = {
     FAIL: 0,
     MAX_ATTEMPTS: 1,
     BAN: 2

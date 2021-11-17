@@ -11,9 +11,9 @@
     "pages"
   ],
   "scripts": {
-    "start": "npm run gulp&&node ./bin/www",
+    "start": "pm2 start pm2.json",
     "win-test": "set NODE_ENV=test&&node ./bin/www",
-    "dev-srv": "./node_modules/.bin/gulp server -d",
+    "dev": "./node_modules/.bin/gulp server -d",
     "test": "./node_modules/.bin/gulp test",
     "gulp": "./node_modules/.bin/gulp"
   },
